@@ -51,6 +51,8 @@ public class DownloadExcel {
     private LocalPracticeService localPracticeService;
     @Resource(name = "localProjectServiceImpl")
     private LocalProjectService localProjectService;
+    @Resource(name = "localMatchServiceImpl")
+    private LocalMatchService localMatchService;
 
 
     @Resource(name = "excelServiceImpl")
@@ -111,7 +113,9 @@ public class DownloadExcel {
             case ExcelServiceImpl.LOACAL_PROJECT:
                 excelService.outLProjectWorkload(path, localProjectService.findAllLoad(0, localProjectService.getCount()));
                 break;
-
+            case ExcelServiceImpl.LOACAL_MATCH:
+                excelService.outLMatchWorkload(path, localMatchService.findAllLoad(0, localMatchService.getCount()));
+                break;
             default:
                 return;
         }

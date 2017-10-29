@@ -47,6 +47,8 @@ public class UploadExcel {
     private LocalPracticeService localPracticeService;
     @Resource(name = "localProjectServiceImpl")
     private LocalProjectService localProjectService;
+    @Resource(name = "localMatchServiceImpl")
+    private LocalMatchService localMatchService;
 
 
     @RequestMapping(value = "/uploadExcel",
@@ -110,6 +112,10 @@ public class UploadExcel {
                     case ExcelServiceImpl.LOACAL_PROJECT:
                         list =excelService.inLProjectWorkload(file);
                         list = localProjectService.insertLoadByList(list);
+                        break;
+                    case ExcelServiceImpl.LOACAL_MATCH:
+                        list =excelService.inLMatchWorkload(file);
+                        list = localMatchService.insertLoadByList(list);
                         break;
                     default:
                 }

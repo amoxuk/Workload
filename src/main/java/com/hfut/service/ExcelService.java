@@ -54,4 +54,7 @@ public interface ExcelService {
     void outLProjectWorkload(String path, List<LProjectWorkload> list) throws Exception;
     List inLProjectWorkload(File file) throws Exception;
 
+    void outLMatchWorkload(String path, List<LMatchWorkload> list) throws Exception;
+    List inLMatchWorkload(File file) throws Exception;
+
 }
