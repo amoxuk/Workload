@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>工作量计算系统</title>
+
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="stylesheet" href="src/css/layui.css">
+    <script src="../src/layui.js"></script>
+    <script src="src/layui.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+
+    <!--必须放最后-->
+    <script src="../js/setting.js"></script>
+    <script src="js/setting.js"></script>
+</head>
+<body>
+
+<header>
+
+</header>
+
+
+
+<main>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>文件上传</legend>
+    </fieldset>
+
+    <div class="layui-upload">
+        <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>
+        <button type="button" class="layui-btn" id="test9">开始上传</button>
+    </div>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>教材编写 - 教学工作量</legend>
+    </fieldset>
+
+    <table class="layui-table" lay-data="" id="teachTable" lay-filter="teachTable"></table>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="save">保存</a>
+    </script>
+
+    <script type="text/html" id="barDemo1">
+        <a class="layui-btn layui-btn-mini" lay-event="edit">工具性按钮</a>
+    </script>
+</main>
+
+<footer>
+
+</footer>
+</body>
+
+<script>
+    layui.use('upload', function(){
+        var upload = layui.upload; //得到 upload 对象
+
+        //选完文件后不自动上传
+        upload.render({
+            elem: '#test8'
+            ,url: '/upload/'
+            ,auto: false
+            ,accept: 'file'
+            ,exts: 'xls|xlsx'
+            //,multiple: true
+            ,bindAction: '#test9'
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+
+    });
+
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({ //其它参数在此省略
+            id:'teachTable',
+            elem: '#teachTable',
+            /*url:'/teachList',*/
+            page:true
+            /*response: {
+                statusName: 'status' //数据状态的字段名称，默认：code
+                ,statusCode: 0 //成功的状态码，默认：0
+                ,msgName: 'msg' //状态信息的字段名称，默认：msg
+                ,countName: 'count' //数据总数的字段名称，默认：count
+                ,dataName: 'data' //数据列表的字段名称，默认：data
+            }*/
+            ,data: [{
+                "id": "10001"
+                ,"teacher": "杜甫"
+                ,"project": "工图"
+                ,"years": "2016"
+                ,"grades": "计算机"
+                ,"level": "国家级"
+                ,"classes": "4"
+                ,"answer": "10"
+                ,"type": "本市"
+                ,"coefficient": "0.8"
+                ,"workload": ""
+                ,"money": ""
+            },{
+                "id": "10001"
+                ,"teacher": "杜甫"
+                ,"project": "工图"
+                ,"years": "2016"
+                ,"grades": "计算机"
+                ,"teachClass": "10001"
+                ,"classes": "4"
+                ,"weeks": "2"
+                ,"type": "野外"
+                ,"coefficient": "1"
+                ,"workload": ""
+                ,"money": ""
+            },{
+                "id": "10003"
+                ,"teacher": "杜甫"
+                ,"project": "工图"
+                ,"years": "2016"
+                ,"grades": "计算机"
+                ,"teachClass": "10001"
+                ,"period": "4"
+                ,"people": "40"
+                ,"coefficient": ""
+                ,"workload": ""
+                ,"money": ""
+            },{
+                "id": "10004"
+                ,"teacher": "杜甫"
+                ,"project": "工图"
+                ,"years": "2016"
+                ,"grades": "计算机"
+                ,"teachClass": "10001"
+                ,"period": "4"
+                ,"people": "40"
+                ,"coefficient": ""
+                ,"workload": ""
+                ,"money": ""
+            },{
+                "id": "10005"
+                ,"teacher": "杜甫"
+                ,"project": "工图"
+                ,"years": "2016"
+                ,"grades": "计算机"
+                ,"teachClass": "10001"
+                ,"period": "4"
+                ,"people": "40"
+                ,"coefficient": ""
+                ,"workload": ""
+                ,"money": ""
+            },{
+                "id": "10006"
+                ,"teacher": "杜甫"
+                ,"project": "工图"
+                ,"years": "2016"
+                ,"grades": "计算机"
+                ,"teachClass": "10001"
+                ,"period": "4"
+                ,"people": "40"
+                ,"coefficient": ""
+                ,"workload": ""
+                ,"money": ""
+            },{
+                "id": "10007"
+                ,"teacher": "杜甫"
+                ,"project": "工图"
+                ,"years": "2016"
+                ,"grades": "计算机"
+                ,"teachClass": "10001"
+                ,"period": "4"
+                ,"people": "40"
+                ,"coefficient": ""
+                ,"workload": ""
+                ,"money": ""
+            },{
+                "id": "10008"
+                ,"teacher": "杜甫"
+                ,"project": "工图"
+                ,"years": "2016"
+                ,"grades": "计算机"
+                ,"teachClass": "10001"
+                ,"period": "4"
+                ,"people": "40"
+                ,"coefficient": ""
+                ,"workload": ""
+                ,"money": ""
+            }]
+            ,height:'full-336',
+            cols:[[
+                {checkbox:true, fixed: true},
+                {field:'id',fixed: true, width:100,title:'ID'},
+                {field:'teacher',edit: true, width:'100',title:'教师'},
+                {field:'book',edit: true, width:'100',title:'书籍名称'},
+                {field:'years',edit: true, width:'100',title:'年级'},
+                {field:'workload',edit: true, width:'100',title:'教学工作量'},
+                {title:'操作', width:200, align:'center', toolbar: '#barDemo'}
+            ]]
+        });
+        table.on('edit(teachTable)', function(obj){
+            var value = obj.value //得到修改后的值
+                ,data = obj.data //得到所在行所有键值
+                ,field = obj.field; //得到字段
+
+
+            data.workload = Math.round(data.workload*100)/100;
+            $('.layui-laypage-btn').click();
+            layer.msg('[教师: '+ data.teacher +'] ' + field + ' 更改为：'+ value);
+        });
+        table.on('tool(teachTable)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'save'){
+                layer.msg('保存：<br>'+ JSON.stringify(data));
+                //ajax上传服务器
+            }
+        });
+    });
+</script>
+
+</html>

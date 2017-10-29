@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="des.js"></script>
+    <script type="text/javascript" src="../src/layui.js"></script>
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <script>
+        function getResult(){
+            //待加密字符串
+            var str = document.getElementById("str").innerText;
+            //第一个参数必须；第二个、第三个参数可选
+            var key1 = document.getElementById("key1").innerText;
+            var key2 = document.getElementById("key2").innerText;
+            var key3 = document.getElementById("key3").innerText;
+            //加密方法
+            var  enResult = strEnc(str,key1,key2,key3);
+            //解密方法
+            var deResult = strDec(enResult,key1,key2,key3);
+            //展示结果
+            document.getElementById("enStr").innerText = enResult;
+            document.getElementById("dnStr").innerText = deResult;
+        }
+    </script>
+    <script language="JavaScript" type="text/javascript">
+
+        window.onload = function(){
+            document.getElementById("pad").innerHTML = "y";
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="获取加密结果与解密结果" onclick="getResult()" />
+<table>
+    <tr>
+        <td align="left">字符串：</td>
+        <td><span id="str">admin</span></td>
+    </tr>
+    <tr>
+        <td>加密key：</td>
+        <td>key1=<span id="key1">1</span>;key2=<span id="key2">2</span>;key3=<span id="key3">3</span></td>
+    </tr>
+    <tr>
+        <td align="left">加密结果：</td>
+        <td align="left"><label id="enStr"></label></td>
+    </tr>
+    <tr>
+        <td align="left">解密结果：</td>
+        <td align="left"><label id="dnStr"></label></td>
+    </tr>
+    </table>
+<div id="pad">xxx</div>
+<ul class="layui-nav" id='demo'>
+    <li class="layui-nav-item layui-this"><a href="">工作量核算系统</a></li>
+    <li class="layui-nav-item ">
+        <a href="javascript:;">落地工作量</a>
+        <dl class="layui-nav-child">
+            <dd><a href="">课堂教学</a></dd>
+            <dd><a href="">实验</a></dd>
+            <dd><a href="">课程设计</a></dd>
+            <dd><a href="">毕业实习</a></dd>
+            <dd><a href="">毕业设计</a></dd>
+            <dd><a href="">教学实习</a></dd>
+            <dd><a href="">网络课程</a></dd>
+            <dd><a href="">创新项目</a></dd>
+            <dd><a href="">竞赛</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item">
+        <a href="javascript:;">异地补贴</a>
+        <dl class="layui-nav-child">
+            <dd><a href="">课堂教学</a></dd>
+            <dd><a href="">实验</a></dd>
+            <dd><a href="">课程设计</a></dd>
+            <dd><a href="">毕业实习</a></dd>
+            <dd><a href="">毕业设计</a></dd>
+            <dd><a href="">教学实习</a></dd>
+            <dd><a href="">网络课程</a></dd>
+            <dd><a href="">创新项目</a></dd>
+            <dd><a href="">竞赛</a></dd>
+        </dl>
+    </li>
+    <li style="float: right" class="layui-nav-item "><a href="/../../userlogin.html">退出</a></li>
+    </li></ul>
+       <script>
+           layui.use('element', function(){
+               var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+               //监听导航点击
+               element.on('nav(demo)', function(elem){
+                   //console.log(elem)\n" +
+                   layer.msg(elem.text());
+               });
+           });
+      </script>
+</body>
+
+</html>
