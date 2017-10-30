@@ -53,7 +53,11 @@ public class DownloadExcel {
     private LocalProjectService localProjectService;
     @Resource(name = "localMatchServiceImpl")
     private LocalMatchService localMatchService;
+    @Resource(name = "localNetServiceImpl")
+    private LocalNetService localNetService;
 
+    @Resource(name = "exprimentServiceImpl")
+    private ExprimentService exprimentService;
 
     @Resource(name = "excelServiceImpl")
     private ExcelService excelService;
@@ -115,6 +119,12 @@ public class DownloadExcel {
                 break;
             case ExcelServiceImpl.LOACAL_MATCH:
                 excelService.outLMatchWorkload(path, localMatchService.findAllLoad(0, localMatchService.getCount()));
+                break;
+            case ExcelServiceImpl.LOACAL_NET:
+                excelService.outLNetWorkload(path, localNetService.findAllLoad(0, localNetService.getCount()));
+                break;
+            case ExcelServiceImpl.EXP:
+                excelService.outExpriment(path, exprimentService.findAllLoad(0, exprimentService.getCount()));
                 break;
             default:
                 return;

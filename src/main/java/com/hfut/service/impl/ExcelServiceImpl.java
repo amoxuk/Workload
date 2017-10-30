@@ -36,6 +36,7 @@ public class ExcelServiceImpl implements ExcelService {
     public static final String LOACAL_BOOK= "LBook";
     public static final String LOACAL_TRAIN= "LTrain";
 
+    public static final String EXP= "Exp";
 
 
     @Override
@@ -1317,6 +1318,201 @@ public class ExcelServiceImpl implements ExcelService {
                 object.setName(POIUtil.getStringCell(row.getCell(line++)));
                 object.setType(POIUtil.getStringCell(row.getCell(line++)));
                 object.setLevel(POIUtil.getStringCell(row.getCell(line++)));
+                object.setWorkload(POIUtil.getFloatCell(row.getCell(line++)));
+                object.setNote(POIUtil.getStringCell(row.getCell(line++)));
+                // 将对象增加到集合中
+                list.add(object);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public void outLNetWorkload(String path, List<LNetWorkload> list) throws Exception {
+        String[] title = new String[]{"序号","教师", "年级","课程",
+                "答疑数", "工作量","备注", "签字"};
+        //第一步创建workbook
+        HSSFWorkbook wb = new HSSFWorkbook();
+
+        //第二步创建sheet
+        Sheet sheet = wb.createSheet("毕业设计工作量");
+
+        //第三步创建行row:添加表头0行
+        Row row = sheet.createRow(0);
+        CellStyle style = wb.createCellStyle();
+        //style.setAlignment(HSSFCellStyle.ALIGN_CENTER);  //居中
+
+        Cell cell; //第一个单元格
+
+        //第四步创建单元格
+        for (int i = 0; i < title.length; i++) {
+            cell = row.createCell(i);
+            cell.setCellValue(title[i]);
+            cell.setCellStyle(style);
+        }
+
+        //第五步插入数据
+        int line;
+        for (int i = 0; i < list.size(); i++) {
+            //创建行
+            line = 0;
+            row = sheet.createRow(i + 1);
+            //创建单元格并且添加数据
+            row.createCell(line++).setCellValue(i + 1);
+            row.createCell(line++).setCellValue(list.get(i).getTeacher());
+            row.createCell(line++).setCellValue(list.get(i).getYears());
+            row.createCell(line++).setCellValue(list.get(i).getLesson());
+            row.createCell(line++).setCellValue(list.get(i).getAnswer());
+            row.createCell(line++).setCellValue(list.get(i).getWorkload());
+            row.createCell(line++).setCellValue(list.get(i).getNote());
+            row.createCell(line++).setCellValue("");
+        }
+
+        //第六步将生成excel文件保存到指定路径下
+        try {
+            FileOutputStream fout = new FileOutputStream(new File(path));
+            wb.write(fout);
+            fout.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("LNet Excel文件生成成功...");
+    }
+
+    @Override
+    public List inLNetWorkload(File file) throws Exception {
+        FileInputStream inputStream = new FileInputStream(file);
+        // 创建对Excel工作簿文件的引用
+        Workbook wookbook = null;
+        String name = file.getName();
+        String fileType = name.substring(name.lastIndexOf(".") + 1,
+                name.length());
+        if (fileType.equals("xlsx")) {
+            wookbook = new XSSFWorkbook(inputStream);
+        } else if (fileType.equals("xls")) {
+            wookbook = new HSSFWorkbook(inputStream);
+        }
+        // 在Excel文档中，第一张工作表的缺省索引是0
+        Sheet sheet = wookbook.getSheetAt(0);
+        // 获取到Excel文件中的所有行数
+        int rows = sheet.getPhysicalNumberOfRows();
+
+        LNetWorkload object;
+        List<LNetWorkload> list = new ArrayList<LNetWorkload>();
+        int line;
+        for (int i = 1; i < rows; i++) {
+            // 读取左上端单元格
+            Row row = sheet.getRow(i);
+            // 行不为空
+            if (row != null) {
+                //获取老师
+                object = new LNetWorkload();
+                line = 0;
+                object.setTeacher(POIUtil.getStringCell(row.getCell(line++)));
+                object.setYears(POIUtil.getIntCell(row.getCell(line++)));
+                object.setLesson(POIUtil.getStringCell(row.getCell(line++)));
+                object.setAnswer(POIUtil.getIntCell(row.getCell(line++)));
+                object.setWorkload(POIUtil.getFloatCell(row.getCell(line++)));
+                object.setNote(POIUtil.getStringCell(row.getCell(line++)));
+
+                // 将对象增加到集合中
+                list.add(object);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public void outExpriment(String path, List<Expriment> list) throws Exception {
+        String[] title = new String[]{"序号","教师", "年级","课程名称","实验类型",
+                "教学班", "学时","学分","人数","系数", "工作量","备注","签字"};
+        //第一步创建workbook
+        HSSFWorkbook wb = new HSSFWorkbook();
+        //第二步创建sheet
+        Sheet sheet = wb.createSheet("实验人员教学工作量");
+        //第三步创建行row:添加表头0行
+        Row row = sheet.createRow(0);
+        CellStyle style = wb.createCellStyle();
+        //style.setAlignment(HSSFCellStyle.ALIGN_CENTER);  //居中
+        Cell cell; //第一个单元格
+        //第四步创建单元格
+        for (int i = 0; i < title.length; i++) {
+            cell = row.createCell(i);
+            cell.setCellValue(title[i]);
+            cell.setCellStyle(style);
+        }
+        //第五步插入数据
+        int line;
+        for (int i = 0; i < list.size(); i++) {
+            //创建行
+            line = 0;
+            row = sheet.createRow(i + 1);
+            //创建单元格并且添加数据
+            row.createCell(line++).setCellValue(i + 1);
+            row.createCell(line++).setCellValue(list.get(i).getTeacher());
+            row.createCell(line++).setCellValue(list.get(i).getYears());
+            row.createCell(line++).setCellValue(list.get(i).getLesson());
+            row.createCell(line++).setCellValue(list.get(i).getType());
+            row.createCell(line++).setCellValue(list.get(i).getClassNumber());
+            row.createCell(line++).setCellValue(list.get(i).getPeroid());
+            row.createCell(line++).setCellValue(list.get(i).getCredit());
+            row.createCell(line++).setCellValue(list.get(i).getPeople());
+            row.createCell(line++).setCellValue(list.get(i).getCoefficient());
+            row.createCell(line++).setCellValue(list.get(i).getWorkload());
+            row.createCell(line++).setCellValue(list.get(i).getNote());
+            row.createCell(line++).setCellValue("");
+        }
+        //第六步将生成excel文件保存到指定路径下
+        try {
+            FileOutputStream fout = new FileOutputStream(new File(path));
+            wb.write(fout);
+            fout.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("LNet Excel文件生成成功...");
+    }
+
+    @Override
+    public List inExpriment(File file) throws Exception {
+        FileInputStream inputStream = new FileInputStream(file);
+        // 创建对Excel工作簿文件的引用
+        Workbook wookbook = null;
+        String name = file.getName();
+        String fileType = name.substring(name.lastIndexOf(".") + 1,
+                name.length());
+        if (fileType.equals("xlsx")) {
+            wookbook = new XSSFWorkbook(inputStream);
+        } else if (fileType.equals("xls")) {
+            wookbook = new HSSFWorkbook(inputStream);
+        }
+        // 在Excel文档中，第一张工作表的缺省索引是0
+        Sheet sheet = wookbook.getSheetAt(0);
+        // 获取到Excel文件中的所有行数
+        int rows = sheet.getPhysicalNumberOfRows();
+
+        Expriment object;
+        List<Expriment> list = new ArrayList<Expriment>();
+        int line;
+        for (int i = 1; i < rows; i++) {
+            // 读取左上端单元格
+            Row row = sheet.getRow(i);
+            // 行不为空
+            if (row != null) {
+                //获取老师
+                object = new Expriment();
+                line = 0;
+                object.setTeacher(POIUtil.getStringCell(row.getCell(line++)));
+                object.setYears(POIUtil.getIntCell(row.getCell(line++)));
+                object.setLesson(POIUtil.getStringCell(row.getCell(line++)));
+                object.setType(POIUtil.getStringCell(row.getCell(line++)));
+                object.setClassNumber(POIUtil.getIntCell(row.getCell(line++)));
+                object.setPeroid(POIUtil.getFloatCell(row.getCell(line++)));
+                object.setCredit(POIUtil.getFloatCell(row.getCell(line++)));
+                object.setPeople(POIUtil.getIntCell(row.getCell(line++)));
+                object.setCoefficient(POIUtil.getFloatCell(row.getCell(line++)));
                 object.setWorkload(POIUtil.getFloatCell(row.getCell(line++)));
                 object.setNote(POIUtil.getStringCell(row.getCell(line++)));
                 // 将对象增加到集合中

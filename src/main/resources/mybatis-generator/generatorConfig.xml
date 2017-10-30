@@ -31,50 +31,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-
-		<table tableName="workload" domainObjectName="WorkLoad" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="teacher" domainObjectName="Teacher" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="user_role" domainObjectName="UserRole" >
-			<generatedKey column="level_id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="remote_teach_workload" domainObjectName="RemoteTeachWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="remote_expriment" domainObjectName="RemoteExpWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="remote_design" domainObjectName="RemoteDesignWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="remote_graduate" domainObjectName="RemoteGraduateWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="local_course" domainObjectName="LocalCourseWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="local_expriment" domainObjectName="LocalExpWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="local_graduate_practice" domainObjectName="LGraPracticeWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="local_graduate_design" domainObjectName="LGraDesignWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="local_practice" domainObjectName="LPracticeWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="local_project" domainObjectName="LProjectWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="local_net" domainObjectName="LNetWorkload" >
-			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
-		</table>
-		<table tableName="local_match" domainObjectName="LMatchWorkload" >
+		<table tableName="expriment" domainObjectName="Expriment" >
 			<generatedKey column="id" sqlStatement="MYSQL" identity="true" />
 		</table>
 

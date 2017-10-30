@@ -57,4 +57,12 @@ public interface ExcelService {
     void outLMatchWorkload(String path, List<LMatchWorkload> list) throws Exception;
     List inLMatchWorkload(File file) throws Exception;
 
+    void outLNetWorkload(String path, List<LNetWorkload> list) throws Exception;
+
+    List inLNetWorkload(File file) throws Exception;
+
+    void outExpriment(String path, List<Expriment> list) throws Exception;
+
+    List inExpriment(File file) throws Exception;
+
 }

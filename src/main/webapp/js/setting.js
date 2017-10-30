@@ -68,9 +68,12 @@
             "                       <dd><a href=\"../workload/netCourse.html\">网络课程</a></dd>\n" +
             "                       <dd><a href=\"../workload/project.html\">双创项目</a></dd>\n" +
             "                       <dd><a href=\"../workload/competition.html\">竞赛</a></dd>\n" +
-            "                       <dd><a href=\"../workload/publishTextbook.html\">教材编写</a></dd>\n" +
-            "                       <dd><a href=\"../workload/trainAxe.html\">乐器指导</a></dd>\n" +
+    /*        "                       <dd><a href=\"../workload/publishTextbook.html\">教材编写</a></dd>\n" +
+            "                       <dd><a href=\"../workload/trainAxe.html\">乐器指导</a></dd>\n" +*/
             "                       </dl>\n" +
+            "               </li>\n" +
+            "           <li class=\"layui-nav-item\">\n" +
+            "                   <a href=\"javascript:;\">实验教学</a>\n" +
             "               </li>\n" +
             "           <li style=\"float: right\" class=\"layui-nav-item \"><a href=\"/../../userlogin.html\">退出</a></li>\n" +
             "       </ul>\n" +
