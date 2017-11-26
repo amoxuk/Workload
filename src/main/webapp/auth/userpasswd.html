@@ -3,15 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>工作量计算系统</title>
+    <link rel="Shortcut Icon" href="../images/favicon.ico" />
 
+       <link rel="Shortcut Icon" href="../images/favicon.ico" />/r/n<link rel="stylesheet" href="../src/css/layui.css">
     <link rel="stylesheet" href="../src/css/layui.css">
-    <link rel="stylesheet" href="src/css/layui.css">
     <script src="../src/layui.js"></script>
     <script src="../js/jquery-3.2.1.js"></script>
-    <script src="js/jquery-3.2.1.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
     <script src="../js/jscookie.js"></script>
-    <script src="js/setting.js"></script>
-    <script src="src/layui.js"></script>
+    <script src="../js/setting.js"></script>
+    <script src="../src/layui.js"></script>
     <style>
         form{padding: 10px;margin-right: 10%}
     </style>
@@ -24,7 +25,6 @@
 <main>
 
 
-
 <div align="center" style="background-color: #F7FBFF;width:50%;padding: 60px 0 50px 0;margin: 20px auto;">
     <form class="layui-form layui-form-pane1">
         <div class="layui-form-item">
@@ -34,7 +34,13 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block" align="center" style="width: 320px">
-                <input type="password" id="psw" name="psw" lay-verify="psw" placeholder="密码" autocomplete="off" class="layui-input">
+                <input type="password" id="oldPsw" name="oldPsw" lay-verify="pass" placeholder="旧密码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block" align="center" style="width: 320px">
+                <input type="password" id="newPsw" name="newPsw" lay-verify="pass" placeholder="新密码" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -42,21 +48,16 @@
                 <input type="password" id="surepsw" name="surepsw" lay-verify="surepsw" placeholder="确认密码" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block" align="center" style="width: 320px">
-                <input type="text" id="email" name="email" lay-verify="email" placeholder="邮箱" autocomplete="true" class="layui-input">
-            </div>
-        </div>
         <div class="layui-form-item" style="margin: 35px">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="reg">注册</button>
-
                 <a href="../../userlogin.html" class="layui-btn layui-btn-primary">返回登录</a>
             </div>
         </div>
     </form>
 </div>
 </main>
+
 <footer>
 </footer>
 
@@ -84,14 +85,18 @@
         });
         //监听提交
         form.on('submit(reg)', function(data){
-            if (data.field.psw != data.field.surepsw) {
+            if (data.field.newPsw != data.field.surepsw) {
                 layer.msg("两次密码不相同");
                 return false;
+            }else if (data.field.newPsw == data.field.oldPsw) {
+                layer.msg("修改的密码不能相同");
+                return false;
             }
-            var newTable = {"name": data.field.name,"psw":strEnc(data.field.psw,'amoxu','amoxu','amoxu'),"mail":data.field.email};
+            var newTable = {"name": data.field.name,"oldPsw":strEnc(data.field.oldPsw,'amoxu','amoxu','amoxu'),
+                "newPsw":strEnc(data.field.newPsw,'amoxu','amoxu','amoxu')};
             $.ajax({
                 type: 'post'
-                ,url: "/register"
+                ,url: "/passwd"
                 ,data: newTable
                 ,dataType: 'json'
                 ,contentType:'application/x-www-form-urlencoded;charset=UTF-8'
@@ -100,6 +105,8 @@
                         layer.msg(res['result']);
                         return false;
                     }
+                    layer.msg("修改成功,正在跳转。。。");
+
                     self.location=res["result"];
                 }
                 ,error: function(res){

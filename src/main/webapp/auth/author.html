@@ -3,16 +3,18 @@
 <head>
     <meta charset="utf-8">
     <title>登录 - 工作量计算系统</title>
+
+    <link rel="Shortcut Icon" href="../images/favicon.ico" />
     <link rel="stylesheet" href="../src/css/layui.css">
-    <link rel="stylesheet" href="src/css/layui.css">
+    <link rel="stylesheet" href="../src/css/layui.css">
     <script src="../src/layui.js"></script>
     <script src="../js/jquery-3.2.1.js"></script>
-    <script src="js/jquery-3.2.1.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
     <script src="../js/jscookie.js"></script>
-    <script src="js/setting.js"></script>
-    <script src="src/layui.js"></script>
-    <script src="js/des.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/register-login.css">
+    <script src="../js/setting.js"></script>
+    <script src="../src/layui.js"></script>
+    <script src="../js/des.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/register-login.css">
     <style>
 
         h1              { font-size: 2em; margin: .67em 0 }
@@ -60,8 +62,9 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block" align="center" >
-                <img id="captchaImage" src="/captcha" alt="验证码"/>
-            </div></div>
+                <img id="captchaImage" src="captcha" alt="验证码"/>
+            </div>
+        </div>
 
         <div class="layui-form-item" >
             <div class="layui-input-block" align="center">
@@ -69,7 +72,14 @@
                 <a class="layui-btn layui-btn-primary" id="reset">重置</a>
             </div>
         </div>
+
         </form>
+
+        <div class="layui-row" align="center">
+            <a id="forget" href="../password/forget.html">找回密码</a>
+        </div>
+
+
     </div>
 </div>
 
@@ -77,10 +87,10 @@
     <p>©CopyRight 2017 合肥工业大学 All Rights Reserved.</p>
 </div>
 
-<script type="text/javascript" src="src/layui.js" charset="utf-8"></script>
-<script type="text/javascript" src='js/particles.js'></script>
-<script type="text/javascript" src='js/background.js'></script>
-<script type="text/javascript" src="js/gt.js"></script>
+<script type="text/javascript" src="../src/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src='../js/particles.js'></script>
+<script type="text/javascript" src='../js/background.js'></script>
+<script type="text/javascript" src="../js/gt.js"></script>
 <script>
    layui.use(['form','element','jquery'], function(){
        var $ = layui.jquery;
@@ -96,7 +106,7 @@
        });
        //监听提交
        $("#login").click( function(){
-           var newTable = {"name": $("#username").val(),"psw":strEnc($("#password").val(),'amoxu','amoxu','amoxu'),"mail":$("#captcha").val()};
+           var newTable = {"user": $("#username").val(),"password":strEnc($("#password").val(),'amoxu','amoxu','amoxu'),"mail":$("#captcha").val()};
            layer.msg('登录中...', {
                icon: 16
                ,shade: 0.01
@@ -109,17 +119,18 @@
                ,contentType:'application/x-www-form-urlencoded;charset=UTF-8'
                ,success: function(res){
                    if (res["status"]==1) {
-                       layer.msg(res['result']);
-                       $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
+                       layer.msg(res['msg']);
+                       setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());",2000)
                        return false;
-                   }else
-                       layer.msg("登录成功！")
+                   }else{
+                       layer.msg("登录成功！");
+                   }
+                   self.location = res["msg"];
 
-                   self.location=res["result"];
                }
                ,error: function(res){
                    layer.msg('请检查网络！');
-                   $("#reset").click();
+                   setTimeout(" $(\"#reset\").click();",2000)
                }
            });
            return false;
