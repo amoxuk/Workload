@@ -39,7 +39,35 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>课堂教学 - 教师补贴</legend>
     </fieldset>
-
+    <div class="layui-btn-group">
+        <!--//刷新-->
+        <button class="layui-btn layui-btn-sm" onclick="ToolBar.refresh()">
+            <i class="layui-icon" >&#x1002;</i>
+        </button>
+        <!-- //添加-->
+        <button class="layui-btn layui-btn-sm" onclick="ToolBar.add(
+            {
+                'teacher':'*教师姓名',
+                'lesson':'*课程名称',
+                'years':'*年级',
+                'grades':'*优选范围',
+                'teachClass':'*教学班号',
+                'credit':'*学分',
+                'period':'*课内学时',
+                'people':'*学生人数',
+                'coefficient':'工作量系数',
+                'workload':'教学工作量',
+                'note':'备注'
+            },
+            myGlobal.LOCAL_TEACH_COURSE+'/add'
+            );">
+            <i class="layui-icon" >&#xe654;</i>
+        </button>
+        <!--//删除-->
+        <button class="layui-btn layui-btn-sm" onclick="ToolBar.remove('teachTable',myGlobal.LOCAL_TEACH_COURSE+'/delete');">
+            <i class="layui-icon">&#xe640;</i>
+        </button>
+    </div>
     <table class="layui-table" lay-data="" id="teachTable" lay-filter="teachTable"></table>
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="save">保存</a>

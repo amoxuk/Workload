@@ -17,4 +17,6 @@ public interface RemoteGraService {
     List<RemoteGraduateWorkload> insertLoadByList(List<RemoteGraduateWorkload> list) throws Exception;
 
     boolean insertLoad(RemoteGraduateWorkload workload) throws Exception;
+
+    boolean removeLoad(List list);
 }

@@ -17,4 +17,6 @@ public interface RemoteExpService {
     boolean insertLoad(RemoteExpWorkload workload) throws Exception;
 
     List<RemoteExpWorkload> insertLoadByList(List<RemoteExpWorkload> list) throws Exception;
+
+    boolean removeLoad(List list);
 }

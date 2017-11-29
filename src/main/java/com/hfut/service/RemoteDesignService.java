@@ -16,4 +16,6 @@ public interface RemoteDesignService {
     List<RemoteDesignWorkload> insertLoadByList(List<RemoteDesignWorkload> list) throws Exception;
 
     boolean insertLoad(RemoteDesignWorkload workload) throws Exception;
+
+    boolean removeLoad(List list);
 }

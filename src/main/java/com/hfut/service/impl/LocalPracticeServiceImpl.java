@@ -66,6 +66,18 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
             return true;
         }
     }
+    @Override
+    public boolean removeLoad(List list) throws Exception {
+        LPracticeWorkloadExample expWorkloadExample = new LPracticeWorkloadExample();
+        LPracticeWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        criteria.andIdIn(list);
+        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     @Override
     public boolean insertLoad(LPracticeWorkload workload) throws Exception {
@@ -94,5 +106,6 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
         }
         return ret;
     }
+
 
 }

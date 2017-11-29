@@ -76,7 +76,17 @@ public class LocalExpServiceImpl implements LocalExpService {
             return true;
         }
     }
-
+    @Override
+    public boolean removeLoad(List list) throws Exception {
+        LocalExpWorkloadExample expWorkloadExample = new LocalExpWorkloadExample();
+        LocalExpWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        criteria.andIdIn(list);
+        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     @Override
     public boolean removeLoad(Integer id) throws Exception {
         LocalExpWorkloadExample expWorkloadExample = new LocalExpWorkloadExample();
@@ -132,4 +142,6 @@ public class LocalExpServiceImpl implements LocalExpService {
         }
         return ret;
     }
+
+
 }

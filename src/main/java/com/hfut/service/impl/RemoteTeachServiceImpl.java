@@ -2,10 +2,12 @@ package com.hfut.service.impl;
 
 import com.hfut.entity.RemoteTeachWorkload;
 import com.hfut.entity.RemoteTeachWorkloadExample;
+import com.hfut.exception.CustomException;
 import com.hfut.mapper.RemoteTeachWorkloadMapper;
 import com.hfut.service.RemoteTeachService;
 import com.hfut.util.PropertyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,14 +32,20 @@ public class RemoteTeachServiceImpl implements RemoteTeachService {
 
     @Override
     public boolean insertLoad(RemoteTeachWorkload workload) throws Exception {
-        int people = workload.getPeople();
-        //46个人为一个班，每增加一个班增加0.1系数
+        try {
 
-        workload.setClassCoefficient((float) (Math.round(people / 46F)* 0.1 + 0.9));
-        //计算工作量 课时
-        workload.setWorkload(workload.getPeriod() * workload.getClassCoefficient());
-        //计算酬金
-        workload.setMoney(PropertyUtil.getAllowance() * workload.getWorkload());
+            int people = workload.getPeople();
+            //46个人为一个班，每增加一个班增加0.1系数
+
+            workload.setClassCoefficient((float) (Math.round(people / 46F) * 0.1 + 0.9));
+            //计算工作量 课时
+            workload.setWorkload(workload.getPeriod() * workload.getClassCoefficient());
+            //计算酬金
+            workload.setMoney(PropertyUtil.getAllowance() * workload.getWorkload());
+        } catch (NullPointerException|DataIntegrityViolationException nop) {
+            throw new CustomException("请输入班级人数，学时,教学班");
+        }
+
         if (workloadMapper.insertSelective(workload) == 0) {
             return false;
         }
@@ -141,6 +149,18 @@ public class RemoteTeachServiceImpl implements RemoteTeachService {
         RemoteTeachWorkloadExample example = new RemoteTeachWorkloadExample();
         RemoteTeachWorkloadExample.Criteria criteria = example.createCriteria();
         criteria.andIdEqualTo(id);
+        if (workloadMapper.deleteByExample(example) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean removeLoad(List ids) throws Exception {
+        RemoteTeachWorkloadExample example = new RemoteTeachWorkloadExample();
+        RemoteTeachWorkloadExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
         if (workloadMapper.deleteByExample(example) == 0) {
             return false;
         } else {

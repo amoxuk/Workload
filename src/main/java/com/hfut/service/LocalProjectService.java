@@ -17,4 +17,5 @@ public interface LocalProjectService {
 
     List<LProjectWorkload> insertLoadByList(List<LProjectWorkload> list) throws Exception;
 
+    boolean removeLoad(List list);
 }

@@ -93,4 +93,16 @@ public class RemoteExpServiceImpl implements RemoteExpService {
         }
         return ret;
     }
+
+    @Override
+    public boolean removeLoad(List list) {
+        RemoteExpWorkloadExample expWorkloadExample = new RemoteExpWorkloadExample();
+        RemoteExpWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        criteria.andIdIn(list);
+        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -17,4 +17,5 @@ public interface LocalMatchService {
 
     List<LMatchWorkload> insertLoadByList(List<LMatchWorkload> list) throws Exception;
 
+    boolean removeLoad(List list) throws Exception;
 }

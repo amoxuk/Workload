@@ -90,4 +90,16 @@ public class LocalGraPracticeServiceImpl implements LocalGraPracticeService {
         return ret;
     }
 
+    @Override
+    public boolean removeLoad(List list) {
+        LGraPracticeWorkloadExample expWorkloadExample = new LGraPracticeWorkloadExample();
+        LGraPracticeWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        criteria.andIdIn(list);
+        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

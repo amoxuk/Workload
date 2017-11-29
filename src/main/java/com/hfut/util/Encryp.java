@@ -1,6 +1,5 @@
 package com.hfut.util;
 
-import org.jetbrains.annotations.Contract;
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
@@ -268,8 +267,8 @@ public class Encryp {
      *
      * return the original string
      */
-    public String strDec(String data, String firstKey, String secondKey,
-                         String thirdKey) {
+    public static String strDec(String data, String firstKey, String secondKey,
+                                String thirdKey) {
         int leng = data.length();
         String decStr = "";
         List firstKeyBt = null, secondKeyBt = null, thirdKeyBt = null;
@@ -599,7 +598,7 @@ public class Encryp {
         return finallyPermute(finalData);
     }
 
-    public int[] dec(int[] dataByte, int[] keyByte) {
+    public static int[] dec(int[] dataByte, int[] keyByte) {
         int[][] keys = generateKeys(keyByte);
         int[] ipByte = initPermute(dataByte);
         int[] ipLeft = new int[32];

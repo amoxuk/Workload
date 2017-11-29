@@ -15,7 +15,7 @@ import java.io.IOException;
 @Controller
 public class Captcha {
     static final long serialVersionUID = 1L;
-    @RequestMapping(value = "/captcha", method = RequestMethod.GET)
+    @RequestMapping(value = "{[a-z-A-Z]}/captcha", method = RequestMethod.GET)
     @ResponseBody
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Pragma", "No-cache");

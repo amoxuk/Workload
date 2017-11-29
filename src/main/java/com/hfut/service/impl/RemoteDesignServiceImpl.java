@@ -70,4 +70,12 @@ public class RemoteDesignServiceImpl implements RemoteDesignService {
         return designWorkloadMapper.insertSelective(workload) == 1;
     }
 
+    @Override
+    public boolean removeLoad(List list) {
+        RemoteDesignWorkloadExample example = new RemoteDesignWorkloadExample();
+        RemoteDesignWorkloadExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(list);
+        return designWorkloadMapper.deleteByExample(example) != 0;
+    }
+
 }

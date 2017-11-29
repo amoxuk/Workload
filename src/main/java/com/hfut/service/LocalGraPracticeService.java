@@ -17,4 +17,5 @@ public interface LocalGraPracticeService {
 
     List<LGraPracticeWorkload> insertLoadByList(List<LGraPracticeWorkload> list) throws Exception;
 
+    boolean removeLoad(List list);
 }

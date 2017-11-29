@@ -1,8 +1,9 @@
 package com.hfut.realm;
 
-import com.hfut.entity.Teacher;
-import com.hfut.service.TeacherService;
+import com.hfut.entity.User;
+import com.hfut.exception.CustomException;
 import com.hfut.service.UserRoleService;
+import com.hfut.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -20,8 +21,8 @@ import java.util.Set;
 
 @Component
 public class loginRealm extends AuthorizingRealm{
-    @Resource(name = "teacherServiceImpl")
-    private TeacherService teacherService;
+    @Resource(name = "userServiceImpl")
+    private UserService userService;
 
     @Resource(name = "userRoleServiceImpl")
     private UserRoleService userRoleService;
@@ -37,12 +38,16 @@ public class loginRealm extends AuthorizingRealm{
 
         try {
 
-            Teacher userlogin = teacherService.findByName(teacherName);
+            User userlogin = userService.findByName(teacherName);
 
             //获取角色对象
-            role = userRoleService.findByid(userlogin.getRole());
+            role = userRoleService.findByid(userlogin.getLevel());
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                throw new CustomException("用户不存在或密码错误");
+            } catch (CustomException e1) {
+                e1.printStackTrace();
+            }
         }
         //通过用户名从数据库获取权限/角色信息
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -65,9 +70,9 @@ public class loginRealm extends AuthorizingRealm{
         String username = (String) token.getPrincipal();
         //密码
         String password = new String((char[])token.getCredentials());
-       Teacher userlogin = null;
+       User userlogin = null;
         try {
-            userlogin = teacherService.findByName(username);
+            userlogin = userService.findByName(username);
 
         } catch (Exception e) {
             e.printStackTrace();

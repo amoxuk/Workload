@@ -16,4 +16,6 @@ public interface LocalExpService {
     boolean insertLoad(LocalExpWorkload workload) throws Exception;
 
     List<LocalExpWorkload> insertLoadByList(List<LocalExpWorkload> list) throws Exception;
+
+    boolean removeLoad(List list) throws Exception;
 }

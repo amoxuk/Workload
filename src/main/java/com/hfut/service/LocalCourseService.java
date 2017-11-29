@@ -18,4 +18,6 @@ public interface LocalCourseService {
     boolean insertLoad(LocalCourseWorkload workload) throws Exception;
 
     List<LocalCourseWorkload> insertLoadByList(List<LocalCourseWorkload> list) throws Exception;
+
+    boolean removeLoad(List list) throws Exception;
 }

@@ -16,4 +16,7 @@ public interface LocalPracticeService {
     boolean insertLoad(LPracticeWorkload workload) throws Exception;
 
     List<LPracticeWorkload> insertLoadByList(List<LPracticeWorkload> list) throws Exception;
+
+    boolean removeLoad(List list) throws Exception;
+
 }

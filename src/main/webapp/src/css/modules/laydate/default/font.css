@@ -1,10 +1,10 @@
 /** 图标字体 **/
 @font-face {font-family: 'laydate-icon';
-  src: url('./font/iconfont.eot');
-  src: url('./font/iconfont.eot#iefix') format('embedded-opentype'),
-  url('./font/iconfont.svg#iconfont') format('svg'),
-  url('./font/iconfont.woff') format('woff'),
-  url('./font/iconfont.ttf') format('truetype');
+  src: url('../font/iconfont.eot');
+  src: url('../font/iconfont.eot#iefix') format('embedded-opentype'),
+  url('../font/iconfont.svg#iconfont') format('svg'),
+  url('../font/iconfont.woff') format('woff'),
+  url('../font/iconfont.ttf') format('truetype');
 }
                     
 .laydate-icon{

@@ -78,4 +78,16 @@ public class LocalMatchServiceImpl implements LocalMatchService {
         return ret;
     }
 
+    @Override
+    public boolean removeLoad(List list) throws Exception {
+        LMatchWorkloadExample expWorkloadExample = new LMatchWorkloadExample();
+        LMatchWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        criteria.andIdIn(list);
+        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

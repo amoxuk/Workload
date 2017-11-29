@@ -1454,7 +1454,7 @@ public class ExcelServiceImpl implements ExcelService {
             row.createCell(line++).setCellValue(list.get(i).getYears());
             row.createCell(line++).setCellValue(list.get(i).getLesson());
             row.createCell(line++).setCellValue(list.get(i).getType());
-            row.createCell(line++).setCellValue(list.get(i).getClassNumber());
+            row.createCell(line++).setCellValue(list.get(i).getTeachClass());
             row.createCell(line++).setCellValue(list.get(i).getPeroid());
             row.createCell(line++).setCellValue(list.get(i).getCredit());
             row.createCell(line++).setCellValue(list.get(i).getPeople());
@@ -1508,7 +1508,7 @@ public class ExcelServiceImpl implements ExcelService {
                 object.setYears(POIUtil.getIntCell(row.getCell(line++)));
                 object.setLesson(POIUtil.getStringCell(row.getCell(line++)));
                 object.setType(POIUtil.getStringCell(row.getCell(line++)));
-                object.setClassNumber(POIUtil.getIntCell(row.getCell(line++)));
+                object.setTeachClass(POIUtil.getIntCell(row.getCell(line++)));
                 object.setPeroid(POIUtil.getFloatCell(row.getCell(line++)));
                 object.setCredit(POIUtil.getFloatCell(row.getCell(line++)));
                 object.setPeople(POIUtil.getIntCell(row.getCell(line++)));

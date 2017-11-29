@@ -26,6 +26,8 @@ public interface RemoteTeachService {
 
     boolean removeLoad(int id) throws Exception;
 
+    boolean removeLoad(List ids) throws Exception;
+
     int getCount() throws Exception;
 
 }

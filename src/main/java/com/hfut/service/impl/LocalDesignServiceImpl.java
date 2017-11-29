@@ -89,4 +89,16 @@ public class LocalDesignServiceImpl implements LocalDesignService {
         }
         return ret;
     }
+
+    @Override
+    public boolean removeLoad(List list) throws Exception {
+        LocalDesignWorkloadExample expWorkloadExample = new LocalDesignWorkloadExample();
+        LocalDesignWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        criteria.andIdIn(list);
+        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

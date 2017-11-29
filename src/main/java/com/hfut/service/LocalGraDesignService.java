@@ -16,4 +16,6 @@ public interface LocalGraDesignService {
     boolean insertLoad(LGraDesignWorkload workload) throws Exception;
 
     List<LGraDesignWorkload> insertLoadByList(List<LGraDesignWorkload> list) throws Exception;
+
+    boolean removeLoad(List list);
 }

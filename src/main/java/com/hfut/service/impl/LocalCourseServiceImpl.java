@@ -75,7 +75,17 @@ public class LocalCourseServiceImpl implements LocalCourseService {
             return true;
         }
     }
-
+    @Override
+    public boolean removeLoad(List list) throws Exception {
+        LocalCourseWorkloadExample expWorkloadExample = new LocalCourseWorkloadExample();
+        LocalCourseWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        criteria.andIdIn(list);
+        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     @Override
     public boolean insertLoad(LocalCourseWorkload workload) throws Exception {
@@ -114,5 +124,7 @@ public class LocalCourseServiceImpl implements LocalCourseService {
         }
         return ret;
     }
+
+
 
 }

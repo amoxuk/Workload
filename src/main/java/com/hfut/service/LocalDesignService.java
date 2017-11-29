@@ -17,4 +17,6 @@ public interface LocalDesignService {
     boolean insertLoad(LocalDesignWorkload workload) throws Exception;
 
     List<LocalDesignWorkload> insertLoadByList(List<LocalDesignWorkload> list) throws Exception;
+
+    boolean removeLoad(List list) throws Exception;
 }

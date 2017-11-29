@@ -93,4 +93,16 @@ public class LocalProjectServiceImpl implements LocalProjectService {
         }
         return ret;
     }
+
+    @Override
+    public boolean removeLoad(List list) {
+        LProjectWorkloadExample expWorkloadExample = new LProjectWorkloadExample();
+        LProjectWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        criteria.andIdIn(list);
+        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -64,4 +64,12 @@ public class RemoteGraServiceImpl implements RemoteGraService {
         workload.setWorkload((float) Math.round(0.9 * workload.getPeople() * workload.getWeeks()));
         return graduateMapper.insertSelective(workload) == 1;
     }
+
+    @Override
+    public boolean removeLoad(List list) {
+        RemoteGraduateWorkloadExample example = new RemoteGraduateWorkloadExample();
+        RemoteGraduateWorkloadExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(list);
+        return graduateMapper.deleteByExample(example) != 0;
+    }
 }
