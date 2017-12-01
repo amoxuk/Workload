@@ -76,7 +76,7 @@
         </form>
 
         <div class="layui-row" align="center">
-            <a id="forget" href="../password/forget.html">找回密码</a>
+            <a id="forget" href="forget.html">找回密码</a>
         </div>
 
 
@@ -129,7 +129,7 @@
 
                }
                ,error: function(res){
-                   layer.msg('请检查网络！');
+                   layer.msg('错误码：'+res.status);
                    setTimeout(" $(\"#reset\").click();",2000)
                }
            });

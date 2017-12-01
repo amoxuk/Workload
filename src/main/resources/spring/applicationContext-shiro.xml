@@ -41,7 +41,6 @@
                 /logout = logout
 
                 # 配置静态资源可以匿名访问
-                /password/**=anon
                 /captcha = anon
                 /css/** = anon
                 /js/** = anon

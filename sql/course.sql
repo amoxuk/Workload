@@ -19,6 +19,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- Table structure for course
 -- ----------------------------
 DROP TABLE IF EXISTS `course`;
+
 CREATE TABLE `course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(10) NOT NULL,

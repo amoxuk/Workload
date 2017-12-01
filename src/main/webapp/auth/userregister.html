@@ -89,6 +89,7 @@
                 layer.msg("两次密码不相同");
                 return false;
             }
+
             var newTable = {"name": data.field.name,"psw":strEnc(data.field.psw,'amoxu','amoxu','amoxu'),"mail":data.field.email};
             $.ajax({
                 type: 'post'

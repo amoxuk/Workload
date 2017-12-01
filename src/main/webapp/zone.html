@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>个人中心 - 工作量计算系统</title>
+
+    <link rel="Shortcut Icon" href="images/favicon.ico"/>
+
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="stylesheet" href="src/css/layui.css">
+    <script src="../src/layui.js"></script>
+    <script src="src/layui.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/des.js"></script>
+
+
+    <!--必须放最后-->
+    <script src="../js/setting.js"></script>
+    <script src="js/setting.js"></script>
+
+    <style>
+        .zone li {
+            margin-bottom: 10px;
+            padding: 0.7em;
+            line-height: 22px;
+            border-left: 5px solid #0078AD;
+            background-color: #f2f2f2;
+        }
+
+        .zone li a {
+            color: #777777;
+        }
+
+        .zone li a:hover {
+            color: #333333;
+        }
+
+        .zone-msg {
+            margin-left: 15px;
+        }
+
+        .zone-msg h2 {
+            margin-left: 33%;
+        }
+
+        .zone-content p {
+            width: 120px;
+            padding: 1em;
+        }
+
+        .zone-content li {
+            margin-bottom: 10px;
+            padding: 0.7em;
+            line-height: 22px;
+        }
+
+        .zone-content a {
+            color: #9F9F9F;
+
+        }
+
+        .zone-content .label {
+            float: left;
+            display: block;
+            padding: 9px 2em;
+            width: 5em;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .zone-content .text {
+            display: block;
+            padding-top: 9px;
+        }
+
+        .zone-content input {
+            display: block;
+            margin-top: 9px;
+            margin-bottom: 9px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        .zone-content li a {
+            color: #777777;
+            text-decoration: underline;
+            text-decoration-color: #C9C9C9;
+
+        }
+
+        .zone-content li a:hover {
+            color: #333333;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<header>
+
+</header>
+
+
+<main>
+
+    <div align="center" style="font-size: 24px;padding-top: 20px;padding-bottom: 20px">
+        个人中心
+    </div>
+    <hr/>
+
+    <div class="layui-container">
+
+
+        <div class="layui-row" style="margin-top: 1em">
+            <!--左侧 标题栏目-->
+            <div class="layui-col-md3 site-tree">
+                <ul class="zone">
+                    <li><a id="centerid" href="#center">个人中心</a></li>
+                    <li><a id="passwordid" href="#password">修改密码</a></li>
+                    <li><a id="alertid" href="#alert">修改资料</a></li>
+                </ul>
+            </div>
+            <!--右侧 内容栏目-->
+            <div id="center">
+                <div class="layui-col-md9">
+                    <div class="zone-msg">
+                        <div class="zone-name"><h2 id="name"><br></h2></div>
+
+                        <ul class="zone-content">
+                            <li class="">
+                                <div class="label">教师号：</div>
+                                <div class="text" id="tid"><br></div>
+                            </li>
+                            <li class="">
+                                <div class="label">系别：</div>
+                                <div class="text" id="college"><br></div>
+                            </li>
+                            <!--                            <li class="">
+                                                            <div class="label">密码：</div>
+                                                            <div class="text" >&nbsp;&nbsp;
+                                                                <a id="url2psw" href="#password">
+                                                                    修改密码
+                                                                </a>
+                                                            </div>
+                                                        </li>-->
+                            <li class="">
+                                <div class="label">邮箱：</div>
+                                <div class="text" id="mail"><br></div>
+                            </li>
+                            <li class="">
+                                <div class="label">安全问题：</div>
+                                <div class="text" id="question"><br></div>
+                            </li>
+                            <li class="">
+                                <div class="label">答案：</div>
+                                <div class="text" id="answer"><br></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="password" hidden>
+                <div class="layui-col-md9">
+                    <div class="zone-msg">
+                        <div class="zone-name"><h2>修改密码</h2></div>
+                        <ul class="zone-content">
+                            <li class="">
+                                <div class="label">原密码：</div>
+                                <input type="password" style="width: 25em" id="old">
+                            </li>
+                            <li class="">
+                                <div class="label">新密码：</div>
+                                <input type="password" style="width: 25em" id="new">
+                            </li>
+                            <li class="">
+                                <div class="label">确认密码：</div>
+                                <input type="password" style="width: 25em" id="sure">
+                            </li>
+                            <li class="">
+                                <div class="label"></div>
+                                <button class="layui-btn layui-btn-normal" id="up">修改</button>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="alert" hidden>
+                <div class="layui-col-md9">
+                    <div class="zone-msg">
+                        <div class="zone-name"><h2>修改资料</h2></div>
+                        <ul class="zone-content">
+                            <li class="">
+                                <div class="label">用户名：</div>
+                                <input style="width: 25em" id="uname">
+                            </li>
+                            <li class="">
+                                <div class="label">教师号：</div>
+                                <input style="width: 25em" id="uid" disabled>
+                            </li>
+                            <li class="">
+                                <div class="label">系别：</div>
+                                <input style="width: 25em" id="ucollege" disabled>
+                            </li>
+                            <li class="">
+                                <div class="label">邮箱：</div>
+                                <input style="width: 25em" id="umail">
+                            </li>
+                            <li class="">
+                                <div class="label">安全问题：</div>
+                                <input style="width: 25em" id="uquestion">
+                            </li>
+                            <li class="">
+                                <div class="label">答案：</div>
+                                <input style="width: 25em" id="uanswer">
+                            </li>
+                            <li class="" style="margin-left: 18em">
+                                <button class="layui-btn layui-btn-normal" id="uup">修改</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+<script>
+    $("#centerid").on('click', function () {
+        hideAll()
+        $("#center").fadeIn();
+    });
+    $("#passwordid,#url2psw").on('click', function () {
+        hideAll()
+        $("#password").fadeIn();
+    });
+    $("#alertid").on('click', function () {
+        hideAll()
+        $("#alert").fadeIn();
+    });
+    layui.use('layer');
+
+    $("#up").on('click', function () {
+        var old = $("#old").val();
+        var newpsw = $("#new").val();
+        var sure = $("#sure").val();
+        if (null == old || null == newpsw || null == sure) {
+            layer.msg('请输入密码。');
+            return;
+        } else if (old == newpsw) {
+            layer.msg("新密码与旧密码相同。");
+            return;
+        } else if (newpsw != sure) {
+            layer.msg("两次输入新密码不同。");
+            return;
+        } else if (newpsw.length < 6) {
+            layer.msg("新密码长度小于6位。");
+            return;
+        } else {
+            //本地校验通过
+
+        }
+        old = strEnc(old, 'amoxu', 'amoxu', 'amoxu');
+        newpsw = strEnc(newpsw, 'amoxu', 'amoxu', 'amoxu');
+        var newTable = {
+            "old": old,
+            "newpsw": newpsw
+        };
+        $.ajax({
+            type: 'post'
+            , url: "/zone/password"
+            , data: newTable
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    layer.msg("修改成功，请重新登录，以确认密码。");
+                    setTimeout("self.location = \"/auth/author.html\";", 2000);
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+
+    });
+    $("#uup").on('click', function () {
+        var uname = $("#uname").val();
+        var umail = $("#umail").val();
+        var uquestion = $("#uquestion").val();
+        var uanswer = $("#uanswer").val();
+
+        if (uname == old || null == uquestion || null == umail || null == uanswer) {
+            layer.msg('必填栏目不允许为空。');
+            return;
+        } else {
+            //本地校验通过
+        }
+
+        var newTable = {
+            "name": uname,
+            "mail": umail,
+            "question": uquestion,
+            "answer": uanswer
+        };
+
+        $.ajax({
+            type: 'post'
+            , url: "/zone/update"
+            , data: newTable
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    layer.msg("修改成功。");
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+
+    });
+
+
+    function hideAll() {
+        $("#center").hide();
+        $("#password").hide();
+        $("#alert").hide();
+    }
+
+    if (window.location.hash == "#password") {
+        hideAll()
+        $("#password").fadeIn();
+    } else if (window.location.hash == "#alert") {
+        hideAll()
+        $("#alert").fadeIn();
+    } else {
+
+    }
+    layui.use(['layer'], function () {
+        var index = layer.msg("加载中", {icon: 16, shade: 0.01});
+        $.ajax({
+            type: 'get'
+            , url: "/zone/getDetail"
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    //加载成功
+
+                    //{"count":0,// "data":[// {"answer":"*",// "colleage":"信息工程",// "id":10000,// "level":1,// "mail":"123",// "password":"********************************",// "question":"12",// "teacherId":1001,// "user":"zs"}],"msg":"","status":0}
+
+
+                    var user = res['data'][0]['user'];
+                    var mail = res['data'][0]['mail'];
+                    var question = res['data'][0]['question'];
+                    var colleages = res['data'][0]['colleage'];
+                    var answers = res['data'][0]['answer'];
+                    var teacherId = res['data'][0]['teacherId'];
+                    $("#name").html(user);
+                    $("#uname").val(user);
+                    $("#mail").html(mail);
+                    $("#umail").val(mail);
+                    $("#question").html(question);
+                    $("#uquestion").val(question);
+                    $("#college").html(colleages);
+                    $("#ucollege").val(colleages);
+                    $("#answer").html(answers);
+                    $("#uanswer").val(answers);
+                    $("#tid").html(teacherId);
+                    $("#uid").val(teacherId);
+                    layer.close(index);
+                    return;
+
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+    });
+
+</script>
+</body>
+</html>

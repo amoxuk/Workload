@@ -24,6 +24,8 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
 
         ModelAndView modelAndView = new ModelAndView();
         com.hfut.exception.CustomException customException;
+        e.printStackTrace();
+
         if (e instanceof com.hfut.exception.CustomException) {
             customException = (com.hfut.exception.CustomException)e;
         } else if (e instanceof UnknownAccountException) {
