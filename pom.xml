@@ -15,11 +15,6 @@
   </pluginRepositories>
   <dependencies>
 
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-ooxml</artifactId>
-      <version>3.14</version>
-    </dependency>
 
 
       <dependency>
@@ -167,19 +162,19 @@
       <artifactId>poi</artifactId>
       <version>3.15</version>
     </dependency>
-    <!--mybatis-plus 自动生成工具-->
     <dependency>
-      <groupId>com.baomidou</groupId>
-      <artifactId>mybatis-plus</artifactId>
-      <version>2.1.6</version>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.14</version>
     </dependency>
+
   </dependencies>
 
 
     <build>
       <finalName>workLoad</finalName>
 
-      <resources>
+<!--      <resources>
         <resource>
           <directory>src/main/java</directory>
           <includes>
@@ -188,20 +183,28 @@
           <filtering>false</filtering>
         </resource>
         <resource>
-          <directory>src/main/webapp</directory>
+          <directory>${basedir}/src/main/resources</directory>
+        </resource>
+      </resources>-->
+      <resources>
+        <resource>
+          <directory>src/main/java</directory>
           <includes>
-            <include>
-              **/font/**
-            </include>
+            <include>**/*.properties</include>
+            <include>**/*.xml</include>
           </includes>
-         <filtering>false</filtering>
+          <filtering>false</filtering>
         </resource>
 
         <resource>
-          <directory>${basedir}/src/main/resources</directory>
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.properties</include>
+            <include>**/*.xml</include>
+          </includes>
+          <filtering>false</filtering>
         </resource>
       </resources>
-
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

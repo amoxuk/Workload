@@ -1356,7 +1356,7 @@ layui.define(function(exports){
     xhr: function () {
       return new window.XMLHttpRequest()
     },
-    // MIME types mapping
+    // MIME types cn.edu360.mapper
     // IIS returns Javascript as "application/x-javascript"
     accepts: {
       script: 'text/javascript, application/javascript, application/x-javascript',

@@ -2,8 +2,9 @@ package com.hfut.mapper;
 
 import com.hfut.entity.UserRole;
 import com.hfut.entity.UserRoleExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserRoleMapper {
     /**

@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *    全局异常处理器
- *    springmvc提供一个HandlerExceptionResolver接口
- *      只要实现该接口，并配置到spring 容器里，该类就能
- *      成为默认全局异常处理类
- *
- *   全局异常处理器只有一个，配置多个也没用。
+ * 全局异常处理器
+ * springmvc提供一个HandlerExceptionResolver接口
+ * 只要实现该接口，并配置到spring 容器里，该类就能
+ * 成为默认全局异常处理类
+ * <p>
+ * 全局异常处理器只有一个，配置多个也没用。
  */
 public class CustomExceptionResolver implements HandlerExceptionResolver {
 
@@ -26,8 +26,8 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
         com.hfut.exception.CustomException customException;
         e.printStackTrace();
 
-        if (e instanceof com.hfut.exception.CustomException) {
-            customException = (com.hfut.exception.CustomException)e;
+        if (e instanceof CustomException) {
+            customException = (CustomException) e;
         } else if (e instanceof UnknownAccountException) {
             //用户名错误异常
             modelAndView.addObject("message", "{\"status\":1,\"msg\":\"用户不存在\"}");

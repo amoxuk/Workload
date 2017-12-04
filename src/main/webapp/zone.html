@@ -5,7 +5,7 @@
     <title>个人中心 - 工作量计算系统</title>
 
     <link rel="Shortcut Icon" href="images/favicon.ico"/>
-
+    <link rel="stylesheet" href="css/zone.css">
     <link rel="stylesheet" href="../src/css/layui.css">
     <link rel="stylesheet" href="src/css/layui.css">
     <script src="../src/layui.js"></script>
@@ -19,82 +19,7 @@
     <script src="../js/setting.js"></script>
     <script src="js/setting.js"></script>
 
-    <style>
-        .zone li {
-            margin-bottom: 10px;
-            padding: 0.7em;
-            line-height: 22px;
-            border-left: 5px solid #0078AD;
-            background-color: #f2f2f2;
-        }
 
-        .zone li a {
-            color: #777777;
-        }
-
-        .zone li a:hover {
-            color: #333333;
-        }
-
-        .zone-msg {
-            margin-left: 15px;
-        }
-
-        .zone-msg h2 {
-            margin-left: 33%;
-        }
-
-        .zone-content p {
-            width: 120px;
-            padding: 1em;
-        }
-
-        .zone-content li {
-            margin-bottom: 10px;
-            padding: 0.7em;
-            line-height: 22px;
-        }
-
-        .zone-content a {
-            color: #9F9F9F;
-
-        }
-
-        .zone-content .label {
-            float: left;
-            display: block;
-            padding: 9px 2em;
-            width: 5em;
-            font-weight: 400;
-            text-align: right;
-        }
-
-        .zone-content .text {
-            display: block;
-            padding-top: 9px;
-        }
-
-        .zone-content input {
-            display: block;
-            margin-top: 9px;
-            margin-bottom: 9px;
-            padding-top: 3px;
-            padding-bottom: 3px;
-        }
-
-        .zone-content li a {
-            color: #777777;
-            text-decoration: underline;
-            text-decoration-color: #C9C9C9;
-
-        }
-
-        .zone-content li a:hover {
-            color: #333333;
-        }
-
-
-    </style>
 </head>
 <body>
 
@@ -120,6 +45,7 @@
                     <li><a id="centerid" href="#center">个人中心</a></li>
                     <li><a id="passwordid" href="#password">修改密码</a></li>
                     <li><a id="alertid" href="#alert">修改资料</a></li>
+                    <li><a id="myload" href="#">我的工作量</a></li>
                 </ul>
             </div>
             <!--右侧 内容栏目-->
@@ -375,7 +301,7 @@
                     var question = res['data'][0]['question'];
                     var colleages = res['data'][0]['colleage'];
                     var answers = res['data'][0]['answer'];
-                    var teacherId = res['data'][0]['teacherId'];
+                    var tid = res['data'][0]['tid'];
                     $("#name").html(user);
                     $("#uname").val(user);
                     $("#mail").html(mail);
@@ -385,9 +311,9 @@
                     $("#college").html(colleages);
                     $("#ucollege").val(colleages);
                     $("#answer").html(answers);
-                    $("#uanswer").val(answers);
-                    $("#tid").html(teacherId);
-                    $("#uid").val(teacherId);
+                    $("#uanswer").val();
+                    $("#tid").html(tid);
+                    $("#uid").val(tid);
                     layer.close(index);
                     return;
 

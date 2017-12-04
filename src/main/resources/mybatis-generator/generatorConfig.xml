@@ -22,26 +22,25 @@
 
         <javaModelGenerator targetPackage="com.hfut.entity"
                             targetProject="F:\mybatis-generator-core-1.3.2\lib">
-            <property name="enableSubPackages" value="true" />
-            <property name="trimStrings" value="true" />
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="com.hfut.mapper"
                          targetProject="F:\mybatis-generator-core-1.3.2\lib">
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="com.hfut.mapper" targetProject="F:\mybatis-generator-core-1.3.2\lib">
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="user" domainObjectName="User" >
-            <generatedKey column="id" sqlStatement="MYSQL" identity="true" />
+        <table tableName="remote_non_lesson" domainObjectName="RemoteNonLesson">
+            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
         </table>
-
-        <table tableName="expriment" domainObjectName="Expriment" >
-            <generatedKey column="id" sqlStatement="MYSQL" identity="true" />
+        <table tableName="user" domainObjectName="User">
+            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
         </table>
 
 

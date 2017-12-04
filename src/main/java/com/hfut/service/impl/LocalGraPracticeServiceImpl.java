@@ -1,6 +1,7 @@
 package com.hfut.service.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.hfut.entity.LGraPracticeWorkload;
 import com.hfut.entity.LGraPracticeWorkloadExample;
 import com.hfut.mapper.LGraPracticeWorkloadMapper;
@@ -37,7 +38,7 @@ public class LocalGraPracticeServiceImpl implements LocalGraPracticeService {
     @Override
     public boolean updateLoad(LGraPracticeWorkload workload) throws Exception {
         //计算工作量 课时
-        String place = workload.getPlace().trim();
+        String place = workload.getPlace();
         if ("本市".equals(place)) {
             workload.setWorkload((float) (Math.round(0.9 * workload.getPeople() * workload.getWeeks() * 100) / 100));
         } else {
@@ -67,7 +68,7 @@ public class LocalGraPracticeServiceImpl implements LocalGraPracticeService {
 
     @Override
     public boolean insertLoad(LGraPracticeWorkload workload) throws Exception {
-        String place = workload.getPlace().trim();
+        String place = workload.getPlace();
         if ("本市".equals(place)) {
             workload.setWorkload((float) (Math.round(0.9 * workload.getPeople() * workload.getWeeks() * 100) / 100));
         } else {
@@ -81,7 +82,7 @@ public class LocalGraPracticeServiceImpl implements LocalGraPracticeService {
 
     @Override
     public List<LGraPracticeWorkload> insertLoadByList(List<LGraPracticeWorkload> list) throws Exception {
-        ArrayList<LGraPracticeWorkload> ret = new ArrayList<LGraPracticeWorkload>();
+        List<LGraPracticeWorkload> ret = new ArrayList<LGraPracticeWorkload>();
         for (LGraPracticeWorkload workload : list) {
             if (!insertLoad(workload)) {
                 ret.add(workload);

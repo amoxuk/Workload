@@ -12,6 +12,7 @@ var myGlobal = {
     LOCAL_TRAINAXE: "/workload/trainAxe",
     LOCAL_EXP: "/workload/exp",
 
+    REMOTE_NON_LESSON:"/allowance/nonLesson",
     REMOTE_TEACH_COURSE: "/allowance/teachCourse",
     REMOTE_EXPRIMENT: "/allowance/expriment",
     REMOTE_COURSE_DESIGN: "/allowance/courseDesign",
@@ -192,6 +193,7 @@ window.onload = function () {
         "                       <dd><a href=\"../allowance/expriment.html\">实验</a></dd>\n" +
         "                       <dd><a href=\"../allowance/courseDesign.html\">课程设计</a></dd>\n" +
         "                       <dd><a href=\"../allowance/graduationDesign.html\">毕业设计</a></dd>\n" +
+        "                       <dd><a href=\"../allowance/nonLesson.html\">无课补贴</a></dd>\n" +
         "                       </dl>\n" +
         "               </li>\n" +
         "           <li class=\"layui-nav-item\">\n" +
