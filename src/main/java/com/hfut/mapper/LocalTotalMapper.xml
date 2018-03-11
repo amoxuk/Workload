@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hfut.mapper.LocalTotalMapper" >
+  <resultMap id="BaseResultMap" type="com.hfut.entity.LocalTotal" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="years" property="years" jdbcType="INTEGER" />
+    <result column="teacher" property="teacher" jdbcType="VARCHAR" />
+    <result column="total" property="total" jdbcType="REAL" />
+    <result column="course" property="course" jdbcType="REAL" />
+    <result column="expriment" property="expriment" jdbcType="REAL" />
+    <result column="project" property="project" jdbcType="REAL" />
+    <result column="matchs" property="matchs" jdbcType="REAL" />
+    <result column="course_design" property="courseDesign" jdbcType="REAL" />
+    <result column="practice" property="practice" jdbcType="REAL" />
+    <result column="graduate_design" property="graduateDesign" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, years, teacher, total, course, expriment, project, matchs, course_design, practice, 
+    graduate_design
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hfut.entity.LocalTotalExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from local_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from local_total
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from local_total
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hfut.entity.LocalTotalExample" >
+    delete from local_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hfut.entity.LocalTotal" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into local_total (years, teacher, total, 
+      course, expriment, project, 
+      matchs, course_design, practice, 
+      graduate_design)
+    values (#{years,jdbcType=INTEGER}, #{teacher,jdbcType=VARCHAR}, #{total,jdbcType=REAL}, 
+      #{course,jdbcType=REAL}, #{expriment,jdbcType=REAL}, #{project,jdbcType=REAL}, 
+      #{matchs,jdbcType=REAL}, #{courseDesign,jdbcType=REAL}, #{practice,jdbcType=REAL}, 
+      #{graduateDesign,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hfut.entity.LocalTotal" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into local_total
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="years != null" >
+        years,
+      </if>
+      <if test="teacher != null" >
+        teacher,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="course != null" >
+        course,
+      </if>
+      <if test="expriment != null" >
+        expriment,
+      </if>
+      <if test="project != null" >
+        project,
+      </if>
+      <if test="matchs != null" >
+        matchs,
+      </if>
+      <if test="courseDesign != null" >
+        course_design,
+      </if>
+      <if test="practice != null" >
+        practice,
+      </if>
+      <if test="graduateDesign != null" >
+        graduate_design,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="years != null" >
+        #{years,jdbcType=INTEGER},
+      </if>
+      <if test="teacher != null" >
+        #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=REAL},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=REAL},
+      </if>
+      <if test="expriment != null" >
+        #{expriment,jdbcType=REAL},
+      </if>
+      <if test="project != null" >
+        #{project,jdbcType=REAL},
+      </if>
+      <if test="matchs != null" >
+        #{matchs,jdbcType=REAL},
+      </if>
+      <if test="courseDesign != null" >
+        #{courseDesign,jdbcType=REAL},
+      </if>
+      <if test="practice != null" >
+        #{practice,jdbcType=REAL},
+      </if>
+      <if test="graduateDesign != null" >
+        #{graduateDesign,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hfut.entity.LocalTotalExample" resultType="java.lang.Integer" >
+    select count(*) from local_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update local_total
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.years != null" >
+        years = #{record.years,jdbcType=INTEGER},
+      </if>
+      <if test="record.teacher != null" >
+        teacher = #{record.teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.total != null" >
+        total = #{record.total,jdbcType=REAL},
+      </if>
+      <if test="record.course != null" >
+        course = #{record.course,jdbcType=REAL},
+      </if>
+      <if test="record.expriment != null" >
+        expriment = #{record.expriment,jdbcType=REAL},
+      </if>
+      <if test="record.project != null" >
+        project = #{record.project,jdbcType=REAL},
+      </if>
+      <if test="record.matchs != null" >
+        matchs = #{record.matchs,jdbcType=REAL},
+      </if>
+      <if test="record.courseDesign != null" >
+        course_design = #{record.courseDesign,jdbcType=REAL},
+      </if>
+      <if test="record.practice != null" >
+        practice = #{record.practice,jdbcType=REAL},
+      </if>
+      <if test="record.graduateDesign != null" >
+        graduate_design = #{record.graduateDesign,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update local_total
+    set id = #{record.id,jdbcType=INTEGER},
+      years = #{record.years,jdbcType=INTEGER},
+      teacher = #{record.teacher,jdbcType=VARCHAR},
+      total = #{record.total,jdbcType=REAL},
+      course = #{record.course,jdbcType=REAL},
+      expriment = #{record.expriment,jdbcType=REAL},
+      project = #{record.project,jdbcType=REAL},
+      matchs = #{record.matchs,jdbcType=REAL},
+      course_design = #{record.courseDesign,jdbcType=REAL},
+      practice = #{record.practice,jdbcType=REAL},
+      graduate_design = #{record.graduateDesign,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hfut.entity.LocalTotal" >
+    update local_total
+    <set >
+      <if test="years != null" >
+        years = #{years,jdbcType=INTEGER},
+      </if>
+      <if test="teacher != null" >
+        teacher = #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=REAL},
+      </if>
+      <if test="course != null" >
+        course = #{course,jdbcType=REAL},
+      </if>
+      <if test="expriment != null" >
+        expriment = #{expriment,jdbcType=REAL},
+      </if>
+      <if test="project != null" >
+        project = #{project,jdbcType=REAL},
+      </if>
+      <if test="matchs != null" >
+        matchs = #{matchs,jdbcType=REAL},
+      </if>
+      <if test="courseDesign != null" >
+        course_design = #{courseDesign,jdbcType=REAL},
+      </if>
+      <if test="practice != null" >
+        practice = #{practice,jdbcType=REAL},
+      </if>
+      <if test="graduateDesign != null" >
+        graduate_design = #{graduateDesign,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hfut.entity.LocalTotal" >
+    update local_total
+    set years = #{years,jdbcType=INTEGER},
+      teacher = #{teacher,jdbcType=VARCHAR},
+      total = #{total,jdbcType=REAL},
+      course = #{course,jdbcType=REAL},
+      expriment = #{expriment,jdbcType=REAL},
+      project = #{project,jdbcType=REAL},
+      matchs = #{matchs,jdbcType=REAL},
+      course_design = #{courseDesign,jdbcType=REAL},
+      practice = #{practice,jdbcType=REAL},
+      graduate_design = #{graduateDesign,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

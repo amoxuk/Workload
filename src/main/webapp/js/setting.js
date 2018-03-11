@@ -17,6 +17,10 @@ var myGlobal = {
     REMOTE_EXPRIMENT: "/allowance/expriment",
     REMOTE_COURSE_DESIGN: "/allowance/courseDesign",
     REMOTE_GRADUATE_DESIGN: "/allowance/graduationDesign",
+
+
+
+
 };
 
 var ToolBar = {
@@ -209,8 +213,11 @@ window.onload = function () {
         "           <li class=\"layui-nav-item\">\n" +
         "                   <a href=\"../workload/exp.html\">实验教学</a>\n" +
         "               </li>\n" +
+        "           <li class=\"layui-nav-item\">\n" +
+        "                   <a href=\"../total.html\">汇总</a>\n" +
+        "               </li>\n" +
+
         "           <li style=\"float: right\" class=\"layui-nav-item \"><a href=\"/logout\">退出</a></li>\n" +
-        "           <li style=\"float: right\" class=\"layui-nav-item \"><a href=\"../zone.html\">个人中心</a></li>\n" +
         "       </ul>" +
         "       <script>" +
         "           layui.use('element', function(){\n" +

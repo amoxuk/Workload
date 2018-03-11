@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hfut.mapper.RemoteTotalMapper" >
+  <resultMap id="BaseResultMap" type="com.hfut.entity.RemoteTotal" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="teacher" property="teacher" jdbcType="VARCHAR" />
+    <result column="years" property="years" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="REAL" />
+    <result column="course" property="course" jdbcType="REAL" />
+    <result column="expriment" property="expriment" jdbcType="REAL" />
+    <result column="graduation_design" property="graduationDesign" jdbcType="REAL" />
+    <result column="non_lesson" property="nonLesson" jdbcType="REAL" />
+    <result column="course_design" property="courseDesign" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, teacher, years, total, course, expriment, graduation_design, non_lesson, course_design
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hfut.entity.RemoteTotalExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from remote_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from remote_total
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from remote_total
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hfut.entity.RemoteTotalExample" >
+    delete from remote_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hfut.entity.RemoteTotal" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into remote_total (teacher, years, total, 
+      course, expriment, graduation_design, 
+      non_lesson, course_design)
+    values (#{teacher,jdbcType=VARCHAR}, #{years,jdbcType=INTEGER}, #{total,jdbcType=REAL}, 
+      #{course,jdbcType=REAL}, #{expriment,jdbcType=REAL}, #{graduationDesign,jdbcType=REAL}, 
+      #{nonLesson,jdbcType=REAL}, #{courseDesign,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hfut.entity.RemoteTotal" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into remote_total
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teacher != null" >
+        teacher,
+      </if>
+      <if test="years != null" >
+        years,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="course != null" >
+        course,
+      </if>
+      <if test="expriment != null" >
+        expriment,
+      </if>
+      <if test="graduationDesign != null" >
+        graduation_design,
+      </if>
+      <if test="nonLesson != null" >
+        non_lesson,
+      </if>
+      <if test="courseDesign != null" >
+        course_design,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teacher != null" >
+        #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null" >
+        #{years,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=REAL},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=REAL},
+      </if>
+      <if test="expriment != null" >
+        #{expriment,jdbcType=REAL},
+      </if>
+      <if test="graduationDesign != null" >
+        #{graduationDesign,jdbcType=REAL},
+      </if>
+      <if test="nonLesson != null" >
+        #{nonLesson,jdbcType=REAL},
+      </if>
+      <if test="courseDesign != null" >
+        #{courseDesign,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hfut.entity.RemoteTotalExample" resultType="java.lang.Integer" >
+    select count(*) from remote_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update remote_total
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.teacher != null" >
+        teacher = #{record.teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.years != null" >
+        years = #{record.years,jdbcType=INTEGER},
+      </if>
+      <if test="record.total != null" >
+        total = #{record.total,jdbcType=REAL},
+      </if>
+      <if test="record.course != null" >
+        course = #{record.course,jdbcType=REAL},
+      </if>
+      <if test="record.expriment != null" >
+        expriment = #{record.expriment,jdbcType=REAL},
+      </if>
+      <if test="record.graduationDesign != null" >
+        graduation_design = #{record.graduationDesign,jdbcType=REAL},
+      </if>
+      <if test="record.nonLesson != null" >
+        non_lesson = #{record.nonLesson,jdbcType=REAL},
+      </if>
+      <if test="record.courseDesign != null" >
+        course_design = #{record.courseDesign,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update remote_total
+    set id = #{record.id,jdbcType=INTEGER},
+      teacher = #{record.teacher,jdbcType=VARCHAR},
+      years = #{record.years,jdbcType=INTEGER},
+      total = #{record.total,jdbcType=REAL},
+      course = #{record.course,jdbcType=REAL},
+      expriment = #{record.expriment,jdbcType=REAL},
+      graduation_design = #{record.graduationDesign,jdbcType=REAL},
+      non_lesson = #{record.nonLesson,jdbcType=REAL},
+      course_design = #{record.courseDesign,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hfut.entity.RemoteTotal" >
+    update remote_total
+    <set >
+      <if test="teacher != null" >
+        teacher = #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null" >
+        years = #{years,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=REAL},
+      </if>
+      <if test="course != null" >
+        course = #{course,jdbcType=REAL},
+      </if>
+      <if test="expriment != null" >
+        expriment = #{expriment,jdbcType=REAL},
+      </if>
+      <if test="graduationDesign != null" >
+        graduation_design = #{graduationDesign,jdbcType=REAL},
+      </if>
+      <if test="nonLesson != null" >
+        non_lesson = #{nonLesson,jdbcType=REAL},
+      </if>
+      <if test="courseDesign != null" >
+        course_design = #{courseDesign,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hfut.entity.RemoteTotal" >
+    update remote_total
+    set teacher = #{teacher,jdbcType=VARCHAR},
+      years = #{years,jdbcType=INTEGER},
+      total = #{total,jdbcType=REAL},
+      course = #{course,jdbcType=REAL},
+      expriment = #{expriment,jdbcType=REAL},
+      graduation_design = #{graduationDesign,jdbcType=REAL},
+      non_lesson = #{nonLesson,jdbcType=REAL},
+      course_design = #{courseDesign,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

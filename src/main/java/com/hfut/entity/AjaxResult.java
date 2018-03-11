@@ -3,9 +3,9 @@ package com.hfut.entity;
 import java.util.List;
 
 
-public class AjaxResult {
+public class AjaxResult<T> {
     private int status;
-    private List data;
+    private List<T> data;
     private String msg="";
     private int count;
     public void ok() {
@@ -26,6 +26,7 @@ public class AjaxResult {
 
     public void setData(List data) {
         this.data = data;
+        count = data.size();
     }
 
     public String getMsg() {
@@ -42,6 +43,16 @@ public class AjaxResult {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "AjaxResult{" +
+                "status=" + status +
+                ", data=" + data.toString()+
+                ", msg='" + msg + '\'' +
+                ", count=" + count +
+                '}';
     }
 }
 

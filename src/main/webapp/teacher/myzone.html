@@ -4,29 +4,24 @@
     <meta charset="utf-8">
     <title>个人中心 - 工作量计算系统</title>
 
-    <link rel="Shortcut Icon" href="images/favicon.ico"/>
-    <link rel="stylesheet" href="css/zone.css">
+    <link rel="Shortcut Icon" href="../images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/zone.css">
     <link rel="stylesheet" href="../src/css/layui.css">
-    <link rel="stylesheet" href="src/css/layui.css">
     <script src="../src/layui.js"></script>
-    <script src="src/layui.js"></script>
     <script src="../js/jquery-3.2.1.js"></script>
-    <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/des.js"></script>
 
 
     <!--必须放最后-->
     <script src="../js/setting.js"></script>
-    <script src="js/setting.js"></script>
 
 
 </head>
 <body>
 
-<header>
-
-</header>
-
+<ul class="layui-nav" lay-filter='demo'>
+    <li class="layui-nav-item ">工作量核算系统</li>
+    <li style="float: right" class="layui-nav-item "><a href="/logout">退出</a></li>
+</ul>
 
 <main>
 
@@ -35,14 +30,13 @@
     </div>
     <hr/>
 
-    <div class="layui-container">
-
+  <!--  <div class="layui-container">-->
 
         <div class="layui-row" style="margin-top: 1em">
             <!--左侧 标题栏目-->
-            <div class="layui-col-md3 site-tree">
+            <div class="layui-col-md2 site-tree">
                 <ul class="zone">
-                    <li><a id="myload" href="#">我的工作量</a></li>
+                    <li><a id="myload" href="workload.html">我的工作量</a></li>
                     <li><a id="centerid" href="#center">个人中心</a></li>
                     <li><a id="passwordid" href="#password">修改密码</a></li>
                     <li><a id="alertid" href="#alert">修改资料</a></li>
@@ -151,7 +145,7 @@
                 </div>
             </div>
         </div>
-    </div>
+  <!--  </div>-->
 </main>
 
 
