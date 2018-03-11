@@ -26,7 +26,7 @@
         <legend>工作量汇总</legend>
     </fieldset>
     <form class="layui-form" action="" method="post">
-    <div class="layui-form-item" style="margin:auto 25% ;">
+    <div class="layui-form-item" style="margin:auto 20% ;">
         <div class="layui-input-inline">
             <select name="time" lay-verify="">
                 <option value="">时间</option>
@@ -50,6 +50,7 @@
         </div>
         <div class=" layui-input-inline">
             <button class="layui-btn" lay-submit lay-filter="search" >查询</button>
+            <button class="layui-btn" lay-submit lay-filter="download" >下载</button>
         </div>
     </div>
     </form>
@@ -88,6 +89,21 @@
                 showTable.local.url = "/total/local" + url;
                 tableObj.reload(showTable.local); //重载表格
             }
+
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+        form.on('submit(download)', function(data){
+
+            var time = !$("[name='time']").val()?"null":$("[name='time']").val().toString(),
+                workload = !$("[name='workload']").val()?"null":$("[name='workload']").val().toString(),
+                teacher = !$("[name='teacher']").val()?"all":encodeURI($("[name='teacher']").val().toString());
+            var url = "/".concat( time,"/",workload,"/",teacher);
+
+            url = "/total/download" + url;
+
+
+            document.location = url;
 
             layer.msg(JSON.stringify(data.field));
             return false;
