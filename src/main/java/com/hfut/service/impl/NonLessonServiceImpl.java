@@ -4,6 +4,7 @@ import com.hfut.entity.RemoteNonLesson;
 import com.hfut.entity.RemoteNonLessonExample;
 import com.hfut.mapper.RemoteNonLessonMapper;
 import com.hfut.service.NonLessonService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import java.util.List;
 public class NonLessonServiceImpl implements NonLessonService {
     @Autowired
     private RemoteNonLessonMapper mapper;
+
+    Logger logger = Logger.getLogger(NonLessonServiceImpl.class);
 
     private RemoteNonLesson checkData(RemoteNonLesson workload) {
         workload.setAlldays(workload.getDays() * workload.getWeeks());
@@ -35,14 +38,19 @@ public class NonLessonServiceImpl implements NonLessonService {
     @Override
     public int getCount() throws Exception {
         RemoteNonLessonExample example = new RemoteNonLessonExample();
-
         return mapper.countByExample(example);
     }
 
     @Override
     public boolean updateLoad(RemoteNonLesson workload) throws Exception {
         workload = checkData(workload);
-        int num = mapper.updateByPrimaryKey(workload);
+        logger.info(workload);
+        RemoteNonLessonExample example = new RemoteNonLessonExample();
+        RemoteNonLessonExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(workload.getId());
+
+        int num = mapper.updateByExample(workload, example);
+
         if (0 == num) {
             return false;
         } else {

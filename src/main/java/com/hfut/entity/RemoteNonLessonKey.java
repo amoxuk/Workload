@@ -30,4 +30,5 @@ public class RemoteNonLessonKey {
     public void setYears(Integer years) {
         this.years = years;
     }
+
 }

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hfut.entity.AjaxResult;
 import com.hfut.entity.RemoteNonLesson;
 import com.hfut.service.NonLessonService;
+import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
+
 @Controller
 public class RemoteNonLessonController {
     @Resource(name = "nonLessonServiceImpl")
     private NonLessonService service;
 
+    Logger logger = Logger.getLogger(RemoteNonLessonController.class);
     @RequestMapping(value = "/nonLesson/list",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
@@ -50,13 +53,15 @@ public class RemoteNonLessonController {
     @RequestMapping(value = "/nonLesson/save",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String  listSave(HttpServletRequest request) throws Exception {
+    public String  updataRecord(HttpServletRequest request) throws Exception {
         Map<String, String[]> req = request.getParameterMap();
         AjaxResult ajaxResult = new AjaxResult();
         if (req.get("data") != null) {
             JSONObject jsonObject = JSON.parseObject(String.valueOf(req.get("data")[0]));
             RemoteNonLesson workload;
             workload = JSON.parseObject(String.valueOf(jsonObject), RemoteNonLesson.class);
+            logger.info(workload.toString());
+
             if (service.updateLoad(workload)) {
                 ajaxResult.ok();
                 ajaxResult.setMsg("保存成功");

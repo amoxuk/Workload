@@ -4,6 +4,7 @@ import com.hfut.entity.LNetWorkload;
 import com.hfut.entity.LNetWorkloadExample;
 import com.hfut.mapper.LNetWorkloadMapper;
 import com.hfut.service.LocalNetService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ import java.util.List;
 public class LocalNetServiceImpl implements LocalNetService {
     @Autowired
     private LNetWorkloadMapper workloadMapper;
+
+
+    Logger logger = Logger.getLogger(LocalNetServiceImpl.class);
 
     @Override
     public List<LNetWorkload> findAllLoad(Integer page, Integer limit) throws Exception {
@@ -86,10 +90,11 @@ public class LocalNetServiceImpl implements LocalNetService {
 
     @Override
     public boolean removeLoad(List list) {
-        LNetWorkloadExample expWorkloadExample = new LNetWorkloadExample();
-        LNetWorkloadExample.Criteria criteria = expWorkloadExample.createCriteria();
+        LNetWorkloadExample example = new LNetWorkloadExample();
+        LNetWorkloadExample.Criteria criteria = example.createCriteria();
         criteria.andIdIn(list);
-        if (workloadMapper.deleteByExample(expWorkloadExample) == 0) {
+        logger.info(list.toArray());
+        if (workloadMapper.deleteByExample(example) == 0) {
             return false;
         } else {
             return true;

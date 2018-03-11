@@ -80,4 +80,24 @@ public class Expriment extends ExprimentKey {
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Expriment{" +
+                "grades='" + grades + '\'' +
+                ", type='" + type + '\'' +
+                ", peroid=" + peroid +
+                ", people=" + people +
+                ", credit=" + credit +
+                ", coefficient=" + coefficient +
+                ", workload=" + workload +
+                ", note='" + note + '\'' +
+                "id=" + super.getId() +
+                ", teacher='" + super.getTeacher() + '\'' +
+                ", lesson='" + super.getLesson() + '\'' +
+                ", years=" + super.getYears() +
+                ", teachClass=" + super.getTeachClass() +
+                '}';
+
+    }
 }

@@ -50,20 +50,16 @@
                 'teacher':'*教师姓名',
                 'years':'*年级',
                 'lesson':'*课程名称',
-                'grades':'*优选班级',
-                'teachClass':'*教学班号',
-                'people':'*学生人数',
-                'weeks':'周数',
+                'answer':'*答疑数',
                 'workload':'教学工作量',
-                'note':'备注'
-            },
-            myGlobal.LOCAL_COURSE_DESIGN+'/add'
+                'note':'备注'},
+                myGlobal.LOCAL_NET_COURSE+'/add'
             );">
             <i class="layui-icon">&#xe654;</i>
         </button>
         <!--//删除-->
         <button class="layui-btn layui-btn-sm"
-                onclick="ToolBar.remove('teachTable',myGlobal.LOCAL_COURSE_DESIGN+'/delete');">
+                onclick="ToolBar.remove('teachTable',myGlobal.LOCAL_NET_COURSE+'/delete');">
             <i class="layui-icon">&#xe640;</i>
         </button>
     </div>
@@ -199,7 +195,7 @@
                     }
                 });
             }else  if(obj.event === 'del') {
-                layer.confirm('真的删除行么', function (sure) {
+                layer.confirm('确定删除该条数据？', function (sure) {
                     $.ajax({
                         type: 'post'
                         ,url: "/removeLocalNet"

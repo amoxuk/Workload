@@ -68,8 +68,8 @@
 
         <div class="layui-form-item" >
             <div class="layui-input-block" align="center">
-                <a class="layui-btn layui-btn-normal" id="login">登录</a>
-                <a class="layui-btn layui-btn-primary" id="reset">重置</a>
+                <a class="layui-btn layui-btn-normal" id="login" href="javascript:;">登录</a>
+                <a class="layui-btn layui-btn-primary" id="reset" href="javascript:;">重置</a>
             </div>
         </div>
 
@@ -92,6 +92,7 @@
 <script type="text/javascript" src='../js/background.js'></script>
 
 <script>
+
    layui.use(['form','element','jquery'], function(){
        var $ = layui.jquery;
 
@@ -105,37 +106,56 @@
            $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
        });
        //监听提交
-       $("#login").click( function(){
-           var newTable = {"user": $("#username").val(),"password":strEnc($("#password").val(),'amoxu','amoxu','amoxu'),"mail":$("#captcha").val()};
-           layer.msg('登录中...', {
-               icon: 16
-               ,shade: 0.01
-           },2000);
-           $.ajax({
-               type: 'post'
-               ,url: "/login"
-               ,data: newTable
-               ,dataType: 'json'
-               ,contentType:'application/x-www-form-urlencoded;charset=UTF-8'
-               ,success: function(res){
-                   if (res["status"]==1) {
-                       layer.msg(res['msg']);
-                       setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());",2000)
-                       return false;
-                   }else{
-                       layer.msg("登录成功！");
-                   }
-                   self.location = res["msg"];
-
-               }
-               ,error: function(res){
-                   layer.msg('错误码：'+res.status);
-                   setTimeout(" $(\"#reset\").click();",2000)
-               }
-           });
-           return false;
+       $('input').keydown(function (event) {
+           if (event.which == 13) {
+               login();
+           }
        });
+
+       $("#login").on('click', function () {
+           login();
+       });
+
    });
+   function login() {
+
+       var newTable = {
+           "user": $("#username").val(),
+           "password": strEnc($("#password").val(), 'amoxu', 'amoxu', 'amoxu'),
+           "mail": $("#captcha").val()
+       };
+       if (!newTable.user  || !newTable.password || !newTable.mail) {
+           layer.msg('请先输入必填项。', {icon: 5});
+           return;
+       }
+       layer.msg('登录中...', {
+           icon: 16
+           , shade: 0.01
+       }, 2000);
+       $.ajax({
+           type: 'post'
+           , url: "/login"
+           , data: newTable
+           , dataType: 'json'
+           , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+           , success: function (res) {
+               if (res["status"] == 1) {
+                   layer.msg(res['msg']);
+                   setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());", 2000)
+                   return false;
+               } else {
+                   layer.msg("登录成功！");
+               }
+               self.location = res["msg"];
+
+           }
+           , error: function (res) {
+               layer.msg('错误码：' + res.status);
+               setTimeout(" $(\"#reset\").click();", 2000)
+           }
+       });
+       return false;
+   }
 </script>
 </body>
 </html>

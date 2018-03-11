@@ -50,4 +50,15 @@ public class ExprimentKey {
     public void setTeachClass(Integer teachClass) {
         this.teachClass = teachClass;
     }
+
+    @Override
+    public String toString() {
+        return "ExprimentKey{" +
+                "id=" + id +
+                ", teacher='" + teacher + '\'' +
+                ", lesson='" + lesson + '\'' +
+                ", years=" + years +
+                ", teachClass=" + teachClass +
+                '}';
+    }
 }

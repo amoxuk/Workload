@@ -1,6 +1,21 @@
 package com.hfut.entity;
 
 public class RemoteNonLesson extends RemoteNonLessonKey {
+    @Override
+    public String toString() {
+        return "RemoteNonLesson{" +
+                "colleage='" + colleage + '\'' +
+                ", days=" + days +
+                ", weeks=" + weeks +
+                ", alldays=" + alldays +
+                ", allownce=" + allownce +
+                ", note='" + note + '\'' +
+                ", id='" + super.getId() + '\'' +
+                ", teacher='" + super.getTeacher() + '\'' +
+                ", years='" + super.getYears() + '\'' +
+                '}';
+    }
+
     private String colleage;
 
     private Integer days;

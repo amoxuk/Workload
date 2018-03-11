@@ -203,9 +203,9 @@ window.onload = function () {
         "           <li class=\"layui-nav-item\">\n" +
         "                   <a href=\"javascript:;\">其他落地工作量</a>\n" +
         "                   <dl class=\"layui-nav-child\">\n" +
-        "                       <dd><a href=\"../workload/netCourse.html\">网络课程</a></dd>\n" +
-        "                       <dd><a href=\"../workload/project.html\">双创项目</a></dd>\n" +
         "                       <dd><a href=\"../workload/competition.html\">竞赛</a></dd>\n" +
+        "                       <dd><a href=\"../workload/project.html\">双创项目</a></dd>\n" +
+        "                       <dd><a href=\"../workload/netCourse.html\">网络课程</a></dd>\n" +
         /*        "                       <dd><a href=\"../workload/publishTextbook.html\">教材编写</a></dd>\n" +
                 "                       <dd><a href=\"../workload/trainAxe.html\">乐器指导</a></dd>\n" +*/
         "                       </dl>\n" +

@@ -1426,7 +1426,7 @@ public class ExcelServiceImpl implements ExcelService {
     @Override
     public void outExpriment(String path, List<Expriment> list) throws Exception {
         String[] title = new String[]{"序号","教师", "年级","课程名称","实验类型",
-                "教学班", "学时","学分","人数","系数", "工作量","备注","签字"};
+                "教学班","优选班级", "学时","学分","人数","系数", "工作量","备注","签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
         //第二步创建sheet
@@ -1455,6 +1455,7 @@ public class ExcelServiceImpl implements ExcelService {
             row.createCell(line++).setCellValue(list.get(i).getLesson());
             row.createCell(line++).setCellValue(list.get(i).getType());
             row.createCell(line++).setCellValue(list.get(i).getTeachClass());
+            row.createCell(line++).setCellValue(list.get(i).getGrades());
             row.createCell(line++).setCellValue(list.get(i).getPeroid());
             row.createCell(line++).setCellValue(list.get(i).getCredit());
             row.createCell(line++).setCellValue(list.get(i).getPeople());
@@ -1509,6 +1510,7 @@ public class ExcelServiceImpl implements ExcelService {
                 object.setLesson(POIUtil.getStringCell(row.getCell(line++)));
                 object.setType(POIUtil.getStringCell(row.getCell(line++)));
                 object.setTeachClass(POIUtil.getIntCell(row.getCell(line++)));
+                object.setGrades(POIUtil.getStringCell(row.getCell(line++)));
                 object.setPeroid(POIUtil.getFloatCell(row.getCell(line++)));
                 object.setCredit(POIUtil.getFloatCell(row.getCell(line++)));
                 object.setPeople(POIUtil.getIntCell(row.getCell(line++)));
@@ -1516,6 +1518,8 @@ public class ExcelServiceImpl implements ExcelService {
                 object.setWorkload(POIUtil.getFloatCell(row.getCell(line++)));
                 object.setNote(POIUtil.getStringCell(row.getCell(line++)));
                 // 将对象增加到集合中
+                System.out.println(object.toString());
+
                 list.add(object);
             }
         }

@@ -78,6 +78,11 @@
         form.render();
         form.on('submit(search)', function(data){
 
+            if (!data.field['time'] || !data.field['workload']) {
+                layer.msg('请确定时间和类型。', {icon: 5});
+                return false;
+            }
+
             var time = !$("[name='time']").val()?"null":$("[name='time']").val().toString(),
                 workload = !$("[name='workload']").val()?"null":$("[name='workload']").val().toString(),
                 teacher = !$("[name='teacher']").val()?"all":encodeURI($("[name='teacher']").val().toString());
@@ -90,10 +95,14 @@
                 tableObj.reload(showTable.local); //重载表格
             }
 
-            layer.msg(JSON.stringify(data.field));
+            //layer.msg(JSON.stringify(data.field));
             return false;
         });
         form.on('submit(download)', function(data){
+            if (!data.field['time'] || !data.field['workload']) {
+                layer.msg('请确定时间和类型。', {icon: 5});
+                return false;
+            }
 
             var time = !$("[name='time']").val()?"null":$("[name='time']").val().toString(),
                 workload = !$("[name='workload']").val()?"null":$("[name='workload']").val().toString(),
@@ -105,7 +114,7 @@
 
             document.location = url;
 
-            layer.msg(JSON.stringify(data.field));
+            //layer.msg(JSON.stringify(data.field));
             return false;
         });
     });
