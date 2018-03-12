@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>工作量计算系统</title>
+
+    <link rel="Shortcut Icon" href="images/favicon.ico" />
+
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="stylesheet" href="src/css/layui.css">
+    <script src="../src/layui.js"></script>
+    <script src="src/layui.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="css/panel.css">
+
+    <!--必须放最后-->
+    <script src="../js/setting.js"></script>
+    <script src="js/setting.js"></script>
+    <style>
+        a {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<header></header>
+
+<main>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>模板下载</legend>
+    </fieldset>
+
+    <a href="../upload/demo/异地实验补贴模板.xls"><i class="layui-icon">&#xe61d;</i>异地实验补贴模板.xls</a>
+    <hr class="layui-bg-cyan" style="margin-right: 1%">
+    <a href="../upload/demo/异地毕业设计模板.xls"><i class="layui-icon">&#xe61d;</i>异地毕业设计模板.xls</a>
+    <hr class="layui-bg-cyan" style="margin-right: 2%">
+    <a href="../upload/demo/异地课堂教学补贴模板.xls"><i class="layui-icon">&#xe61d;</i>异地课堂教学补贴模板.xls</a>
+    <hr class="layui-bg-cyan" style="margin-right: 3%">
+    <a href="../upload/demo/异地课程设计补贴模板.xls"><i class="layui-icon">&#xe61d;</i>异地课程设计补贴模板.xls</a>
+    <hr class="layui-bg-cyan" style="margin-right: 4%">
+    <br/>
+    <a href="../upload/demo/实验教学模板.xls"><i class="layui-icon">&#xe61d;</i>实验教学模板.xls</a>
+    <hr class="layui-bg-cyan" style="margin-right: 5%">
+    <br/>
+    <a href="../upload/demo/落地双创项目模板.xls"><i class="layui-icon">&#xe61d;</i>落地双创项目模板.xls</a>
+    <hr class="layui-bg-cyan"style="margin-right: 5%">
+    <a href="../upload/demo/落地实验教学模板.xls"><i class="layui-icon">&#xe61d;</i>落地实验教学模板.xls</a>
+    <hr class="layui-bg-cyan"style="margin-right: 4%">
+    <a href="../upload/demo/落地教学实习模板.xls"><i class="layui-icon">&#xe61d;</i>落地教学实习模板.xls</a>
+    <hr class="layui-bg-cyan" style="margin-right: 3%">
+    <a href="../upload/demo/落地毕业实习模板.xls"><i class="layui-icon">&#xe61d;</i>落地毕业实习模板.xls</a>
+    <hr class="layui-bg-cyan"style="margin-right: 2%">
+    <a href="../upload/demo/落地毕业设计模板.xls"><i class="layui-icon">&#xe61d;</i>落地毕业设计模板.xls</a>
+    <hr class="layui-bg-cyan"style="margin-right: 1%">
+    <a href="../upload/demo/落地竞赛模板.xls"><i class="layui-icon">&#xe61d;</i>落地竞赛模板.xls</a>
+    <hr class="layui-bg-cyan"style="margin-right: 1%">
+    <a href="../upload/demo/落地网课模板.xls"><i class="layui-icon">&#xe61d;</i>落地网课模板.xls</a>
+    <hr class="layui-bg-cyan"style="margin-right: 2%">
+    <a href="../upload/demo/落地课堂教学模板.xls"><i class="layui-icon">&#xe61d;</i>落地课堂教学模板.xls</a>
+    <hr class="layui-bg-cyan"style="margin-right: 3%">
+    <a href="../upload/demo/落地课程设计模板.xls"><i class="layui-icon">&#xe61d;</i>落地课程设计模板.xls</a>
+    <hr class="layui-bg-cyan"style="margin-right: 4%">
+
+
+</main>
+
+
+<footer></footer>
+</body>
+
+<script>
+    layui.use(['form','table'], function(){
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+        var table = layui.table;
+
+        var tableObj = table.render(showTable.local);
+
+        form.render();
+        form.on('submit(search)', function(data){
+
+            if (!data.field['time'] || !data.field['workload']) {
+                layer.msg('请确定时间和类型。', {icon: 5});
+                return false;
+            }
+
+            var time = !$("[name='time']").val()?"null":$("[name='time']").val().toString(),
+                workload = !$("[name='workload']").val()?"null":$("[name='workload']").val().toString(),
+                teacher = !$("[name='teacher']").val()?"all":encodeURI($("[name='teacher']").val().toString());
+            var url = "/".concat( time,"/",workload,"/",teacher);
+            if ("2" == workload) {
+                showTable.remote.url = "/total/remote" + url;
+                tableObj.reload(showTable.remote); //重载表格
+            }else {
+                showTable.local.url = "/total/local" + url;
+                tableObj.reload(showTable.local); //重载表格
+            }
+
+            //layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+        form.on('submit(download)', function(data){
+            if (!data.field['time'] || !data.field['workload']) {
+                layer.msg('请确定时间和类型。', {icon: 5});
+                return false;
+            }
+
+            var time = !$("[name='time']").val()?"null":$("[name='time']").val().toString(),
+                workload = !$("[name='workload']").val()?"null":$("[name='workload']").val().toString(),
+                teacher = !$("[name='teacher']").val()?"all":encodeURI($("[name='teacher']").val().toString());
+            var url = "/".concat( time,"/",workload,"/",teacher);
+
+            url = "/total/download" + url;
+
+
+            document.location = url;
+
+            //layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+
+
+    var showTable = {
+        local: {
+            elem: '#showLoad'
+            , page: false
+            , url: "/total/local/"+$("[name='time']").val()+"/"+$("[name='workload']").val()+"/all"
+            , response: {
+                statusName: 'status' //数据状态的字段名称，默认：code
+                , statusCode: 0 //成功的状态码，默认：0
+                , msgName: 'msg' //状态信息的字段名称，默认：msg
+                , countName: 'count' //数据总数的字段名称，默认：count
+                , dataName: 'data' //数据列表的字段名称，默认：data
+            }
+            /*
+            * 表格样式测试数据
+            * ,data:[{"course":42.0,"design":920.0,"expriment":74.0,"graduateDesign":1719.0,"graduatePractice":198.0,"matchs":64.0,"practice":44990.0,"project":3650.0,"teacher":"张三","total":49938.0,"years":2017},{"course":0.0,"design":40.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":0.0,"teacher":"孙丽","total":40.0,"years":2017},{"course":0.0,"design":0.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":48.0,"teacher":"张无","total":48.0,"years":2017},{"course":5.0,"design":0.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":0.0,"teacher":"王五","total":5.0,"years":2017}]
+            */, cols: [[ //表头/
+                //序号	教师	课堂教学	实验教学（算法2）	课程设计	实习	毕业设计	指导创新创业项目	辅导竞赛	合计
+                {field: 'id', title: 'ID', width: 110, fixed: 'left',templet: '#titleTpl'}
+                , {field: 'teacher', title: '教师', width: 110}
+                , {field: 'course', title: '课堂教学', width: 110}
+                , {field: 'expriment', title: '实验教学', width: 110}
+                , {field: 'design', title: '课程设计', width: 110}
+                , {field: 'practice', title: '实习', width: 110}
+                , {field: 'graduateDesign', title: '毕业设计', width: 110}
+                , {field: 'graduatePractice', title: '毕业实习', width: 110}
+                , {field: 'project', title: '指导创新创业项目', width: 150}
+                , {field: 'matchs', title: '辅导竞赛', width: 110}
+                , {field: 'total', title: '合计', width: 110, sort: true}
+            ]]
+        },
+
+        remote: {
+            elem: '#showLoad'
+            , page: false //开启分页
+            , response: {
+                statusName: 'status' //数据状态的字段名称，默认：code
+                , statusCode: 0 //成功的状态码，默认：0
+                , msgName: 'msg' //状态信息的字段名称，默认：msg
+                , countName: 'count' //数据总数的字段名称，默认：count
+                , dataName: 'data' //数据列表的字段名称，默认：data
+            }
+            , cols: [[ //表头/
+                //
+                {field: 'id', title: 'ID', width: 110, fixed: 'left',templet: '#titleTpl'}
+                , {field: 'teacher', title: '教师', width: 110}
+                , {field: 'course', title: '课堂教学', width: 110}
+                , {field: 'expriment', title: '实验教学', width: 110}
+                , {field: 'design', title: '课程设计', width: 110}
+                , {field: 'graduate', title: '毕业设计', width: 110}
+                , {field: 'nonLesson', title: '无课补贴', width: 110}
+                , {field: 'total', title: '合计', width: 110, sort: true}
+            ]]
+        },
+    };
+
+</script>
+<script type="text/html" id="titleTpl">
+    {{1+d.LAY_TABLE_INDEX}}
+</script>
+
+</html>
