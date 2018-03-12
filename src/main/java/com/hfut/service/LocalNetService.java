@@ -5,9 +5,8 @@ import com.hfut.entity.LNetWorkload;
 import java.util.List;
 
 public interface LocalNetService {
-    List<LNetWorkload> findAllLoad(Integer page, Integer limit) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
     boolean updateLoad(LNetWorkload workload) throws Exception;
 
@@ -19,4 +18,6 @@ public interface LocalNetService {
     List<LNetWorkload> insertLoadByList(List<LNetWorkload> list) throws Exception;
 
     boolean removeLoad(List list);
+
+    List<LNetWorkload> getList(Integer years, String teacher, Integer page, Integer limit);
 }

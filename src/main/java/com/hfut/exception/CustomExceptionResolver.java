@@ -38,6 +38,9 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
             modelAndView.addObject("message", "{\"status\":1,\"msg\":\"密码错误\"}");
             modelAndView.setViewName("error");
             return modelAndView;
+        } else if (e instanceof NullPointerException) {
+            customException = new com.hfut.exception.CustomException("必填选项不能为空！");
+            e.printStackTrace();
         } else {
             customException = new com.hfut.exception.CustomException("未知错误");
             e.printStackTrace();

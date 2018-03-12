@@ -7,6 +7,7 @@ import com.hfut.entity.RemoteTeachWorkload;
 import com.hfut.service.RemoteTeachService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,10 +23,10 @@ public class RemoteCourseController {
     @Resource(name = "remoteTeachServiceImpl")
     private RemoteTeachService teachService;
 
-    @RequestMapping(value = "/remoteCourseList",
+    @RequestMapping(value = "/RTeach/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getTeachLoadList(HttpServletRequest request) throws Exception {
+    public String getLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -42,10 +43,10 @@ public class RemoteCourseController {
         }
         System.out.println(page + " " + limit);
 
-        List<RemoteTeachWorkload> list = teachService.findAllLoad(page, limit);
+        List<RemoteTeachWorkload> list = teachService.getList(years,teacher,page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(teachService.getCount());
+        ajaxResult.setCount(teachService.getCount(years,teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

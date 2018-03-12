@@ -14,21 +14,37 @@ public class LocalMatchServiceImpl implements LocalMatchService {
     @Autowired
     private LMatchWorkloadMapper workloadMapper;
 
+
     @Override
-    public List<LMatchWorkload> findAllLoad(Integer page, Integer limit) throws Exception {
+    public List<LMatchWorkload> getList(Integer years, String teacher, Integer page, Integer limit) {
         LMatchWorkloadExample example = new LMatchWorkloadExample();
         LMatchWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(page);
-        example.setLimit(limit);
+
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
         return workloadMapper.selectByExample(example);
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         LMatchWorkloadExample example = new LMatchWorkloadExample();
         LMatchWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
+
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+
         return workloadMapper.countByExample(example);
     }
 
@@ -89,5 +105,6 @@ public class LocalMatchServiceImpl implements LocalMatchService {
             return true;
         }
     }
+
 
 }

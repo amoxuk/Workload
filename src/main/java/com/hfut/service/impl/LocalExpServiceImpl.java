@@ -16,20 +16,33 @@ public class LocalExpServiceImpl implements LocalExpService {
 
 
     @Override
-    public List<LocalExpWorkload> findAllLoad(Integer page, Integer limit) throws Exception {
+    public List<LocalExpWorkload> getList(Integer years,String teacher, Integer page, Integer limit) throws Exception {
         LocalExpWorkloadExample example = new LocalExpWorkloadExample();
         LocalExpWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(page);
-        example.setLimit(limit);
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
+
         return workloadMapper.selectByExample(example);
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years,String teacher) throws Exception {
         LocalExpWorkloadExample example = new LocalExpWorkloadExample();
         LocalExpWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
         return workloadMapper.countByExample(example);
     }
 

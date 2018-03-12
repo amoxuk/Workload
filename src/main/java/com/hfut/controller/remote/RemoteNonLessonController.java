@@ -8,6 +8,7 @@ import com.hfut.service.NonLessonService;
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,10 +24,10 @@ public class RemoteNonLessonController {
     private NonLessonService service;
 
     Logger logger = Logger.getLogger(RemoteNonLessonController.class);
-    @RequestMapping(value = "/nonLesson/list",
+    @RequestMapping(value = "/RNonLesson/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getList(HttpServletRequest request) throws Exception {
+    public String getLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -42,10 +43,10 @@ public class RemoteNonLessonController {
         }
         System.out.println(page + " " + limit);
 
-        List<RemoteNonLesson> list = service.getList(page, limit);
+        List<RemoteNonLesson> list = service.getList(years, teacher, page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(service.getCount());
+        ajaxResult.setCount(service.getCount(years, teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         return JSON.toJSONString(ajaxResult);

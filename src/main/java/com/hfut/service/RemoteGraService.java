@@ -6,9 +6,8 @@ import java.util.List;
 
 public interface RemoteGraService {
 
-    List<RemoteGraduateWorkload> findAllLoad(Integer offset, Integer limit) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
     boolean updateLoad(RemoteGraduateWorkload workload) throws Exception;
 
@@ -19,4 +18,6 @@ public interface RemoteGraService {
     boolean insertLoad(RemoteGraduateWorkload workload) throws Exception;
 
     boolean removeLoad(List list);
+
+    List<RemoteGraduateWorkload> getList(Integer years, String teacher, Integer page, Integer limit);
 }

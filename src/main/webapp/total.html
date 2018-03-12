@@ -64,6 +64,8 @@
 
 </main>
 
+<br>
+<br>
 
 <footer></footer>
 </body>
@@ -87,6 +89,7 @@
                 workload = !$("[name='workload']").val()?"null":$("[name='workload']").val().toString(),
                 teacher = !$("[name='teacher']").val()?"all":encodeURI($("[name='teacher']").val().toString());
             var url = "/".concat( time,"/",workload,"/",teacher);
+            layer.msg('加载中', {icon: 16, shade: 0.01});
             if ("2" == workload) {
                 showTable.remote.url = "/total/remote" + url;
                 tableObj.reload(showTable.remote); //重载表格
@@ -149,6 +152,10 @@
                 , {field: 'matchs', title: '辅导竞赛', width: 110}
                 , {field: 'total', title: '合计', width: 110, sort: true}
             ]]
+            , done: function (res, curr, count) {
+                console.log(res);
+                layer.close(layer.index);
+            }
         },
 
         remote: {
@@ -172,6 +179,10 @@
                 , {field: 'nonLesson', title: '无课补贴', width: 110}
                 , {field: 'total', title: '合计', width: 110, sort: true}
             ]]
+            , done: function (res, curr, count) {
+                console.log(res);
+                layer.close(layer.index);
+            }
         },
     };
 

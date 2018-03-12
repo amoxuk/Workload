@@ -12,30 +12,26 @@ var myGlobal = {
     LOCAL_TRAINAXE: "/workload/trainAxe",
     LOCAL_EXP: "/workload/exp",
 
-    REMOTE_NON_LESSON:"/allowance/nonLesson",
+    REMOTE_NON_LESSON: "/allowance/nonLesson",
     REMOTE_TEACH_COURSE: "/allowance/teachCourse",
     REMOTE_EXPRIMENT: "/allowance/expriment",
     REMOTE_COURSE_DESIGN: "/allowance/courseDesign",
     REMOTE_GRADUATE_DESIGN: "/allowance/graduationDesign",
-
-
-
-
 };
 
 var ToolBar = {
     refresh: function () {
         $('.layui-laypage-btn').click();
     },
-    add: function (maps,urls) {
+    add: function (maps, urls) {
 
         layui.use('layer', function () {
             var con = "";
             console.log(maps)
             for (var keys in maps) {
-         /*       if (keys == "__proto__") {
-                    continue;
-                }*/
+                /*       if (keys == "__proto__") {
+                           continue;
+                       }*/
                 con = con + ' <input id="' + keys + '" class="layui-input" autocomplete="true" placeholder="' + maps[keys] + '"> '
             }
             layer.open({
@@ -48,32 +44,32 @@ var ToolBar = {
                 yes: function (index, layero) {
                     var ret = {};
                     for (var keys in maps) {
-                       ret[keys] = $("#" + keys).val();
+                        ret[keys] = $("#" + keys).val();
                     }
                     $.ajax({
                         type: 'post'
-                        ,url: urls
-                        ,data: {data:JSON.stringify(ret)}
-                        ,dataType: 'json'
-                        ,contentType:'application/x-www-form-urlencoded;charset=UTF-8'
-                        ,success: function(res){
-                            if (res["status"]==1) {
+                        , url: urls
+                        , data: {data: JSON.stringify(ret)}
+                        , dataType: 'json'
+                        , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+                        , success: function (res) {
+                            if (res["status"] == 1) {
                                 layer.alert(res['msg'], {
                                     icon: 2,
                                 });
                                 return;
-                            }else{
+                            } else {
                                 layer.msg(res['msg'], {
                                     icon: 1,
                                     time: 1000
                                 });
-                                setTimeout("$('.layui-laypage-btn').click();",1000)
+                                setTimeout("$('.layui-laypage-btn').click();", 1000)
 
                             }
 
                         }
-                        ,error: function(res){
-                            layer.alert('错误码：'+res.status);
+                        , error: function (res) {
+                            layer.alert('错误码：' + res.status);
                         }
                     });
 
@@ -81,63 +77,77 @@ var ToolBar = {
             });
         });
     },
-    remove: function (tableId,urls) {
-        layui.use(['layer','table'], function () {
+    remove: function (tableId, urls) {
+        layui.use(['layer', 'table'], function () {
                 var layer = layui.layer;
                 var table = layui.table;
                 var checkStatus = table.checkStatus(tableId); //test即为基础参数id对应的值
-                var data =checkStatus.data;
+                var data = checkStatus.data;
                 var ret = [];
 
 
-                if (data.length>0) {
-                    layer.confirm('是否删除这'+data.length+'条数据',
-                        {icon:3,title:'确认删除提示'},
+                if (data.length > 0) {
+                    layer.confirm('是否删除这' + data.length + '条数据',
+                        {icon: 3, title: '确认删除提示'},
                         function (index) {
                             //TODO deleteAjax
-                            for (var row=0;row<data.length;row++) {
+                            for (var row = 0; row < data.length; row++) {
                                 ret.push(data[row].id);
                             }
                             $.ajax({
                                 type: 'post'
-                                ,url: urls
-                                ,data: {data:JSON.stringify(ret)}
-                                ,dataType: 'json'
-                                ,contentType:'application/x-www-form-urlencoded;charset=UTF-8'
-                                ,success: function(res){
-                                    if (res["status"]==1) {
+                                , url: urls
+                                , data: {data: JSON.stringify(ret)}
+                                , dataType: 'json'
+                                , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+                                , success: function (res) {
+                                    if (res["status"] == 1) {
                                         layer.alert(res['msg'], {
                                             icon: 2,
                                         });
                                         return;
-                                    }else{
+                                    } else {
                                         layer.msg(res['msg'], {
                                             icon: 1,
                                             time: 1000
                                         });
                                     }
-                                    setTimeout("$('.layui-laypage-btn').click();",1000)
+                                    setTimeout("$('.layui-laypage-btn').click();", 1000)
                                 }
-                                ,error: function(res){
-                                    layer.alert('错误码：'+res.status);
-                                    layer.close(index);
+                                , error: function (res) {
+                                    layer.alert('错误码：' + res.status);
+                                    layer.close(layer.index);
                                     return;
                                 }
                             });
 
                         }
-                        );
-                }else{
+                    );
+                } else {
                     layer.alert("未选择数据.");
                 }
                 console.log(checkStatus.data) //获取选中行的数据
                 console.log(checkStatus.data.length) //获取选中行数量，可作为是否有选中行的条件
-                console.log(checkStatus.isAll ) //表格是否全选
+                console.log(checkStatus.isAll) //表格是否全选
 
-        }
+            }
         );
 
     }
+    , searchlist: function (tableParam, type, data, tableObj) {
+        var time = !data.field['time'] ? "0" : data.field['time'],
+            teacher = !data.field['teacher'] ? "all" : encodeURI(data.field['teacher']);
+        var url = "/" + type + "/".concat(time, "/", teacher);
+        tableParam.url = url;
+        tableObj.reload(tableParam); //重载表格
+    }
+    , downdetail: function (data, type) {
+        var time = !data.field['time'] ? '0' : data.field['time'],
+            teacher = !data.field['teacher'] ? "all" : encodeURI(data.field['teacher']);
+        var url = "/downdetail/" + type + "/".concat(time, "/", teacher);
+        document.location = url;
+    }
+
 };
 
 function getCookie(c_name) {
@@ -203,7 +213,7 @@ window.onload = function () {
         "           <li class=\"layui-nav-item\">\n" +
         "                   <a href=\"javascript:;\">其他落地工作量</a>\n" +
         "                   <dl class=\"layui-nav-child\">\n" +
-        "                       <dd><a href=\"../workload/competition.html\">竞赛</a></dd>\n" +
+        "                       <dd><a href=\"../workload/matchs.html\">竞赛</a></dd>\n" +
         "                       <dd><a href=\"../workload/project.html\">双创项目</a></dd>\n" +
         "                       <dd><a href=\"../workload/netCourse.html\">网络课程</a></dd>\n" +
         /*        "                       <dd><a href=\"../workload/publishTextbook.html\">教材编写</a></dd>\n" +
@@ -211,10 +221,13 @@ window.onload = function () {
         "                       </dl>\n" +
         "               </li>\n" +
         "           <li class=\"layui-nav-item\">\n" +
-        "                   <a href=\"../workload/exp.html\">实验教学</a>\n" +
+        "                   <a href=\"../workload/expall.html\">实验教学</a>\n" +
         "               </li>\n" +
         "           <li class=\"layui-nav-item\">\n" +
         "                   <a href=\"../total.html\">汇总</a>\n" +
+        "               </li>\n" +
+        "           <li class=\"layui-nav-item\">\n" +
+        "                   <a href=\"../download.html\">模板下载</a>\n" +
         "               </li>\n" +
 
         "           <li style=\"float: right\" class=\"layui-nav-item \"><a href=\"/logout\">退出</a></li>\n" +

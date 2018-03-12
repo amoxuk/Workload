@@ -10,7 +10,6 @@ public interface RemoteTeachService {
 
     boolean insertLoad(RemoteTeachWorkload workload) throws Exception;
 
-    List<RemoteTeachWorkload> findAllLoad(int offset, int limit) throws Exception;
 
     List<RemoteTeachWorkload> findLoadByTeacher(String teacher) throws Exception;
 
@@ -28,6 +27,8 @@ public interface RemoteTeachService {
 
     boolean removeLoad(List ids) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
+
+    List<RemoteTeachWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception;
 
 }

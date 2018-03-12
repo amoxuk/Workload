@@ -5,9 +5,8 @@ import com.hfut.entity.LocalExpWorkload;
 import java.util.List;
 
 public interface LocalExpService {
-    List<LocalExpWorkload> findAllLoad(Integer page, Integer limit) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years,String teacher) throws Exception;
 
     boolean updateLoad(LocalExpWorkload workload) throws Exception;
 
@@ -18,4 +17,6 @@ public interface LocalExpService {
     List<LocalExpWorkload> insertLoadByList(List<LocalExpWorkload> list) throws Exception;
 
     boolean removeLoad(List list) throws Exception;
+
+    List<LocalExpWorkload> getList(Integer years,String teacher, Integer page, Integer limit) throws Exception;
 }

@@ -5,9 +5,9 @@ import com.hfut.entity.LGraDesignWorkload;
 import java.util.List;
 
 public interface LocalGraDesignService {
-    List<LGraDesignWorkload> findAllLoad(Integer page, Integer limit) throws Exception;
+    List<LGraDesignWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
     boolean updateLoad(LGraDesignWorkload workload) throws Exception;
 

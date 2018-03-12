@@ -5,6 +5,7 @@ import com.hfut.service.*;
 import com.hfut.service.impl.ExcelServiceImpl;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,6 +16,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Date;
 
 /**
  * 下载房屋信息模板
@@ -34,6 +36,8 @@ public class DownloadExcel {
     private RemoteDesignService designService;
     @Resource(name = "remoteGraServiceImpl")
     private RemoteGraService graService;
+    @Resource(name = "nonLessonServiceImpl")
+    private NonLessonService nonLessonService;
     /**
      * 落地导出
      */
@@ -67,10 +71,10 @@ public class DownloadExcel {
      * @param response
      * @throws Exception
      */
-    @RequestMapping(value = "/downRemote",
+    @RequestMapping(value = "/downdetail/{type}/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void download(HttpServletRequest request, HttpServletResponse response, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher, @PathVariable("type") String type) throws Exception {
 
         response.setContentType("text/html;charset=UTF-8");
         BufferedInputStream in = null;
@@ -78,53 +82,54 @@ public class DownloadExcel {
         request.setCharacterEncoding("UTF-8");
         String separator = File.separator;
         String rootpath = request.getSession().getServletContext().getRealPath(separator + "upload");
-        String fileName = "workload.xls";
+        String fileName = new Date().getTime() + ".xls";
         String path = rootpath + separator + fileName;
-
-        String type = request.getParameter("type");
 
         switch (type) {
             case ExcelServiceImpl.REMOTE_TEACH:
-                excelService.outTeachWorkload(path, teachService.findAllLoad(0, teachService.getCount()));
+                excelService.outTeachWorkload(path, teachService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.REMOTE_EXP:
-                excelService.outExpWorkload(path, expService.findAllLoad(0, expService.getCount()));
+                excelService.outExpWorkload(path, expService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.REMOTE_DESIGN:
-                excelService.outDesignWorkload(path, designService.findAllLoad(0, designService.getCount()));
+                excelService.outDesignWorkload(path, designService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.REMOTE_GRA:
-                excelService.outGraduateWorkload(path, graService.findAllLoad(0, graService.getCount()));
+                excelService.outGraduateWorkload(path, graService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_COURSE:
-                excelService.outLCourseWorkload(path, localCourseService.findAllLoad(0, localCourseService.getCount()));
+                excelService.outLCourseWorkload(path, localCourseService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_EXP:
-                excelService.outLExpWorkload(path, localExpService.findAllLoad(0, localExpService.getCount()));
+                excelService.outLExpWorkload(path, localExpService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_DESIGN:
-                excelService.outLDesignWorkload(path, localDesignService.findAllLoad(0, localDesignService.getCount()));
+                excelService.outLDesignWorkload(path, localDesignService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_GRA_PRACTICE:
-                excelService.outLGraPracticeWorkload(path, localGraPracticeService.findAllLoad(0, localGraPracticeService.getCount()));
+                excelService.outLGraPracticeWorkload(path, localGraPracticeService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_GRA_DESIGN:
-                excelService.outLGraDesignWorkload(path, localGraDesignService.findAllLoad(0, localGraDesignService.getCount()));
+                excelService.outLGraDesignWorkload(path, localGraDesignService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_PRACTICE:
-                excelService.outLPracticeDesignWorkload(path, localPracticeService.findAllLoad(0, localPracticeService.getCount()));
+                excelService.outLPracticeDesignWorkload(path, localPracticeService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_PROJECT:
-                excelService.outLProjectWorkload(path, localProjectService.findAllLoad(0, localProjectService.getCount()));
+                excelService.outLProjectWorkload(path, localProjectService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_MATCH:
-                excelService.outLMatchWorkload(path, localMatchService.findAllLoad(0, localMatchService.getCount()));
+                excelService.outLMatchWorkload(path, localMatchService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.LOACAL_NET:
-                excelService.outLNetWorkload(path, localNetService.findAllLoad(0, localNetService.getCount()));
+                excelService.outLNetWorkload(path, localNetService.getList(years, teacher, -1,0));
                 break;
             case ExcelServiceImpl.EXP:
-                excelService.outExpriment(path, exprimentService.findAllLoad(0, exprimentService.getCount()));
+                excelService.outExpriment(path, exprimentService.getList(years, teacher, -1,0));
+                break;
+            case ExcelServiceImpl.REMOTE_NON_LESSON:
+                excelService.outNonLesson(path, nonLessonService.getList(years, teacher, -1,0));
                 break;
             default:
                 return;

@@ -53,6 +53,8 @@ public class UploadExcel {
     private LocalNetService localNetService;
     @Resource(name = "exprimentServiceImpl")
     private ExprimentService exprimentService;
+    @Resource(name = "nonLessonServiceImpl")
+    private NonLessonService nonLessonService;
 
 
     @RequestMapping(value = "/uploadExcel",
@@ -128,6 +130,10 @@ public class UploadExcel {
                     case ExcelServiceImpl.EXP:
                         list = excelService.inExpriment(file);
                         list = exprimentService.insertLoadByList(list);
+                        break;
+                    case ExcelServiceImpl.REMOTE_NON_LESSON:
+                        list = excelService.inNonLesson(file);
+                        list = nonLessonService.insertLoadByList(list);
                         break;
                     default:
                 }

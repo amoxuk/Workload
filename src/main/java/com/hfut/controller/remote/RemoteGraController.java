@@ -7,6 +7,7 @@ import com.hfut.entity.RemoteGraduateWorkload;
 import com.hfut.service.RemoteGraService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,10 +22,10 @@ public class RemoteGraController {
     @Resource(name = "remoteGraServiceImpl")
     private RemoteGraService graService;
 
-    @RequestMapping(value = "/remoteGraList",
+    @RequestMapping(value = "/RGra/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getGraLoadList(HttpServletRequest request) throws Exception {
+    public String getLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -40,10 +41,10 @@ public class RemoteGraController {
         }
         System.out.println(page + " " + limit);
 
-        List<RemoteGraduateWorkload> list = graService.findAllLoad(page, limit);
+        List<RemoteGraduateWorkload> list = graService.getList(years,teacher,page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(graService.getCount());
+        ajaxResult.setCount(graService.getCount(years,teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

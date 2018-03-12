@@ -1,7 +1,6 @@
 package com.hfut.service.impl;
 
 
-import com.alibaba.fastjson.JSONArray;
 import com.hfut.entity.LGraPracticeWorkload;
 import com.hfut.entity.LGraPracticeWorkloadExample;
 import com.hfut.mapper.LGraPracticeWorkloadMapper;
@@ -18,20 +17,34 @@ public class LocalGraPracticeServiceImpl implements LocalGraPracticeService {
     private LGraPracticeWorkloadMapper workloadMapper;
 
     @Override
-    public List<LGraPracticeWorkload> findAllLoad(Integer page, Integer limit) throws Exception {
+    public List<LGraPracticeWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception {
         LGraPracticeWorkloadExample example = new LGraPracticeWorkloadExample();
         LGraPracticeWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(page);
-        example.setLimit(limit);
+
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
         return workloadMapper.selectByExample(example);
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         LGraPracticeWorkloadExample example = new LGraPracticeWorkloadExample();
         LGraPracticeWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
+
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
         return workloadMapper.countByExample(example);
     }
 

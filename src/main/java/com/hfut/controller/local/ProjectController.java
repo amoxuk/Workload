@@ -8,6 +8,7 @@ import com.hfut.entity.LProjectWorkload;
 import com.hfut.service.LocalProjectService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,10 +23,10 @@ public class ProjectController {
     @Resource(name = "localProjectServiceImpl")
     private LocalProjectService projectService;
 
-    @RequestMapping(value = "/localProjectList",
+    @RequestMapping(value = "/LProject/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getLoadList(HttpServletRequest request) throws Exception {
+    public String getLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -41,10 +42,10 @@ public class ProjectController {
         }
         System.out.println(page + " " + limit);
 
-        List<LProjectWorkload> list = projectService.findAllLoad(page, limit);
+        List<LProjectWorkload> list = projectService.getList(years, teacher, page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(projectService.getCount());
+        ajaxResult.setCount(projectService.getCount(years, teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

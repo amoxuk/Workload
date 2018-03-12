@@ -39,9 +39,6 @@ public class TotalServiceImpl implements TotalService {
         RemoteTotalViewExample.Criteria criteria = example.createCriteria();
         criteria.andYearsEqualTo(years);
         List<RemoteTotalView> list = remoteMapper.selectByExample(example);
-        for (RemoteTotalView localTotal : list) {
-            logger.info(localTotal.toString());
-        }
         return list;
     }
 
@@ -51,9 +48,7 @@ public class TotalServiceImpl implements TotalService {
         LocalTotalViewExample.Criteria criteria = example.createCriteria();
         criteria.andYearsEqualTo(years);
         List<LocalTotalView> list = localMapper.selectByExample(example);
-        for (LocalTotalView localTotal : list) {
-            logger.info(localTotal.toString());
-        }
+
         return list;
     }
     /**

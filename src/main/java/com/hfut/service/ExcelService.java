@@ -65,4 +65,7 @@ public interface ExcelService {
 
     List inExpriment(File file) throws Exception;
 
+    void outNonLesson(String path, List<RemoteNonLesson> list) throws Exception;
+    List inNonLesson(File file) throws Exception;
+
 }

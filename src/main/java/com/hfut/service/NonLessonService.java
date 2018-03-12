@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface NonLessonService {
 
-    List<RemoteNonLesson> getList(Integer page, Integer limit) throws Exception;
+    List<RemoteNonLesson> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
 
     boolean updateLoad(RemoteNonLesson workload)  throws Exception;

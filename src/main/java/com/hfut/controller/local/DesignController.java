@@ -7,6 +7,7 @@ import com.hfut.entity.LocalDesignWorkload;
 import com.hfut.service.LocalDesignService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,10 +22,10 @@ public class DesignController {
     @Resource(name = "localDesignServiceImpl")
     private LocalDesignService designService;
 
-    @RequestMapping(value = "/localDesignList",
+    @RequestMapping(value = "/LDesign/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getLoadList(HttpServletRequest request) throws Exception {
+    public String getLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -40,10 +41,15 @@ public class DesignController {
         }
         System.out.println(page + " " + limit);
 
-        List<LocalDesignWorkload> list = designService.findAllLoad(page, limit);
+        List<LocalDesignWorkload> list = null;
+        int count = 0;
+
+        list = designService.getList(years, teacher, page, limit);
+        count = designService.getCount(years, teacher);
+
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(designService.getCount());
+        ajaxResult.setCount(count);
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

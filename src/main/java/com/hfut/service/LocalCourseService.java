@@ -7,9 +7,7 @@ import java.util.List;
 public interface LocalCourseService {
 
 
-    List<LocalCourseWorkload> findAllLoad(Integer page, Integer limit) throws Exception;
-
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
     boolean updateLoad(LocalCourseWorkload workload) throws Exception;
 
@@ -20,4 +18,7 @@ public interface LocalCourseService {
     List<LocalCourseWorkload> insertLoadByList(List<LocalCourseWorkload> list) throws Exception;
 
     boolean removeLoad(List list) throws Exception;
+
+    List<LocalCourseWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception;
+
 }

@@ -7,6 +7,7 @@ import com.hfut.entity.LPracticeWorkload;
 import com.hfut.service.LocalPracticeService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,11 +22,11 @@ public class TeachPracticeController {
     @Resource(name = "localPracticeServiceImpl")
     private LocalPracticeService practiceService;
 
-    @RequestMapping(value = "/localTPracticeList",
+    @RequestMapping(value = "/LPractice/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getLoadList(HttpServletRequest request) throws Exception {
-        String limitParam = request.getParameter("limit");
+    public String getTeachLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
+  String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
         if (limitParam == null) {
@@ -40,10 +41,10 @@ public class TeachPracticeController {
         }
         System.out.println(page + " " + limit);
 
-        List<LPracticeWorkload> list = practiceService.findAllLoad(page, limit);
+        List<LPracticeWorkload> list = practiceService.getList(years, teacher, page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(practiceService.getCount());
+        ajaxResult.setCount(practiceService.getCount(years, teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

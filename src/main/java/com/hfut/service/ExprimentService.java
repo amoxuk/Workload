@@ -5,9 +5,7 @@ import com.hfut.entity.Expriment;
 import java.util.List;
 
 public interface ExprimentService {
-        List<Expriment> findAllLoad(Integer page, Integer limit) throws Exception;
-
-        int getCount() throws Exception;
+        int getCount(Integer years, String teacher) throws Exception;
 
         boolean updateLoad(Expriment workload) throws Exception;
 
@@ -18,4 +16,6 @@ public interface ExprimentService {
         List<Expriment> insertLoadByList(List<Expriment> list) throws Exception;
 
         boolean removeLoad(List list);
+
+        List<Expriment> getList(Integer years, String teacher, Integer page, Integer limit);
 }

@@ -864,7 +864,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function(exports){
           ,skin: 'layui-table-tips'
           ,success: function(layero, index){
             layero.find('.layui-table-tips-c').on('click', function(){
-              layer.close(index);
+              layer.close(layer.index);
             });
           }
         });

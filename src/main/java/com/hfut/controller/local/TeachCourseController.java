@@ -7,6 +7,7 @@ import com.hfut.entity.LocalCourseWorkload;
 import com.hfut.service.LocalCourseService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,10 +22,11 @@ public class TeachCourseController {
     @Resource(name = "localCourseServiceImpl")
     private LocalCourseService courseService;
 
-    @RequestMapping(value = "/localCourseList",
+    @RequestMapping(value = "/LCourse/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getTeachLoadList(HttpServletRequest request) throws Exception {
+    public String getTeachLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
+
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -40,10 +42,10 @@ public class TeachCourseController {
         }
         System.out.println(page + " " + limit);
 
-        List<LocalCourseWorkload> list = courseService.findAllLoad(page, limit);
+        List<LocalCourseWorkload> list = courseService.getList(years,teacher,page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(courseService.getCount());
+        ajaxResult.setCount(courseService.getCount(years, teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

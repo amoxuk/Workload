@@ -17,20 +17,35 @@ public class RemoteExpServiceImpl implements RemoteExpService {
     private RemoteExpWorkloadMapper workloadMapper;
 
     @Override
-    public List<RemoteExpWorkload> findAllLoad(Integer offset, Integer limit) throws Exception {
+    public List<RemoteExpWorkload> getList(Integer years, String teacher, Integer page, Integer limit) {
+
         RemoteExpWorkloadExample example = new RemoteExpWorkloadExample();
         RemoteExpWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(offset);
-        example.setLimit(limit);
+
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
         return workloadMapper.selectByExample(example);
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         RemoteExpWorkloadExample example = new RemoteExpWorkloadExample();
         RemoteExpWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+
         return workloadMapper.countByExample(example);
     }
 
@@ -105,4 +120,6 @@ public class RemoteExpServiceImpl implements RemoteExpService {
             return true;
         }
     }
+
+
 }

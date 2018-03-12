@@ -4,6 +4,7 @@ import com.hfut.entity.*;
 import com.hfut.exception.CustomException;
 import com.hfut.service.ExcelService;
 import com.hfut.util.POIUtil;
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -16,12 +17,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class ExcelServiceImpl implements ExcelService {
-    public static final String REMOTE_TEACH = "teach";
-    public static final String REMOTE_EXP = "exp";
-    public static final String REMOTE_DESIGN = "design";
-    public static final String REMOTE_GRA = "gra";
+    public static final String REMOTE_TEACH = "RTeach";
+    public static final String REMOTE_EXP = "RExp";
+    public static final String REMOTE_DESIGN = "RDesign";
+    public static final String REMOTE_GRA = "RGra";
+    public static final String REMOTE_NON_LESSON = "RNonLesson";
 
     public static final String LOACAL_COURSE = "LCourse";
     public static final String LOACAL_EXP = "LExp";
@@ -38,6 +41,7 @@ public class ExcelServiceImpl implements ExcelService {
 
     public static final String EXP= "Exp";
 
+    Logger logger = Logger.getLogger(ExcelServiceImpl.class);
 
     @Override
     public List inTeachWorkload(File file) throws CustomException {
@@ -163,7 +167,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("teach Excel文件生成成功...");
+        logger.info("teach Excel文件生成成功...");
     }
 
     @Override
@@ -277,7 +281,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("exp Excel文件生成成功...");
+        logger.info("exp Excel文件生成成功...");
     }
 
     @Override
@@ -388,7 +392,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("design Excel文件生成成功...");
+        logger.info("design Excel文件生成成功...");
     }
 
     @Override
@@ -445,7 +449,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("design Excel文件生成成功...");
+        logger.info("design Excel文件生成成功...");
     }
 
     @Override
@@ -551,7 +555,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("course Excel文件生成成功...");
+        logger.info("course Excel文件生成成功...");
     }
 
     @Override
@@ -709,7 +713,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("exp Excel文件生成成功...");
+        logger.info("exp Excel文件生成成功...");
 
     }
 
@@ -812,7 +816,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("exp Excel文件生成成功...");
+        logger.info("exp Excel文件生成成功...");
 
     }
 
@@ -915,7 +919,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("exp Excel文件生成成功...");
+        logger.info("exp Excel文件生成成功...");
 
     }
 
@@ -972,7 +976,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("exp Excel文件生成成功...");
+        logger.info("exp Excel文件生成成功...");
 
     }
 
@@ -1124,7 +1128,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("Lprac Excel文件生成成功...");
+        logger.info("Lprac Excel文件生成成功...");
     }
 
     @Override
@@ -1180,7 +1184,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("Lproj Excel文件生成成功...");
+        logger.info("Lproj Excel文件生成成功...");
     }
 
     @Override
@@ -1280,7 +1284,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("Lmatch Excel文件生成成功...");
+        logger.info("Lmatch Excel文件生成成功...");
     }
 
     @Override
@@ -1377,7 +1381,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("LNet Excel文件生成成功...");
+        logger.info("LNet Excel文件生成成功...");
     }
 
     @Override
@@ -1473,7 +1477,7 @@ public class ExcelServiceImpl implements ExcelService {
             e.printStackTrace();
         }
 
-        System.out.println("LNet Excel文件生成成功...");
+        logger.info("LNet Excel文件生成成功...");
     }
 
     @Override
@@ -1518,8 +1522,101 @@ public class ExcelServiceImpl implements ExcelService {
                 object.setWorkload(POIUtil.getFloatCell(row.getCell(line++)));
                 object.setNote(POIUtil.getStringCell(row.getCell(line++)));
                 // 将对象增加到集合中
-                System.out.println(object.toString());
+                logger.info(object.toString());
 
+                list.add(object);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public void outNonLesson(String path, List<RemoteNonLesson> list) throws Exception {
+        String[] title = new String[]{"序号","院系","教师", "年级","无课天数","周数",
+                "总天数","补贴", "备注","签字"};
+        //第一步创建workbook
+        HSSFWorkbook wb = new HSSFWorkbook();
+        //第二步创建sheet
+        Sheet sheet = wb.createSheet("异地教师无课补贴");
+        //第三步创建行row:添加表头0行
+        Row row = sheet.createRow(0);
+        CellStyle style = wb.createCellStyle();
+        //style.setAlignment(HSSFCellStyle.ALIGN_CENTER);  //居中
+        Cell cell; //第一个单元格
+        //第四步创建单元格
+        for (int i = 0; i < title.length; i++) {
+            cell = row.createCell(i);
+            cell.setCellValue(title[i]);
+            cell.setCellStyle(style);
+        }
+        //第五步插入数据
+        int line;
+        for (int i = 0; i < list.size(); i++) {
+            //创建行
+            line = 0;
+            row = sheet.createRow(i + 1);
+            //创建单元格并且添加数据
+            row.createCell(line++).setCellValue(i + 1);
+            row.createCell(line++).setCellValue(list.get(i).getColleage());
+            row.createCell(line++).setCellValue(list.get(i).getTeacher());
+            row.createCell(line++).setCellValue(list.get(i).getYears());
+            row.createCell(line++).setCellValue(list.get(i).getDays());
+            row.createCell(line++).setCellValue(list.get(i).getWeeks());
+            row.createCell(line++).setCellValue(list.get(i).getAlldays());
+            row.createCell(line++).setCellValue(list.get(i).getAllownce());
+            row.createCell(line++).setCellValue(list.get(i).getNote());
+            row.createCell(line++).setCellValue("");
+        }
+        //第六步将生成excel文件保存到指定路径下
+        try {
+            FileOutputStream fout = new FileOutputStream(new File(path));
+            wb.write(fout);
+            fout.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        logger.info("LNet Excel文件生成成功...");
+    }
+
+    @Override
+    public List inNonLesson(File file) throws Exception {
+        FileInputStream inputStream = new FileInputStream(file);
+        // 创建对Excel工作簿文件的引用
+        Workbook wookbook = null;
+        String name = file.getName();
+        String fileType = name.substring(name.lastIndexOf(".") + 1,
+                name.length());
+        if (fileType.equals("xlsx")) {
+            wookbook = new XSSFWorkbook(inputStream);
+        } else if (fileType.equals("xls")) {
+            wookbook = new HSSFWorkbook(inputStream);
+        }
+        // 在Excel文档中，第一张工作表的缺省索引是0
+        Sheet sheet = wookbook.getSheetAt(0);
+        // 获取到Excel文件中的所有行数
+        int rows = sheet.getPhysicalNumberOfRows();
+
+        RemoteNonLesson object;
+        List<RemoteNonLesson> list = new ArrayList<RemoteNonLesson>();
+        int line;
+        for (int i = 1; i < rows; i++) {
+            // 读取左上端单元格
+            Row row = sheet.getRow(i);
+            // 行不为空
+            if (row != null) {
+                //获取老师
+                object = new RemoteNonLesson();
+                line = 0;
+                object.setColleage(POIUtil.getStringCell(row.getCell(line++)));
+                object.setTeacher(POIUtil.getStringCell(row.getCell(line++)));
+                object.setYears(POIUtil.getIntCell(row.getCell(line++)));
+                object.setDays(POIUtil.getIntCell(row.getCell(line++)));
+                object.setWeeks(POIUtil.getIntCell(row.getCell(line++)));
+                object.setAlldays(POIUtil.getIntCell(row.getCell(line++)));
+                object.setAllownce(POIUtil.getFloatCell(row.getCell(line++)));
+                object.setNote(POIUtil.getStringCell(row.getCell(line++)));
+                // 将对象增加到集合中
                 list.add(object);
             }
         }

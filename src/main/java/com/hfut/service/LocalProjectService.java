@@ -5,9 +5,8 @@ import com.hfut.entity.LProjectWorkload;
 import java.util.List;
 
 public interface LocalProjectService {
-    List<LProjectWorkload> findAllLoad(Integer page, Integer limit) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
     boolean updateLoad(LProjectWorkload workload) throws Exception;
 
@@ -18,4 +17,6 @@ public interface LocalProjectService {
     List<LProjectWorkload> insertLoadByList(List<LProjectWorkload> list) throws Exception;
 
     boolean removeLoad(List list);
+
+    List<LProjectWorkload> getList(Integer years, String teacher, Integer page, Integer limit);
 }

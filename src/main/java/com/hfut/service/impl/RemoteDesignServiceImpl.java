@@ -14,23 +14,35 @@ import java.util.List;
 public class RemoteDesignServiceImpl implements RemoteDesignService {
     @Autowired
     private RemoteDesignWorkloadMapper designWorkloadMapper;
-
     @Override
-    public List<RemoteDesignWorkload> findAllLoad(Integer page, Integer limit) throws Exception {
+    public List<RemoteDesignWorkload> getList(Integer years, String teacher, Integer page, Integer limit) {
+
         RemoteDesignWorkloadExample example = new RemoteDesignWorkloadExample();
         RemoteDesignWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(page);
-        example.setLimit(limit);
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
 
         return designWorkloadMapper.selectByExample(example);
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         RemoteDesignWorkloadExample example = new RemoteDesignWorkloadExample();
         RemoteDesignWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
         return designWorkloadMapper.countByExample(example);
     }
 
@@ -77,5 +89,7 @@ public class RemoteDesignServiceImpl implements RemoteDesignService {
         criteria.andIdIn(list);
         return designWorkloadMapper.deleteByExample(example) != 0;
     }
+
+
 
 }

@@ -51,7 +51,7 @@
 
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>实验上机 - 教师补贴</legend>
+        <legend>竞赛 - 落地工作量</legend>
     </fieldset>
     <div class="layui-btn-group">
         <!--//刷新-->
@@ -61,29 +61,22 @@
         <!-- //添加-->
         <button class="layui-btn layui-btn-sm" onclick="ToolBar.add(
             {
-
-                'college':'*学院',
                 'teacher':'*教师姓名',
-                'lesson':'*课程名称',
                 'years':'*年级',
-                'grades':'*优选班级',
-                'period':'*计划学时',
-                'people':'*学生人数',
-
-                'reCoefficient':'*重复系数M',
-                'typeCoefficient':'*类别系数K',
-
-                'workload':'课时',
-                'money':'酬金',
+                'number':'*项目编号',
+                'name':'*项目名称',
+                'type':'*竞赛性质',
+                'level':'*获奖等级',
+                'workload':'教学工作量',
                 'note':'备注'
             },
-            myGlobal.REMOTE_EXPRIMENT+'/add'
+            myGlobal.LOCAL_COMPETITION+'/add'
             );">
             <i class="layui-icon">&#xe654;</i>
         </button>
         <!--//删除-->
         <button class="layui-btn layui-btn-sm"
-                onclick="ToolBar.remove('teachTable',myGlobal.REMOTE_EXPRIMENT+'/delete');">
+                onclick="ToolBar.remove('teachTable',myGlobal.LOCAL_COMPETITION+'/delete');">
             <i class="layui-icon">&#xe640;</i>
         </button>
     </div>
@@ -110,7 +103,7 @@
         //选完文件后不自动上传
         upload.render({
             elem: '#test8'
-            , url: '/uploadExcel?type=RExp'
+            , url: '/uploadExcel?type=LMatch'
             , auto: false
             , accept: 'file'
             , exts: 'xls|xlsx'
@@ -148,7 +141,7 @@
         var tableParam = { //其它参数在此省略
             id: 'teachTable',
             elem: '#teachTable',
-            url: '/RExp/' + (new Date().getFullYear() - 1) + "/all",
+            url: '/LMatch/' + (new Date().getFullYear() - 1) + "/all",
             page: true,
             limits: [10, 20, 50, 100, 300],
             limit: 10,
@@ -162,19 +155,15 @@
             /*            ,height:'full-336',*/
             , cols: [[
                 {checkbox: true, fixed: true},
-                {field: 'id', fixed: true, width: 70, title: 'ID'},
-                {field: 'teacher', edit: true, width: 100, title: '教师'},
-                {field: 'college', edit: true, width: 100, title: '学院'},
-                {field: 'lesson', edit: true, width: 100, title: '课程名称'},
+                {field: 'id', fixed: true, width: '70', title: 'ID'},
+                {field: 'teacher', edit: true, width: '100', title: '教师'},
                 {field: 'years', edit: true, width: 70, title: '年级'},
-                {field: 'grades', edit: true, width: 100, title: '优选班级'},
-                {field: 'period', edit: true, width: 100, title: '计划学时'},
-                {field: 'people', edit: true, width: 70, title: '人数'},
-                {field: 'reCoefficient', edit: true, width: 100, title: '重复系数M'},
-                {field: 'typeCoefficient', edit: true, width: 100, title: '类别系数K'},
-                {field: 'workload', edit: false, width: '70', title: '课时'},
-                {field: 'money', edit: false, width: '70', title: '酬金'},
-                {field: 'note', edit: true, width: 100, title: '备注'},
+                {field: 'number', edit: true, width: '100', title: '项目编号'},
+                {field: 'name', edit: true, width: '100', title: '项目名称'},
+                {field: 'type', edit: true, width: '100', title: '竞赛性质'},
+                {field: 'level', edit: true, width: '100', title: '获奖等级'},
+                {field: 'workload', edit: true, width: '100', title: '教学工作量'},
+                {field: 'note', edit: true, width: '100', title: '备注'},
                 {title: '操作', width: 120, align: 'center', toolbar: '#barDemo'}
             ]]
             , done: function (res, curr, count) {
@@ -186,11 +175,11 @@
         form.render();
         form.on('submit(search)', function (data) {
             layer.msg('加载中', {icon: 16, shade: 0.01});
-            ToolBar.searchlist(tableParam, "RExp", data, tableObj);
+            ToolBar.searchlist(tableParam, "LMatch", data, tableObj);
             return false;
         });
         form.on('submit(download)', function (data) {
-            ToolBar.downdetail(data, "RExp");
+            ToolBar.downdetail(data, "LMatch");
             return false;
         });
 
@@ -198,21 +187,11 @@
             var value = obj.value //得到修改后的值
                 , data = obj.data //得到所在行所有键值
                 , field = obj.field; //得到字段
-            //实验上机
-            if (data.people <= 27) {
-                data.typeCefficient = 0.6;
-            } else if (data.people >= 28 && data.people < 37) {
-                data.typeCefficient = 0.8;
-            } else if (data.people >= 37 && data.people <= 55) {
-                data.typeCefficient = 1;
-            }
-            data.workload = data.period * data.reCoefficient * data.typeCefficient;
+            //人数
+
             data.workload = Math.round(data.workload * 100) / 100;
-            data.money = 70 * data.workload;
-            data.money = Math.round(data.money * 100) / 100;
 
             layer.msg('[教师: ' + data.teacher + '] ' + field + ' 更改为：' + value + "<br>确认修改后点击保存。");
-
         });
         table.on('tool(teachTable)', function (obj) {
             var data = obj.data;
@@ -223,7 +202,7 @@
                 //$('.layui-laypage-btn').click();
                 $.ajax({
                     type: 'post'
-                    , url: "/saveRemoteExp"
+                    , url: "/saveLocalMatch"
                     , data: {"data": JSON.stringify(data)}
                     , dataType: 'json'
                     , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -243,14 +222,14 @@
                     }
                     , error: function (res) {
                         layer.msg(res['msg']);
-                        $('.layui-laypage-btn').click();
+                        setTimeout("$('.layui-laypage-btn').click();", 1000)
                     }
                 });
             } else if (obj.event === 'del') {
                 layer.confirm('真的删除行么', function (sure) {
                     $.ajax({
                         type: 'post'
-                        , url: "/removeRemoteExp"
+                        , url: "/removeLocalMatch"
                         , data: {"data": JSON.stringify(data)}
                         , dataType: 'json'
                         , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'

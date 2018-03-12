@@ -7,6 +7,7 @@ import com.hfut.entity.LGraDesignWorkload;
 import com.hfut.service.LocalGraDesignService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,12 +20,12 @@ import java.util.Map;
 @Controller
 public class GraDesignController {
     @Resource(name = "localGraDesignServiceImpl")
-    private LocalGraDesignService designService;
+    private LocalGraDesignService service;
 
-    @RequestMapping(value = "/localGraDesignList",
+    @RequestMapping(value = "/LGDesign/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getLoadList(HttpServletRequest request) throws Exception {
+    public String getLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -40,10 +41,10 @@ public class GraDesignController {
         }
         System.out.println(page + " " + limit);
 
-        List<LGraDesignWorkload> list = designService.findAllLoad(page, limit);
+        List<LGraDesignWorkload> list = service.getList(years,teacher,page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(designService.getCount());
+        ajaxResult.setCount(service.getCount(years,teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);
@@ -62,7 +63,7 @@ public class GraDesignController {
             LGraDesignWorkload workload;
             workload = JSON.parseObject(String.valueOf(jsonObject), LGraDesignWorkload.class);
 
-            if (designService.updateLoad(workload)) {
+            if (service.updateLoad(workload)) {
                 ajaxResult.ok();
                 ajaxResult.setMsg("保存成功");
             } else {
@@ -88,7 +89,7 @@ public class GraDesignController {
             JSONObject jsonObject = JSON.parseObject(String.valueOf(req.get("data")[0]));
             LGraDesignWorkload workload;
             workload = JSON.parseObject(String.valueOf(jsonObject), LGraDesignWorkload.class);
-            if (designService.removeLoad(workload.getId())) {
+            if (service.removeLoad(workload.getId())) {
                 ajaxResult.ok();
                 ajaxResult.setMsg("删除成功");
             } else {

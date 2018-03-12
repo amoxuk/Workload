@@ -5,9 +5,8 @@ import com.hfut.entity.LGraPracticeWorkload;
 import java.util.List;
 
 public interface LocalGraPracticeService {
-    List<LGraPracticeWorkload> findAllLoad(Integer page, Integer limit) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
     boolean updateLoad(LGraPracticeWorkload workload) throws Exception;
 
@@ -18,4 +17,6 @@ public interface LocalGraPracticeService {
     List<LGraPracticeWorkload> insertLoadByList(List<LGraPracticeWorkload> list) throws Exception;
 
     boolean removeLoad(List list);
+
+    List<LGraPracticeWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception;
 }

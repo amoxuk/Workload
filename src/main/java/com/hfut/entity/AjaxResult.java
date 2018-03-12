@@ -26,7 +26,6 @@ public class AjaxResult<T> {
 
     public void setData(List data) {
         this.data = data;
-        count = data.size();
     }
 
     public String getMsg() {

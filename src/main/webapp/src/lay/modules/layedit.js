@@ -512,7 +512,7 @@ layui.define(['layer', 'form'], function(exports){
         var eventFilter = 'submit(layedit-link-yes)';
         form.render('radio');  
         layero.find('.layui-btn-primary').on('click', function(){
-          layer.close(index);
+          layer.close(layer.index);
           body.focus();
         });
         form.on(eventFilter, function(data){
@@ -559,7 +559,7 @@ layui.define(['layer', 'form'], function(exports){
             src: faces[this.title]
             ,alt: this.title
           });
-          layer.close(index);
+          layer.close(layer.index);
         });
         $(document).off('click', face.hide).on('click', face.hide);
       }
@@ -609,7 +609,7 @@ layui.define(['layer', 'form'], function(exports){
         var eventFilter = 'submit(layedit-code-yes)';
         form.render('select');  
         layero.find('.layui-btn-primary').on('click', function(){
-          layer.close(index);
+          layer.close(layer.index);
           body.focus();
         });
         form.on(eventFilter, function(data){

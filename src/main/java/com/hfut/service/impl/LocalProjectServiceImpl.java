@@ -14,21 +14,35 @@ public class LocalProjectServiceImpl implements LocalProjectService {
     @Autowired
     private LProjectWorkloadMapper workloadMapper;
 
+
     @Override
-    public List<LProjectWorkload> findAllLoad(Integer page, Integer limit) throws Exception {
+    public List<LProjectWorkload> getList(Integer years, String teacher, Integer page, Integer limit) {
         LProjectWorkloadExample example = new LProjectWorkloadExample();
         LProjectWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(page);
-        example.setLimit(limit);
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
         return workloadMapper.selectByExample(example);
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         LProjectWorkloadExample example = new LProjectWorkloadExample();
         LProjectWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
+
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
         return workloadMapper.countByExample(example);
     }
 
@@ -105,4 +119,5 @@ public class LocalProjectServiceImpl implements LocalProjectService {
             return true;
         }
     }
+
 }

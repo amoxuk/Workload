@@ -30,10 +30,8 @@ public class TotalController {
         AjaxResult result = new AjaxResult();
         if (!"all".equals(teacher)) {
             result.setData(totalService.getTotalByName(years, teacher, TotalService.LOCAL));
-
         } else {
             result.setData(totalService.getLocalTotal(years));
-
         }
         result.ok();
         return JSON.toJSONString(result);

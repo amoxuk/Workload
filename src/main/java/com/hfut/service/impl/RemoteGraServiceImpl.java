@@ -16,21 +16,32 @@ public class RemoteGraServiceImpl implements RemoteGraService {
     private RemoteGraduateWorkloadMapper graduateMapper;
 
     @Override
-    public List<RemoteGraduateWorkload> findAllLoad(Integer page, Integer limit) throws Exception {
-        RemoteGraduateWorkloadExample example = new RemoteGraduateWorkloadExample();
+    public List<RemoteGraduateWorkload> getList(Integer years, String teacher, Integer page, Integer limit) {
+      RemoteGraduateWorkloadExample example = new RemoteGraduateWorkloadExample();
         RemoteGraduateWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(page);
-        example.setLimit(limit);
-
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
         return graduateMapper.selectByExample(example);
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         RemoteGraduateWorkloadExample example = new RemoteGraduateWorkloadExample();
         RemoteGraduateWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
         return graduateMapper.countByExample(example);
     }
 
@@ -72,4 +83,6 @@ public class RemoteGraServiceImpl implements RemoteGraService {
         criteria.andIdIn(list);
         return graduateMapper.deleteByExample(example) != 0;
     }
+
+
 }

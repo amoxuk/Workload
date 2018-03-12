@@ -25,19 +25,35 @@ public class NonLessonServiceImpl implements NonLessonService {
     }
 
     @Override
-    public List<RemoteNonLesson> getList(Integer page, Integer limit) throws Exception {
+    public List<RemoteNonLesson> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception {
         RemoteNonLessonExample example = new RemoteNonLessonExample();
-        example.setLimit(limit);
-        example.setOffset(page);
 
-        List<RemoteNonLesson> lessons = mapper.selectByExample(example);
+        RemoteNonLessonExample.Criteria criteria = example.createCriteria();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
 
-        return lessons;
+        return mapper.selectByExample(example);
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         RemoteNonLessonExample example = new RemoteNonLessonExample();
+
+        RemoteNonLessonExample.Criteria criteria = example.createCriteria();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
         return mapper.countByExample(example);
     }
 

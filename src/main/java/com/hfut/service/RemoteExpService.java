@@ -6,9 +6,8 @@ import java.util.List;
 
 public interface RemoteExpService {
 
-    List<RemoteExpWorkload> findAllLoad(Integer offset, Integer limit) throws Exception;
 
-    int getCount() throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
     boolean updateLoad(RemoteExpWorkload workload) throws Exception;
 
@@ -19,4 +18,6 @@ public interface RemoteExpService {
     List<RemoteExpWorkload> insertLoadByList(List<RemoteExpWorkload> list) throws Exception;
 
     boolean removeLoad(List list);
+
+    List<RemoteExpWorkload> getList(Integer years, String teacher, Integer page, Integer limit);
 }

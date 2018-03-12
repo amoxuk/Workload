@@ -16,24 +16,6 @@ public class LocalDesignServiceImpl implements LocalDesignService {
     private LocalDesignWorkloadMapper workloadMapper;
 
     @Override
-    public List<LocalDesignWorkload> findAllLoad(Integer page, Integer limit) throws Exception {
-        LocalDesignWorkloadExample example = new LocalDesignWorkloadExample();
-        LocalDesignWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(page);
-        example.setLimit(limit);
-        return workloadMapper.selectByExample(example);
-    }
-
-    @Override
-    public int getCount() throws Exception {
-        LocalDesignWorkloadExample example = new LocalDesignWorkloadExample();
-        LocalDesignWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        return workloadMapper.countByExample(example);
-    }
-
-    @Override
     public boolean updateLoad(LocalDesignWorkload workload) throws Exception {
         if(workload.getPeople()>25){
             workload.setWorkload((float) (workload.getWeeks()*((workload.getPeople()-25)*0.6+25*0.8)));
@@ -100,5 +82,39 @@ public class LocalDesignServiceImpl implements LocalDesignService {
         } else {
             return true;
         }
+    }
+
+
+
+    @Override
+    public int getCount(Integer years, String teacher) {
+        LocalDesignWorkloadExample example = new LocalDesignWorkloadExample();
+        LocalDesignWorkloadExample.Criteria criteria = example.createCriteria();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        return workloadMapper.countByExample(example);
+    }
+
+
+    @Override
+    public List<LocalDesignWorkload> getList(Integer years, String teacher, Integer page, Integer limit) {
+        LocalDesignWorkloadExample example = new LocalDesignWorkloadExample();
+        LocalDesignWorkloadExample.Criteria criteria = example.createCriteria();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
+
+        return workloadMapper.selectByExample(example);
     }
 }

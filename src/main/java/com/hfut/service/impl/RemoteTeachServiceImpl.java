@@ -52,13 +52,26 @@ public class RemoteTeachServiceImpl implements RemoteTeachService {
         return true;
     }
 
+
     @Override
-    public List<RemoteTeachWorkload> findAllLoad(int offset, int limit) throws Exception {
+    public List<RemoteTeachWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception {
+
         RemoteTeachWorkloadExample example = new RemoteTeachWorkloadExample();
         RemoteTeachWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
-        example.setOffset(offset);
-        example.setLimit(limit);
+
+
+
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
+        if (page != -1) {
+            example.setOffset(page);
+            example.setLimit(limit);
+        }
+
         return workloadMapper.selectByExample(example);
     }
 
@@ -169,16 +182,15 @@ public class RemoteTeachServiceImpl implements RemoteTeachService {
     }
 
     @Override
-    public int getCount() throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         RemoteTeachWorkloadExample example = new RemoteTeachWorkloadExample();
         RemoteTeachWorkloadExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIsNotNull();
+        if (years != 0) {
+            criteria.andYearsEqualTo(years);
+        }
+        if (!"all".equals(teacher)) {
+            criteria.andTeacherEqualTo(teacher);
+        }
         return workloadMapper.countByExample(example);
-    }
-
-
-    public static void main(String[] args) {
-        System.out.println((float) (Math.round(0.9 / 46F) * 0.1 + 0.9));
-        System.out.println((float) (Math.round((float)137 / 46)* 0.1 + 0.9));
     }
 }

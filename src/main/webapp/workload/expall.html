@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="utf-8">
     <title>工作量计算系统</title>
@@ -31,12 +31,27 @@
     <div class="layui-upload">
         <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>
         <button type="button" class="layui-btn" id="test9">开始上传</button>
-        <button type="button" class="layui-btn" style="float: right" onclick="download()" value="Download">下载所有</button>
+        <form class="layui-form" style="float: right" action="" method="post">
+            <div class="layui-form-item">
+                <div class="layui-input-inline"><select name="time" lay-verify="">
+                    <option value="">全部</option>
+                    <option value="2016">2016</option>
+                    <option value="2017" selected>2017</option>
+                    <option value="2018">2018</option>
+                </select></div>
+                <div class=" layui-input-inline"><input type="text" name="teacher" placeholder="教师" autocomplete="off"
+                                                        class="layui-input"></div>
+                <div class=" layui-input-inline">
+                    <button class="layui-btn" lay-submit lay-filter="search">查询</button>
+                    <button class="layui-btn" lay-submit lay-filter="download">下载</button>
+                </div>
+            </div>
+        </form>
     </div>
 
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>竞赛 - 教师补贴</legend>
+        <legend>实验教学 - 落地工作量</legend>
     </fieldset>
     <div class="layui-btn-group">
         <!--//刷新-->
@@ -46,22 +61,29 @@
         <!-- //添加-->
         <button class="layui-btn layui-btn-sm" onclick="ToolBar.add(
             {
+
+            /**
+            * years, teacher, lesson, peroid, type, coefficient, people, workload, note
+            * */
                 'teacher':'*教师姓名',
                 'years':'*年级',
-                'number':'*项目编号',
-                'name':'*项目名称',
-                'type':'*竞赛性质',
-                'level':'*获奖等级',
+                'lesson':'*课程名称',
+                'grades':'*优选班级',
+                'teachClass':'*教学班号',
+                'people':'*学生人数',
+                'type':'实验类别',
+                'peroid':'学时',
+                'coefficient':'系数',
                 'workload':'教学工作量',
                 'note':'备注'
             },
-            myGlobal.LOCAL_COMPETITION+'/add'
+            myGlobal.LOCAL_EXP+'/add'
             );">
             <i class="layui-icon">&#xe654;</i>
         </button>
         <!--//删除-->
         <button class="layui-btn layui-btn-sm"
-                onclick="ToolBar.remove('teachTable',myGlobal.LOCAL_COMPETITION+'/delete');">
+                onclick="ToolBar.remove('teachTable',myGlobal.LOCAL_EXP+'/delete');">
             <i class="layui-icon">&#xe640;</i>
         </button>
     </div>
@@ -74,15 +96,13 @@
 
 </main>
 
+<br><br>
 <footer>
 
 </footer>
 </body>
 
 <script>
-    function download() {
-        window.location.href = "/downRemote?type=LMatch";
-    }
 
     layui.use('upload', function () {
         var upload = layui.upload; //得到 upload 对象
@@ -90,7 +110,7 @@
         //选完文件后不自动上传
         upload.render({
             elem: '#test8'
-            , url: '/uploadExcel?type=LMatch'
+            , url: '/uploadExcel?type=Exp'
             , auto: false
             , accept: 'file'
             , exts: 'xls|xlsx'
@@ -123,10 +143,12 @@
                 , shade: 0.01
             });
         });
-        table.render({ //其它参数在此省略
+
+
+        var tableParam = { //其它参数在此省略
             id: 'teachTable',
             elem: '#teachTable',
-            url: '/localMatchList',
+            url: '/Exp/' + (new Date().getFullYear() - 1) + "/all",
             page: true,
             limits: [10, 20, 50, 100, 300],
             limit: 10,
@@ -142,25 +164,60 @@
                 {checkbox: true, fixed: true},
                 {field: 'id', fixed: true, width: '70', title: 'ID'},
                 {field: 'teacher', edit: true, width: '100', title: '教师'},
+                {field: 'lesson', edit: true, width: 100, title: '课程名称'},
                 {field: 'years', edit: true, width: 70, title: '年级'},
-                {field: 'number', edit: true, width: '100', title: '项目编号'},
-                {field: 'name', edit: true, width: '100', title: '项目名称'},
-                {field: 'type', edit: true, width: '100', title: '竞赛性质'},
-                {field: 'level', edit: true, width: '100', title: '获奖等级'},
+                {field: 'grades', edit: true, width: '100', title: '优选班级'},
+                {field: 'teachClass', edit: true, width: '100', title: '教学班号'},
+                {field: 'type', edit: true, width: '100', title: '实验类别'},
+                {field: 'peroid', edit: true, width: '70', title: '学时'},
+                {field: 'people', edit: true, width: '100', title: '学生人数'},
+                {field: 'coefficient', edit: true, width: '100', title: '系数'},
                 {field: 'workload', edit: true, width: '100', title: '教学工作量'},
                 {field: 'note', edit: true, width: '100', title: '备注'},
                 {title: '操作', width: 120, align: 'center', toolbar: '#barDemo'}
             ]]
             , done: function (res, curr, count) {
                 console.log(res);
-                layer.close(index);
+                layer.close(layer.index);
             }
+        };
+        var tableObj = table.render(tableParam);
+        form.render();
+        form.on('submit(search)', function (data) {
+            layer.msg('加载中', {icon: 16, shade: 0.01});
+            ToolBar.searchlist(tableParam, "Exp", data, tableObj);
+            return false;
         });
+        form.on('submit(download)', function (data) {
+            ToolBar.downdetail(data, "Exp");
+            return false;
+        });
+
         table.on('edit(teachTable)', function (obj) {
             var value = obj.value //得到修改后的值
                 , data = obj.data //得到所在行所有键值
                 , field = obj.field; //得到字段
             //人数
+
+            if (data.type.indexOf("非理工") >= 0) {
+                data.coefficient = 0.03;
+            } else if (data.type.indexOf("基础") >= 0) {
+                data.coefficient = 0.025;
+
+            } else if (data.type.indexOf("理工") >= 0) {
+                data.coefficient = 0.01;
+            } else if (data.type.indexOf("实习") >= 0 || data.type.indexOf("实训") >= 0) {
+                data.coefficient = 0.3;
+            } else if (data.type.indexOf("课程设计") >= 0) {
+                data.coefficient = 0.02;
+                if (data.period <= 0) {
+                    data.period = data.credit * 16;
+                }
+            } else {
+                data.coefficient = 1;
+            }
+
+            data.workload = data.coefficient * data.people * data.period;
 
             data.workload = Math.round(data.workload * 100) / 100;
 
@@ -175,7 +232,7 @@
                 //$('.layui-laypage-btn').click();
                 $.ajax({
                     type: 'post'
-                    , url: "/saveLocalMatch"
+                    , url: "/saveExp"
                     , data: {"data": JSON.stringify(data)}
                     , dataType: 'json'
                     , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -195,14 +252,14 @@
                     }
                     , error: function (res) {
                         layer.msg(res['msg']);
-                        setTimeout("$('.layui-laypage-btn').click();", 1000)
+                        $('.layui-laypage-btn').click();
                     }
                 });
             } else if (obj.event === 'del') {
                 layer.confirm('真的删除行么', function (sure) {
                     $.ajax({
                         type: 'post'
-                        , url: "/removeLocalMatch"
+                        , url: "/removeExp"
                         , data: {"data": JSON.stringify(data)}
                         , dataType: 'json'
                         , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'

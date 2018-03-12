@@ -8,6 +8,7 @@ import com.hfut.service.RemoteDesignService;
 import com.hfut.util.PropertyUtil;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,10 +23,10 @@ public class RemoteDesignController {
     @Resource(name = "remoteDesignServiceImpl")
     private RemoteDesignService designService;
 
-    @RequestMapping(value = "/remoteDesignList",
+    @RequestMapping(value = "/RDesign/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String getTeachLoadList(HttpServletRequest request) throws Exception {
+    public String getLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -41,10 +42,10 @@ public class RemoteDesignController {
         }
         System.out.println(page + " " + limit);
 
-        List<RemoteDesignWorkload> list = designService.findAllLoad(page, limit);
+        List<RemoteDesignWorkload> list = designService.getList(years, teacher, page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(designService.getCount());
+        ajaxResult.setCount(designService.getCount(years, teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);
