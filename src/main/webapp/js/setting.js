@@ -182,53 +182,59 @@ function checkCookie() {
         }
     }
 }
+(function ($, doc, o) {
+    var tk;
+    var obj;
+    var otd;
+    var callback;
+    o.show = function (h, e, c) {
+        callback = c;
+        var d = doc.getElementById('table_type_select');
+        if (d) {
+            d.remove();
+        }
+        otd = e;
+        var s = '<div id="table_type_select" class="table-select"><dl class="layui-anim layui-anim-upbit" style="padding: 0px;top: 28px">';
+        for (var k in h.data) {
+            if (h.value == h.data[k].value) {
+                s += '<dd lay-value="' + h.data[k].value + '" class="layui-this">' + h.data[k].text + '</dd>';
+            } else {
+                s += '<dd lay-value="' + h.data[k].value + '" >' + h.data[k].text + '</dd>';
+            }
+        }
+        s += '</dl></div>';
+        otd.innerHTML = s + otd.innerHTML;
+        obj = doc.getElementById('table_type_select');
+        //console.log($(obj));
+        obj.onmouseout = function () {
+            tk = 1;
+            setTimeout(function () {
+                if (tk) {
+                    if (obj) {
+                        ke = 0;
+                        obj.remove();
+                    }
+                }
+            }, 200);
+        }
+        obj.onmouseover = function () {
+            tk = 0;
+        }
+        obj.addEventListener('click', function (e) {
+            var value = $(e.srcElement).attr('lay-value');
+            var text = e.srcElement.innerHTML;
+            obj.remove();
+            callback({value: value, text: text});
+        });
+    }
+})($, document, window.type_select = {});
 
-
-window.onload = function () {
-    document.getElementsByTagName("footer")[0].innerHTML = "©CopyRight 2017 合肥工业大学 All Rights Reserved.";
-
+/*window.onload = function () {
+  /!*  document.getElementsByTagName("footer")[0].innerHTML = "©CopyRight 2017 合肥工业大学 All Rights Reserved.";
+*!/
     var obj = "  <ul class=\"layui-nav\" lay-filter='demo'> " +
         "           <li class=\"layui-nav-item \"><a href=\"../index.html\">工作量核算系统</a></li>\n" +
-        "           <li class=\"layui-nav-item \">\n" +
-        "               <a href=\"javascript:;\">落地工作量</a>\n" +
-        "               <dl class=\"layui-nav-child\">\n" +
-        "                       <dd><a href=\"../workload/teachCourse.html\">课堂教学</a></dd>\n" +
-        "                       <dd><a href=\"../workload/experiment.html\">实验</a></dd>\n" +
-        "                       <dd><a href=\"../workload/courseDesign.html\">课程设计</a></dd>\n" +
-        "                       <dd><a href=\"../workload/graduationPractice.html\">毕业实习</a></dd>\n" +
-        "                       <dd><a href=\"../workload/graduationDesign.html\">毕业设计</a></dd>\n" +
-        "                       <dd><a href=\"../workload/teachPractice.html\">教学实习</a></dd>\n" +
-        "                   </dl>\n" +
-        "           </li>\n" +
-        "           <li class=\"layui-nav-item\">\n" +
-        "                   <a href=\"javascript:;\">异地补贴</a>\n" +
-        "                   <dl class=\"layui-nav-child\">\n" +
-        "                       <dd><a href=\"../allowance/teachCourse.html\">课堂教学</a></dd>\n" +
-        "                       <dd><a href=\"../allowance/expriment.html\">实验</a></dd>\n" +
-        "                       <dd><a href=\"../allowance/courseDesign.html\">课程设计</a></dd>\n" +
-        "                       <dd><a href=\"../allowance/graduationDesign.html\">毕业设计</a></dd>\n" +
-        "                       <dd><a href=\"../allowance/nonLesson.html\">无课补贴</a></dd>\n" +
-        "                       </dl>\n" +
-        "               </li>\n" +
-        "           <li class=\"layui-nav-item\">\n" +
-        "                   <a href=\"javascript:;\">其他落地工作量</a>\n" +
-        "                   <dl class=\"layui-nav-child\">\n" +
-        "                       <dd><a href=\"../workload/matchs.html\">竞赛</a></dd>\n" +
-        "                       <dd><a href=\"../workload/project.html\">双创项目</a></dd>\n" +
-        "                       <dd><a href=\"../workload/netCourse.html\">网络课程</a></dd>\n" +
-        /*        "                       <dd><a href=\"../workload/publishTextbook.html\">教材编写</a></dd>\n" +
-                "                       <dd><a href=\"../workload/trainAxe.html\">乐器指导</a></dd>\n" +*/
-        "                       </dl>\n" +
-        "               </li>\n" +
-        "           <li class=\"layui-nav-item\">\n" +
-        "                   <a href=\"../workload/expall.html\">实验教学</a>\n" +
-        "               </li>\n" +
-        "           <li class=\"layui-nav-item\">\n" +
-        "                   <a href=\"../total.html\">汇总</a>\n" +
-        "               </li>\n" +
-        "           <li class=\"layui-nav-item\">\n" +
-        "                   <a href=\"../download.html\">模板下载</a>\n" +
-        "               </li>\n" +
+
 
         "           <li style=\"float: right\" class=\"layui-nav-item \"><a href=\"/logout\">退出</a></li>\n" +
         "       </ul>" +
@@ -239,7 +245,7 @@ window.onload = function () {
         "               //监听导航点击\n" +
         "               element.on('nav(demo)', function(elem){\n" +
         "                   //console.log(elem)\n" +
-        /*            "                   layer.msg(elem.text());\n" +*/
+        /!*            "                   layer.msg(elem.text());\n" +*!/
         "               });\n" +
         "           });" +
         "       </script>";  //按个人要求拼接标签
@@ -257,5 +263,5 @@ window.onload = function () {
             //layer.msg(elem.text());
         });
     });
-}
+}*/
 

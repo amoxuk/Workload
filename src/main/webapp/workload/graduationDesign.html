@@ -51,7 +51,7 @@
 
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>毕业实习 - 落地工作量</legend>
+        <legend>毕业设计 - 落地工作量</legend>
     </fieldset>
     <div class="layui-btn-group">
         <!--//刷新-->
@@ -88,10 +88,7 @@
 
 </main>
 
-<br><br>
-<footer>
 
-</footer>
 </body>
 
 <script>
@@ -140,8 +137,9 @@
         var tableParam = { //其它参数在此省略
             id: 'teachTable',
             elem: '#teachTable',
-            url: '/LGDesign' + (new Date().getFullYear() - 1) + "/all",
-            page: true,
+            //url: '/LGDesign/' + (new Date().getFullYear() - 1) + "/all",
+            data:[{"coefficient":1.2,"grades":"计算机","id":13,"note":"","people":15,"teacher":"张三1","weeks":5,"workload":90.0,"years":2017},{"coefficient":1.2,"grades":"计算机","id":14,"note":"","people":15,"teacher":"张三2","weeks":5,"workload":90.0,"years":2017},{"coefficient":1.2,"grades":"计算机","id":15,"note":"","people":15,"teacher":"张三3","weeks":5,"workload":90.0,"years":2017}]
+            ,page: true,
             limits: [10, 20, 50, 100, 300],
             limit: 10,
             response: {
@@ -170,7 +168,7 @@
                 layer.close(layer.index);
             }
         };
-        var tableObj = table.render();
+        var tableObj = table.render(tableParam);
         form.render();
         form.on('submit(search)', function (data) {
             layer.msg('加载中', {icon: 16, shade: 0.01});
@@ -187,13 +185,8 @@
                 , data = obj.data //得到所在行所有键值
                 , field = obj.field; //得到字段
             //人数
-            if (data.place.indexOf("本市") >= 0) {
-                data.workload = 0.9 * data.people * data.weeks;
-            } else if (data.place.indexOf("外地") >= 0) {
-                data.workload = 1.0 * data.people * data.weeks;
-            }
+            data.workload = 0.9 * data.weeks * data.people;
             data.workload = Math.round(data.workload * 100) / 100;
-
             layer.msg('[教师: ' + data.teacher + '] ' + field + ' 更改为：' + value + "<br>确认修改后点击保存。");
         });
         table.on('tool(teachTable)', function (obj) {

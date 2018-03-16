@@ -15,6 +15,7 @@
     <!--必须放最后-->
     <script src="../js/setting.js"></script>
     <script src="js/setting.js"></script>
+
 </head>
 <body>
 
@@ -91,10 +92,7 @@
 
 </main>
 
-<br><br>
-<footer>
 
-</footer>
 </body>
 
 <script>
@@ -166,7 +164,7 @@
                 {field: 'people', edit: true, width: '100', title: '学生人数'},
                 {field: 'weeks', edit: true, width: '70', title: '周数'},
                 {field: 'classNumber', edit: true, width: '100', title: '班级数'},
-                {field: 'place', edit: true, width: '100', title: '实习地点'},
+                {field: 'place', width: '100', title: '实习地点',event:'place', templet: '#practiceTmpl'},
                 {field: 'workload', edit: false, width: '100', title: '教学工作量'},
                 {field: 'note', edit: true, width: '100', title: '备注'},
                 {title: '操作', width: 120, align: 'center', toolbar: '#barDemo'}
@@ -211,6 +209,7 @@
                 //layer.msg('保存：<br>'+ JSON.stringify(data));
                 //ajax上传服务器
                 //$('.layui-laypage-btn').click();
+
                 $.ajax({
                     type: 'post'
                     , url: "/saveLocalTPractice"
@@ -266,9 +265,50 @@
                     $('.layui-laypage-btn').click();
                 });
             }
+            //监听表格事件
+            else if (obj.event === 'place') {
+                //显示下拉框框
+                type_select.show({
+                    //设置当前选择的id
+                    value: obj.data.type_id,
+                    //下拉选择数据
+                    data: [{
+                        value: '本市',
+                        text: '本市'
+                    }, {
+                        value: '本地',
+                        text: '本地'
+                    }, {
+                        value: '野外',
+                        text: '野外'
+                    }]
+                }, this, function (e) {
+                    //回调函数 返回结果
+                    obj.data.type_id = e.value;
+                    obj.data.place = e.text;
+
+
+                    if (obj.data.place.indexOf("本市") >= 0) {
+                        obj.data.workload = 18 * obj.data.classNumber * obj.data.weeks;
+                    } else if (obj.data.place.indexOf("外地") >= 0) {
+                        obj.data.workload = 20 * obj.data.classNumber * obj.data.weeks;
+                    } else if (obj.data.place.indexOf("野外") >= 0) {
+                        obj.data.workload = 24 * obj.data.classNumber * obj.data.weeks;
+                    }
+                    obj.data.workload = Math.round(obj.data.workload * 100) / 100;
+                    layer.msg("确认修改请保存");
+                    obj.update(obj.data);
+                    form.render();
+                });
+            }
             return false;
         });
     });
+
 </script>
+<script type="text/html" id="practiceTmpl">
+    {{d.place}}<i class="layui-icon table-select-icon"></i>
+</script>
+
 
 </html>

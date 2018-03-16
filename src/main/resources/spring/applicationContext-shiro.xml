@@ -29,9 +29,10 @@
                 #url=拦截器[参数]，拦截器
                 # /techer/** = authc, perms[document:read]
                 # 如果用户没有该角色，然后访问该 路径 会报 401错误
-
+                /Admin/** = authc, roles[超级管理员]
                 /allowance/** = authc, roles[超级管理员]
                 /workload/** = authc, roles[超级管理员]
+
 
                 /teacher/** = authc, roles[教师]
 

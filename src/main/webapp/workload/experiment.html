@@ -94,10 +94,7 @@
 
 </main>
 
-<br><br>
-<footer>
 
-</footer>
 </body>
 
 <script>
@@ -164,7 +161,7 @@
                 {field: 'years', edit: true, width: 70, title: '年级'},
                 {field: 'grades', edit: true, width: '100', title: '优选班级'},
                 {field: 'teachClass', edit: true, width: '100', title: '教学班号'},
-                {field: 'type', edit: true, width: '100', title: '实验类别'},
+                {field: 'type',  width: '100', title: '实验类别',event:'place', templet: '#practiceTmpl'},
                 {field: 'period', edit: true, width: '70', title: '学时'},
                 {field: 'people', edit: true, width: '90', title: '学生人数'},
                 {field: 'typeCoefficient', edit: false, width: '100', title: '类别系数'},
@@ -206,20 +203,9 @@
             }
             data.loadCoefficient = Math.round(data.loadCoefficient * 100) / 100;
 
-            if (data.expType.indexOf("A") >= 0) {
-                data.typeCefficient = 1.1;
-
-            } else if (data.expType.indexOf("B") >= 0) {
-                data.typeCefficient = 1.2;
-
-            } else if (data.expType.indexOf("C") >= 0) {
-                data.typeCefficient = 1.4;
-
-            }
-            data.workload = data.typeCefficient * data.loadCoefficient * data.period;
+            data.workload = data.typeCoefficient * data.loadCoefficient * data.period;
 
             data.workload = Math.round(data.workload * 100) / 100;
-
             layer.msg('[教师: ' + data.teacher + '] ' + field + ' 更改为：' + value + "<br>确认修改后点击保存。");
         });
         table.on('tool(teachTable)', function (obj) {
@@ -283,10 +269,50 @@
                     layer.close(sure);
                     $('.layui-laypage-btn').click();
                 });
+            }else if (obj.event === 'place') {
+                //显示下拉框框
+                type_select.show({
+                    //设置当前选择的id
+                    value: obj.data.type_id,
+                    //下拉选择数据
+                    data: [{
+                        value: 'A',
+                        text: 'A'
+                    }, {
+                        value: 'B',
+                        text: 'B'
+                    }, {
+                        value: 'C',
+                        text: 'C'
+                    }]
+                }, this, function (e) {
+                    //回调函数 返回结果
+                    obj.data.type_id = e.value;
+                    obj.data.type = e.text;
+
+                    if (obj.data.type.indexOf("A") >= 0) {
+                        obj.data.typeCoefficient = 1.1;
+
+                    } else if (obj.data.type.indexOf("B") >= 0) {
+                        obj.data.typeCoefficient = 1.2;
+
+                    } else if (obj.data.type.indexOf("C") >= 0) {
+                        obj.data.typeCoefficient = 1.4;
+                    }
+                    obj.data.workload = obj.data.typeCoefficient * obj.data.loadCoefficient * obj.data.period;
+
+                    obj.data.workload = Math.round(obj.data.workload * 100) / 100;
+                    layer.msg("确认修改请保存");
+                    obj.update(obj.data);
+                    form.render();
+                });
             }
             return false;
         });
     });
+</script>
+<script type="text/html" id="practiceTmpl">
+    {{d.type}}<i class="layui-icon table-select-icon"></i>
 </script>
 
 </html>

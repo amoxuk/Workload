@@ -89,10 +89,7 @@
 
 </main>
 
-<br><br>
-<footer>
 
-</footer>
 </body>
 
 <script>
@@ -161,7 +158,7 @@
                 {field: 'number', edit: true, width: '100', title: '项目编号'},
                 {field: 'name', edit: true, width: '100', title: '项目名称'},
                 {field: 'type', edit: true, width: '100', title: '竞赛性质'},
-                {field: 'level', edit: true, width: '100', title: '获奖等级'},
+                {field: 'level',  width: '100', title: '获奖等级',event:'place', templet: '#practiceTmpl'},
                 {field: 'workload', edit: true, width: '100', title: '教学工作量'},
                 {field: 'note', edit: true, width: '100', title: '备注'},
                 {title: '操作', width: 120, align: 'center', toolbar: '#barDemo'}
@@ -188,9 +185,28 @@
                 , data = obj.data //得到所在行所有键值
                 , field = obj.field; //得到字段
             //人数
-
+            if (data.type.indexOf("国") >= 0) {
+                if (data.level.indexOf("最") >= 0 || data.level.indexOf("一") >= 0) {
+                    data.workload = 64;
+                } else if (data.level.indexOf("二") >= 0) {
+                    data.workload = 32;
+                }else if (data.level.indexOf("三") >= 0) {
+                    data.workload = 24;
+                }else  {
+                    data.workload = 16;
+                }
+            } else if (data.type.indexOf("省") >= 0) {
+                if (data.level.indexOf("最") >= 0 || data.level.indexOf("一") >= 0) {
+                    data.workload = 32;
+                } else if (data.level.indexOf("二") >= 0) {
+                    data.workload = 24;
+                }else if (data.level.indexOf("三") >= 0) {
+                    data.workload = 16;
+                }else  {
+                    data.workload = 10;
+                }
+            }
             data.workload = Math.round(data.workload * 100) / 100;
-
             layer.msg('[教师: ' + data.teacher + '] ' + field + ' 更改为：' + value + "<br>确认修改后点击保存。");
         });
         table.on('tool(teachTable)', function (obj) {
@@ -254,10 +270,64 @@
                     layer.close(sure);
                     $('.layui-laypage-btn').click();
                 });
+            }else if (obj.event === 'place') {
+                //显示下拉框框
+                type_select.show({
+                    //设置当前选择的id
+                    value: obj.data.type_id,
+                    //下拉选择数据
+                    data: [{
+                        value: '最高等级奖',
+                        text: '最高等级奖'
+                    }, {
+                        value: '第二等级奖',
+                        text: '第二等级奖'
+                    }, {
+                        value: '第三等级奖',
+                        text: '第三等级奖'
+                    }, {
+                        value: '未获奖',
+                        text: '未获奖'
+                    }]
+                }, this, function (e) {
+                    //回调函数 返回结果
+                    obj.data.type_id = e.value;
+                    obj.data.level = e.text;
+
+                    if (obj.data.type.indexOf("国") >= 0) {
+                        if (obj.data.level.indexOf("最") >= 0 || obj.data.level.indexOf("一") >= 0) {
+                            obj.data.workload = 64;
+                        } else if (obj.data.level.indexOf("二") >= 0) {
+                            obj.data.workload = 32;
+                        }else if (obj.data.level.indexOf("三") >= 0) {
+                            obj.data.workload = 24;
+                        }else  {
+                            obj.data.workload = 16;
+                        }
+                    } else if (obj.data.type.indexOf("省") >= 0) {
+                        if (obj.data.level.indexOf("最") >= 0 || obj.data.level.indexOf("一") >= 0) {
+                            obj.data.workload = 32;
+                        } else if (obj.data.level.indexOf("二") >= 0) {
+                            obj.data.workload = 24;
+                        }else if (obj.data.level.indexOf("三") >= 0) {
+                            obj.data.workload = 16;
+                        }else  {
+                            obj.data.workload = 10;
+                        }
+                    }
+                    obj.data.workload = Math.round(obj.data.workload * 100) / 100;
+
+                    layer.msg("确认修改请保存");
+
+                    obj.update(obj.data);
+                    form.render();
+                });
             }
             return false;
         });
     });
 </script>
-
+<script type="text/html" id="practiceTmpl">
+    {{d.level}}<i class="layui-icon table-select-icon"></i>
+</script>
 </html>

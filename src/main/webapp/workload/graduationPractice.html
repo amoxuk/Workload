@@ -90,10 +90,7 @@
 
 </main>
 
-<br><br>
-<footer>
 
-</footer>
 </body>
 
 <script>
@@ -162,7 +159,7 @@
                 {field: 'major', edit: true, width: '100', title: '专业'},
                 {field: 'people', edit: true, width: '100', title: '学生人数'},
                 {field: 'weeks', edit: true, width: '70', title: '周数'},
-                {field: 'place', edit: true, width: '100', title: '实习地点'},
+                {field: 'place',  width: '100', title: '实习地点',event:'place', templet: '#practiceTmpl'},
                 {field: 'workload', edit: false, width: '100', title: '教学工作量'},
                 {field: 'note', edit: true, width: '100', title: '备注'},
                 {title: '操作', width: 120, align: 'center', toolbar: '#barDemo'}
@@ -258,10 +255,40 @@
                     layer.close(sure);
                     $('.layui-laypage-btn').click();
                 });
+            }else if (obj.event === 'place') {
+                //显示下拉框框
+                type_select.show({
+                    //设置当前选择的id
+                    value: obj.data.type_id,
+                    //下拉选择数据
+                    data: [{
+                        value: '本市',
+                        text: '本市'
+                    }, {
+                        value: '外地',
+                        text: '外地'
+                    }]
+                }, this, function (e) {
+                    //回调函数 返回结果
+                    obj.data.type_id = e.value;
+                    obj.data.place = e.text;
+                    if (obj.data.place.indexOf("本市") >= 0) {
+                        obj.data.workload = 0.9 * obj.data.people * obj.data.weeks;
+                    } else if (obj.data.place.indexOf("外地") >= 0) {
+                        obj.data.workload = 1.0 * obj.data.people * obj.data.weeks;
+                    }
+                    obj.data.workload = Math.round(obj.data.workload * 100) / 100;
+                    layer.msg("确认修改请保存");
+
+                    obj.update(obj.data);
+                    form.render();
+                });
             }
             return false;
         });
     });
 </script>
-
+<script type="text/html" id="practiceTmpl">
+    {{d.place}}<i class="layui-icon table-select-icon"></i>
+</script>
 </html>

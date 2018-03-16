@@ -89,10 +89,8 @@
 
 </main>
 
-<br><br>
-<footer>
 
-</footer>
+
 </body>
 
 <script>
@@ -162,7 +160,7 @@
                 {field: 'number', edit: true, width: '100', title: '项目编号'},
                 {field: 'name', edit: true, width: '100', title: '项目名称'},
                 {field: 'type', edit: true, width: '100', title: '项目类型'},
-                {field: 'level', edit: true, width: '100', title: '项目等级'},
+                {field: 'level', width: '100', title: '项目等级',event:'place', templet: '#practiceTmpl'},
                 {field: 'workload', edit: true, width: '100', title: '教学工作量'},
                 {field: 'note', edit: true, width: '100', title: '备注'},
                 {title: '操作', width: 120, align: 'center', toolbar: '#barDemo'}
@@ -190,10 +188,12 @@
                 , data = obj.data //得到所在行所有键值
                 , field = obj.field; //得到字段
             //人数
-            if (data.place.indexOf("本市") >= 0) {
-                data.workload = 0.9 * data.people * data.weeks;
-            } else if (data.place.indexOf("外地") >= 0) {
-                data.workload = 1.0 * data.people * data.weeks;
+            if (data.level.indexOf("国家级") >= 0) {
+                data.workload = 48;
+            } else if (data.level.indexOf("省级") >= 0) {
+                data.workload = 24;
+            }else if (data.level.indexOf("校级") >= 0) {
+                data.workload = 16;
             }
             data.workload = Math.round(data.workload * 100) / 100;
 
@@ -260,10 +260,51 @@
                     layer.close(sure);
                     $('.layui-laypage-btn').click();
                 });
+            }else if (obj.event === 'place') {
+                //显示下拉框框
+                type_select.show({
+                    //设置当前选择的id
+                    value: obj.data.type_id,
+                    //下拉选择数据
+                    data: [{
+                        value: '国家级',
+                        text: '国家级'
+                    }, {
+                        value: '省级',
+                        text: '省级'
+                    }, {
+                        value: '校级',
+                        text: '校级'
+                    }, {
+                        value: '其他',
+                        text: '其他'
+                    }]
+                }, this, function (e) {
+                    //回调函数 返回结果
+                    obj.data.type_id = e.value;
+                    obj.data.level = e.text;
+
+                    if (obj.data.level.indexOf("国家级") >= 0) {
+                        obj.data.workload = 48;
+                    } else if (obj.data.level.indexOf("省级") >= 0) {
+                        obj.data.workload = 24;
+                    }else if (obj.data.level.indexOf("校级") >= 0) {
+                        obj.data.workload = 16;
+                    }else
+                        layer.alert("请手动修改工作量")
+                    obj.data.workload = Math.round(obj.data.workload * 100) / 100;
+
+                    layer.msg("确认修改请保存");
+
+                    obj.update(obj.data);
+                    form.render();
+                });
             }
             return false;
         });
     });
 </script>
-
+<script type="text/html" id="practiceTmpl">
+    {{d.level}}<i class="layui-icon table-select-icon"></i>
+</script>
 </html>
