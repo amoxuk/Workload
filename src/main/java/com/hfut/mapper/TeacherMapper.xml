@@ -108,20 +108,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hfut.entity.Teacher" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into teacher (tid, name, college, 
-      note)
-    values (#{tid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}, 
-      #{note,jdbcType=VARCHAR})
+    insert into teacher (id, tid, name, 
+      college, note)
+    values (#{id,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{college,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hfut.entity.Teacher" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into teacher
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="tid != null" >
         tid,
       </if>
@@ -136,6 +133,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="tid != null" >
         #{tid,jdbcType=INTEGER},
       </if>

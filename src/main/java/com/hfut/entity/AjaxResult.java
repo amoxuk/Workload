@@ -1,5 +1,7 @@
 package com.hfut.entity;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.List;
 
 
@@ -46,12 +48,7 @@ public class AjaxResult<T> {
 
     @Override
     public String toString() {
-        return "AjaxResult{" +
-                "status=" + status +
-                ", data=" + data.toString()+
-                ", msg='" + msg + '\'' +
-                ", count=" + count +
-                '}';
+        return JSON.toJSONString(this);
     }
 }
 

@@ -34,9 +34,6 @@
                 /workload/** = authc, roles[超级管理员]
 
 
-                /teacher/** = authc, roles[教师]
-
-
                 # 当访问login时，不用进行认证（anon表示匿名）
                 /auth/** = anon
                 /login =anon

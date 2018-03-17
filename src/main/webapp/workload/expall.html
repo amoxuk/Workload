@@ -253,7 +253,7 @@
                     }
                 });
             } else if (obj.event === 'del') {
-                layer.confirm('真的删除行么', function (sure) {
+                layer.confirm('真的删除该行么', function (sure) {
                     $.ajax({
                         type: 'post'
                         , url: "/removeExp"
