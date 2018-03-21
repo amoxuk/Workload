@@ -7,6 +7,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 @Component
 public class ToolKit {
     /**
@@ -41,7 +42,19 @@ public class ToolKit {
     }
 
     public static void deleteFile(String path) {
-        File file =  new File(path);
+        File file = new File(path);
         file.delete();
     }
+
+    public static String psw2pwd(String s) {
+        String psw = Encryp.strDec(s, "amoxu", "amoxu", "amoxu");
+        return Encryp.encryptionStr(psw + "amoxu", "MD5");
+    }
+    public static String web2Word(String s) {
+        return Encryp.strDec(s, "amoxu", "amoxu", "amoxu");
+    }
+    public static String word2Psw(String s) {
+        return Encryp.encryptionStr(s + "amoxu", "MD5");
+    }
+
 }

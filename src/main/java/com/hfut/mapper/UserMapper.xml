@@ -4,12 +4,13 @@
   <resultMap id="BaseResultMap" type="com.hfut.entity.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="level" property="level" jdbcType="INTEGER" />
-    <result column="colleage" property="colleage" jdbcType="VARCHAR" />
     <result column="tid" property="tid" jdbcType="INTEGER" />
     <result column="user" property="user" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="mail" property="mail" jdbcType="VARCHAR" />
     <result column="question" property="question" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="alter_time" property="alterTime" jdbcType="TIMESTAMP" />
     <result column="answer" property="answer" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, level, colleage, tid, user, password, mail, question, answer
+    id, level, tid, user, password, mail, question, create_time, alter_time, answer
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hfut.entity.UserExample" >
     select
@@ -112,27 +113,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hfut.entity.User" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into user (level, colleage, tid, 
+    insert into user (id, level, tid, 
       user, password, mail, 
-      question, answer)
-    values (#{level,jdbcType=INTEGER}, #{colleage,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, 
+      question, create_time, alter_time, 
+      answer)
+    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, 
       #{user,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
-      #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR})
+      #{question,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{alterTime,jdbcType=TIMESTAMP}, 
+      #{answer,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hfut.entity.User" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="level != null" >
         level,
-      </if>
-      <if test="colleage != null" >
-        colleage,
       </if>
       <if test="tid != null" >
         tid,
@@ -149,16 +146,22 @@
       <if test="question != null" >
         question,
       </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="alterTime != null" >
+        alter_time,
+      </if>
       <if test="answer != null" >
         answer,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="level != null" >
         #{level,jdbcType=INTEGER},
-      </if>
-      <if test="colleage != null" >
-        #{colleage,jdbcType=VARCHAR},
       </if>
       <if test="tid != null" >
         #{tid,jdbcType=INTEGER},
@@ -174,6 +177,12 @@
       </if>
       <if test="question != null" >
         #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alterTime != null" >
+        #{alterTime,jdbcType=TIMESTAMP},
       </if>
       <if test="answer != null" >
         #{answer,jdbcType=VARCHAR},
@@ -195,9 +204,6 @@
       <if test="record.level != null" >
         level = #{record.level,jdbcType=INTEGER},
       </if>
-      <if test="record.colleage != null" >
-        colleage = #{record.colleage,jdbcType=VARCHAR},
-      </if>
       <if test="record.tid != null" >
         tid = #{record.tid,jdbcType=INTEGER},
       </if>
@@ -213,6 +219,12 @@
       <if test="record.question != null" >
         question = #{record.question,jdbcType=VARCHAR},
       </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.alterTime != null" >
+        alter_time = #{record.alterTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.answer != null" >
         answer = #{record.answer,jdbcType=VARCHAR},
       </if>
@@ -225,12 +237,13 @@
     update user
     set id = #{record.id,jdbcType=INTEGER},
       level = #{record.level,jdbcType=INTEGER},
-      colleage = #{record.colleage,jdbcType=VARCHAR},
       tid = #{record.tid,jdbcType=INTEGER},
       user = #{record.user,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       mail = #{record.mail,jdbcType=VARCHAR},
       question = #{record.question,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      alter_time = #{record.alterTime,jdbcType=TIMESTAMP},
       answer = #{record.answer,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -241,9 +254,6 @@
     <set >
       <if test="level != null" >
         level = #{level,jdbcType=INTEGER},
-      </if>
-      <if test="colleage != null" >
-        colleage = #{colleage,jdbcType=VARCHAR},
       </if>
       <if test="tid != null" >
         tid = #{tid,jdbcType=INTEGER},
@@ -260,6 +270,12 @@
       <if test="question != null" >
         question = #{question,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alterTime != null" >
+        alter_time = #{alterTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="answer != null" >
         answer = #{answer,jdbcType=VARCHAR},
       </if>
@@ -269,12 +285,13 @@
   <update id="updateByPrimaryKey" parameterType="com.hfut.entity.User" >
     update user
     set level = #{level,jdbcType=INTEGER},
-      colleage = #{colleage,jdbcType=VARCHAR},
       tid = #{tid,jdbcType=INTEGER},
       user = #{user,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       mail = #{mail,jdbcType=VARCHAR},
       question = #{question,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      alter_time = #{alterTime,jdbcType=TIMESTAMP},
       answer = #{answer,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.beans.Transient;
+import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -72,28 +74,24 @@ public class UserServiceImpl implements UserService {
 
     @Transient
     @Override
-    public void updateUser(User userlogin) throws CustomException {
-
-        UserExample userExample = new UserExample();
-
-        UserExample.Criteria criterion = userExample.createCriteria();
-        criterion.andIdEqualTo(userlogin.getId());
-
-        int ret = userMapper.updateByExample(userlogin, userExample);
+    public void updateUser(User user) throws CustomException {
+        user.setPassword(userMapper.selectByPrimaryKey(user.getId()).getPassword());
+        int ret = userMapper.updateByPrimaryKey(user);
         if (ret == 1) {
             return;
         } else {
             throw new CustomException("更新失败，请联系管理员。");
         }
     }
+    @Transient
     @Override
-    public boolean addManage(int levelId, int userId) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean removeManage(int typeId, int userId) throws Exception {
-        return false;
+    public void alterPassword(User user) throws CustomException {
+        int ret = userMapper.updateByPrimaryKey(user);
+        if (ret == 1) {
+            return;
+        } else {
+            throw new CustomException("更新失败，请联系管理员。");
+        }
     }
 
     @Override
@@ -102,23 +100,65 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getListByType(int typeId) throws Exception {
-        return null;
+    public List<User> getList(Integer page, Integer limit) throws Exception {
+        UserExample example = new UserExample();
+        example.setLimit(limit);
+        if (page != 0) {
+            page -= 1;
+        }
+        example.setOffset(page);
+        List<User> list = userMapper.selectByExample(example);
+        for (User user : list) {
+            user.setPassword("*****");
+        }
+        return list;
     }
 
     @Override
-    public List<User> getListByType(int typeId, int page) throws Exception {
-        return null;
+    public List<User> getList(int typeId, int page, int limit) throws Exception {
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+        criteria.andLevelEqualTo(typeId);
+        example.setLimit(limit);
+        if (page != 0) {
+            page -= 1;
+        }
+        example.setOffset(page);
+        List<User> list = userMapper.selectByExample(example);
+        for (User user : list) {
+            user.setPassword("*****");
+        }
+        return list;
+    }
+
+
+
+
+    @Override
+    public boolean addUser(User user) {
+
+        if (0 != userMapper.insert(user)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public List<User> getListByType(int typeId, int page, int limit) throws Exception {
-        return null;
+    public boolean removeUser(ArrayList<Integer> list) {
+        boolean re = false;
+        try {
+
+            for (int i : list) {
+                removeById(i);
+            }
+            re = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return re;
     }
 
-    @Override
-    public int getNewsCount(int typeId) throws Exception {
-        return 0;
-    }
 }
 

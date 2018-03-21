@@ -90,7 +90,6 @@ var ToolBar = {
                     layer.confirm('是否删除这' + data.length + '条数据',
                         {icon: 3, title: '确认删除提示'},
                         function (index) {
-                            //TODO deleteAjax
                             for (var row = 0; row < data.length; row++) {
                                 ret.push(data[row].id);
                             }

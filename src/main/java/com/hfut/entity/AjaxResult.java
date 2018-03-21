@@ -12,6 +12,7 @@ public class AjaxResult<T> {
     private int count;
     public void ok() {
         this.status = 0;
+        setMsg("操作成功。");
     }
     public void failed() {
         this.status = 1;
@@ -48,7 +49,7 @@ public class AjaxResult<T> {
 
     @Override
     public String toString() {
-        return JSON.toJSONString(this);
+            return JSON.toJSONString(this);
     }
 }
 

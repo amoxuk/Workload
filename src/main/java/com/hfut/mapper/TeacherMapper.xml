@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="tid" property="tid" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="INTEGER" />
     <result column="college" property="college" jdbcType="VARCHAR" />
     <result column="note" property="note" jdbcType="VARCHAR" />
   </resultMap>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, tid, name, college, note
+    id, tid, name, location, college, note
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hfut.entity.TeacherExample" >
     select
@@ -109,9 +110,11 @@
   </delete>
   <insert id="insert" parameterType="com.hfut.entity.Teacher" >
     insert into teacher (id, tid, name, 
-      college, note)
+      location, college, note
+      )
     values (#{id,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{college,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
+      #{location,jdbcType=INTEGER}, #{college,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.hfut.entity.Teacher" >
     insert into teacher
@@ -124,6 +127,9 @@
       </if>
       <if test="name != null" >
         name,
+      </if>
+      <if test="location != null" >
+        location,
       </if>
       <if test="college != null" >
         college,
@@ -141,6 +147,9 @@
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=INTEGER},
       </if>
       <if test="college != null" >
         #{college,jdbcType=VARCHAR},
@@ -168,6 +177,9 @@
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=INTEGER},
+      </if>
       <if test="record.college != null" >
         college = #{record.college,jdbcType=VARCHAR},
       </if>
@@ -184,6 +196,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       tid = #{record.tid,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=INTEGER},
       college = #{record.college,jdbcType=VARCHAR},
       note = #{record.note,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -199,6 +212,9 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=INTEGER},
+      </if>
       <if test="college != null" >
         college = #{college,jdbcType=VARCHAR},
       </if>
@@ -212,6 +228,7 @@
     update teacher
     set tid = #{tid,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
+      location = #{location,jdbcType=INTEGER},
       college = #{college,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

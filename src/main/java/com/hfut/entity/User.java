@@ -1,11 +1,13 @@
 package com.hfut.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.util.Date;
+
 public class User {
     private Integer id;
 
     private Integer level;
-
-    private String colleage;
 
     private Integer tid;
 
@@ -17,7 +19,15 @@ public class User {
 
     private String question;
 
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    private Date alterTime;
+
     private String answer;
+
+    private UserRole userRole;
 
     public Integer getId() {
         return id;
@@ -33,14 +43,6 @@ public class User {
 
     public void setLevel(Integer level) {
         this.level = level;
-    }
-
-    public String getColleage() {
-        return colleage;
-    }
-
-    public void setColleage(String colleage) {
-        this.colleage = colleage == null ? null : colleage.trim();
     }
 
     public Integer getTid() {
@@ -83,11 +85,52 @@ public class User {
         this.question = question == null ? null : question.trim();
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+    public Date getAlterTime() {
+        return alterTime;
+    }
+
+    public void setAlterTime(Date alterTime) {
+        this.alterTime = alterTime;
+    }
+
     public String getAnswer() {
         return answer;
     }
 
     public void setAnswer(String answer) {
         this.answer = answer == null ? null : answer.trim();
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public User setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", level=" + level +
+                ", tid=" + tid +
+                ", user='" + user + '\'' +
+                ", password='" + password + '\'' +
+                ", mail='" + mail + '\'' +
+                ", question='" + question + '\'' +
+                ", createTime=" + createTime +
+                ", alterTime=" + alterTime +
+                ", answer='" + answer + '\'' +
+                ", userRole=" + userRole +
+                '}';
     }
 }

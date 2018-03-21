@@ -31,7 +31,7 @@ public class LocalNetServiceImpl implements LocalNetService {
         if (!"all".equals(teacher)) {
             criteria.andTeacherEqualTo(teacher);
         }
-        if (page != -1) {
+        if (page != 0) {
             example.setOffset(page);
             example.setLimit(limit);
         }

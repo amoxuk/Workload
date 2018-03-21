@@ -36,8 +36,8 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="teacher_local_view" domainObjectName="TeacherLocalView" />
-        <table tableName="teacher_remote_view" domainObjectName="TeacherRemoteView" />
+        <table tableName="user" domainObjectName="User" />
+
 
     </context>
 </generatorConfiguration>

@@ -7,6 +7,8 @@ public class Teacher {
 
     private String name;
 
+    private Integer location;
+
     private String college;
 
     private String note;
@@ -35,6 +37,14 @@ public class Teacher {
         this.name = name == null ? null : name.trim();
     }
 
+    public Integer getLocation() {
+        return location;
+    }
+
+    public void setLocation(Integer location) {
+        this.location = location;
+    }
+
     public String getCollege() {
         return college;
     }
@@ -49,5 +59,17 @@ public class Teacher {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", tid=" + tid +
+                ", name='" + name + '\'' +
+                ", location=" + location +
+                ", college='" + college + '\'' +
+                ", note='" + note + '\'' +
+                '}';
     }
 }
