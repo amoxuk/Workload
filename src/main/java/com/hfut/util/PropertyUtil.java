@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -60,9 +62,11 @@ public class PropertyUtil {
         }
         return props.getProperty(key, defaultValue);
     }
+
     public static float getAllowance() {
         return Float.valueOf(PropertyUtil.getProperty("allowance"));
     }
+
     public static void main(String[] args) {
         System.out.println(getAllowance());
     }

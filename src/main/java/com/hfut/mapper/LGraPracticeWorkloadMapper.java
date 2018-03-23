@@ -3,8 +3,9 @@ package com.hfut.mapper;
 import com.hfut.entity.LGraPracticeWorkload;
 import com.hfut.entity.LGraPracticeWorkloadExample;
 import com.hfut.entity.LGraPracticeWorkloadKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LGraPracticeWorkloadMapper {
     /**

@@ -42,7 +42,7 @@ public class RemoteTeachServiceImpl implements RemoteTeachService {
             workload.setWorkload(workload.getPeriod() * workload.getClassCoefficient());
             //计算酬金
             workload.setMoney(PropertyUtil.getAllowance() * workload.getWorkload());
-        } catch (NullPointerException|DataIntegrityViolationException nop) {
+        } catch (NullPointerException | DataIntegrityViolationException nop) {
             throw new CustomException("请输入班级人数，学时,教学班");
         }
 
@@ -60,7 +60,6 @@ public class RemoteTeachServiceImpl implements RemoteTeachService {
         RemoteTeachWorkloadExample.Criteria criteria = example.createCriteria();
 
 
-
         if (years != 0) {
             criteria.andYearsEqualTo(years);
         }
@@ -69,8 +68,8 @@ public class RemoteTeachServiceImpl implements RemoteTeachService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
 
         return workloadMapper.selectByExample(example);
     }
@@ -141,7 +140,7 @@ public class RemoteTeachServiceImpl implements RemoteTeachService {
         RemoteTeachWorkloadExample workloadExample = new RemoteTeachWorkloadExample();
         int people = workload.getPeople();
         //46个人为一个班，每增加一个班增加0.1系
-        workload.setClassCoefficient((float) (Math.round(people / 46F)* 0.1 + 0.9));
+        workload.setClassCoefficient((float) (Math.round(people / 46F) * 0.1 + 0.9));
         //计算工作量 课时
         workload.setWorkload(workload.getPeriod() * workload.getClassCoefficient());
         //计算酬金

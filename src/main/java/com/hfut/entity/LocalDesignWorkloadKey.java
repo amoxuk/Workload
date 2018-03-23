@@ -46,7 +46,6 @@ public class LocalDesignWorkloadKey {
      * This method returns the value of the database column local_design.id
      *
      * @return the value of local_design.id
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public Integer getId() {
@@ -58,7 +57,6 @@ public class LocalDesignWorkloadKey {
      * This method sets the value of the database column local_design.id
      *
      * @param id the value for local_design.id
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public void setId(Integer id) {
@@ -70,7 +68,6 @@ public class LocalDesignWorkloadKey {
      * This method returns the value of the database column local_design.teacher
      *
      * @return the value of local_design.teacher
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public String getTeacher() {
@@ -82,7 +79,6 @@ public class LocalDesignWorkloadKey {
      * This method sets the value of the database column local_design.teacher
      *
      * @param teacher the value for local_design.teacher
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -94,7 +90,6 @@ public class LocalDesignWorkloadKey {
      * This method returns the value of the database column local_design.lesson
      *
      * @return the value of local_design.lesson
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public String getLesson() {
@@ -106,7 +101,6 @@ public class LocalDesignWorkloadKey {
      * This method sets the value of the database column local_design.lesson
      *
      * @param lesson the value for local_design.lesson
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public void setLesson(String lesson) {
@@ -118,7 +112,6 @@ public class LocalDesignWorkloadKey {
      * This method returns the value of the database column local_design.years
      *
      * @return the value of local_design.years
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public Integer getYears() {
@@ -130,7 +123,6 @@ public class LocalDesignWorkloadKey {
      * This method sets the value of the database column local_design.years
      *
      * @param years the value for local_design.years
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public void setYears(Integer years) {
@@ -142,7 +134,6 @@ public class LocalDesignWorkloadKey {
      * This method returns the value of the database column local_design.teach_class
      *
      * @return the value of local_design.teach_class
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public Integer getTeachClass() {
@@ -154,7 +145,6 @@ public class LocalDesignWorkloadKey {
      * This method sets the value of the database column local_design.teach_class
      *
      * @param teachClass the value for local_design.teach_class
-     *
      * @mbggenerated Fri Oct 27 21:03:30 CST 2017
      */
     public void setTeachClass(Integer teachClass) {

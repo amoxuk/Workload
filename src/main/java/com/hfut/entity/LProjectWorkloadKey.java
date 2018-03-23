@@ -38,7 +38,6 @@ public class LProjectWorkloadKey {
      * This method returns the value of the database column local_project.id
      *
      * @return the value of local_project.id
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public Integer getId() {
@@ -50,7 +49,6 @@ public class LProjectWorkloadKey {
      * This method sets the value of the database column local_project.id
      *
      * @param id the value for local_project.id
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setId(Integer id) {
@@ -62,7 +60,6 @@ public class LProjectWorkloadKey {
      * This method returns the value of the database column local_project.years
      *
      * @return the value of local_project.years
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public Integer getYears() {
@@ -74,7 +71,6 @@ public class LProjectWorkloadKey {
      * This method sets the value of the database column local_project.years
      *
      * @param years the value for local_project.years
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setYears(Integer years) {
@@ -86,7 +82,6 @@ public class LProjectWorkloadKey {
      * This method returns the value of the database column local_project.teacher
      *
      * @return the value of local_project.teacher
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public String getTeacher() {
@@ -98,7 +93,6 @@ public class LProjectWorkloadKey {
      * This method sets the value of the database column local_project.teacher
      *
      * @param teacher the value for local_project.teacher
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -110,7 +104,6 @@ public class LProjectWorkloadKey {
      * This method returns the value of the database column local_project.number
      *
      * @return the value of local_project.number
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public String getNumber() {
@@ -122,7 +115,6 @@ public class LProjectWorkloadKey {
      * This method sets the value of the database column local_project.number
      *
      * @param number the value for local_project.number
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setNumber(String number) {

@@ -38,7 +38,6 @@ public class LNetWorkloadKey {
      * This method returns the value of the database column local_net.id
      *
      * @return the value of local_net.id
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public Integer getId() {
@@ -50,7 +49,6 @@ public class LNetWorkloadKey {
      * This method sets the value of the database column local_net.id
      *
      * @param id the value for local_net.id
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public void setId(Integer id) {
@@ -62,7 +60,6 @@ public class LNetWorkloadKey {
      * This method returns the value of the database column local_net.teacher
      *
      * @return the value of local_net.teacher
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public String getTeacher() {
@@ -74,7 +71,6 @@ public class LNetWorkloadKey {
      * This method sets the value of the database column local_net.teacher
      *
      * @param teacher the value for local_net.teacher
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -86,7 +82,6 @@ public class LNetWorkloadKey {
      * This method returns the value of the database column local_net.years
      *
      * @return the value of local_net.years
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public Integer getYears() {
@@ -98,7 +93,6 @@ public class LNetWorkloadKey {
      * This method sets the value of the database column local_net.years
      *
      * @param years the value for local_net.years
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public void setYears(Integer years) {
@@ -110,7 +104,6 @@ public class LNetWorkloadKey {
      * This method returns the value of the database column local_net.lesson
      *
      * @return the value of local_net.lesson
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public String getLesson() {
@@ -122,7 +115,6 @@ public class LNetWorkloadKey {
      * This method sets the value of the database column local_net.lesson
      *
      * @param lesson the value for local_net.lesson
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public void setLesson(String lesson) {

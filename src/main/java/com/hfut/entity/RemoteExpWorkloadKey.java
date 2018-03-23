@@ -54,7 +54,6 @@ public class RemoteExpWorkloadKey {
      * This method returns the value of the database column remote_expriment.id
      *
      * @return the value of remote_expriment.id
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Integer getId() {
@@ -66,7 +65,6 @@ public class RemoteExpWorkloadKey {
      * This method sets the value of the database column remote_expriment.id
      *
      * @param id the value for remote_expriment.id
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setId(Integer id) {
@@ -78,7 +76,6 @@ public class RemoteExpWorkloadKey {
      * This method returns the value of the database column remote_expriment.college
      *
      * @return the value of remote_expriment.college
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public String getCollege() {
@@ -90,7 +87,6 @@ public class RemoteExpWorkloadKey {
      * This method sets the value of the database column remote_expriment.college
      *
      * @param college the value for remote_expriment.college
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setCollege(String college) {
@@ -102,7 +98,6 @@ public class RemoteExpWorkloadKey {
      * This method returns the value of the database column remote_expriment.teacher
      *
      * @return the value of remote_expriment.teacher
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public String getTeacher() {
@@ -114,7 +109,6 @@ public class RemoteExpWorkloadKey {
      * This method sets the value of the database column remote_expriment.teacher
      *
      * @param teacher the value for remote_expriment.teacher
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -126,7 +120,6 @@ public class RemoteExpWorkloadKey {
      * This method returns the value of the database column remote_expriment.years
      *
      * @return the value of remote_expriment.years
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Integer getYears() {
@@ -138,7 +131,6 @@ public class RemoteExpWorkloadKey {
      * This method sets the value of the database column remote_expriment.years
      *
      * @param years the value for remote_expriment.years
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setYears(Integer years) {
@@ -150,7 +142,6 @@ public class RemoteExpWorkloadKey {
      * This method returns the value of the database column remote_expriment.teach_class
      *
      * @return the value of remote_expriment.teach_class
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Integer getTeachClass() {
@@ -162,7 +153,6 @@ public class RemoteExpWorkloadKey {
      * This method sets the value of the database column remote_expriment.teach_class
      *
      * @param teachClass the value for remote_expriment.teach_class
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setTeachClass(Integer teachClass) {
@@ -174,7 +164,6 @@ public class RemoteExpWorkloadKey {
      * This method returns the value of the database column remote_expriment.lesson
      *
      * @return the value of remote_expriment.lesson
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public String getLesson() {
@@ -186,7 +175,6 @@ public class RemoteExpWorkloadKey {
      * This method sets the value of the database column remote_expriment.lesson
      *
      * @param lesson the value for remote_expriment.lesson
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setLesson(String lesson) {

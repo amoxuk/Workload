@@ -2,8 +2,9 @@ package com.hfut.mapper;
 
 import com.hfut.entity.LocalTotalView;
 import com.hfut.entity.LocalTotalViewExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LocalTotalViewMapper {
     int countByExample(LocalTotalViewExample example);

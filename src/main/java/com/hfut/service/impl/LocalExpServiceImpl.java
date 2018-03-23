@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class LocalExpServiceImpl implements LocalExpService {
     @Autowired
@@ -16,7 +17,7 @@ public class LocalExpServiceImpl implements LocalExpService {
 
 
     @Override
-    public List<LocalExpWorkload> getList(Integer years,String teacher, Integer page, Integer limit) throws Exception {
+    public List<LocalExpWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception {
         LocalExpWorkloadExample example = new LocalExpWorkloadExample();
         LocalExpWorkloadExample.Criteria criteria = example.createCriteria();
         if (years != 0) {
@@ -27,14 +28,14 @@ public class LocalExpServiceImpl implements LocalExpService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
 
         return workloadMapper.selectByExample(example);
     }
 
     @Override
-    public int getCount(Integer years,String teacher) throws Exception {
+    public int getCount(Integer years, String teacher) throws Exception {
         LocalExpWorkloadExample example = new LocalExpWorkloadExample();
         LocalExpWorkloadExample.Criteria criteria = example.createCriteria();
         if (years != 0) {
@@ -67,12 +68,12 @@ public class LocalExpServiceImpl implements LocalExpService {
         }
 
         int people = workload.getPeople();
-        if (people<=45) {
+        if (people <= 45) {
             workload.setLoadCoefficient(1.0F);
-        }else if (people>45&&people<=135) {
-            workload.setLoadCoefficient((float) (1.0 + Math.ceil((people - 45)/10F) * 0.1));
-        }else if (people>136) {
-            workload.setLoadCoefficient((float) (1.9 + Math.ceil((people - 135)/20F) * 0.1));
+        } else if (people > 45 && people <= 135) {
+            workload.setLoadCoefficient((float) (1.0 + Math.ceil((people - 45) / 10F) * 0.1));
+        } else if (people > 136) {
+            workload.setLoadCoefficient((float) (1.9 + Math.ceil((people - 135) / 20F) * 0.1));
         }
 
         workload.setWorkload(workload.getPeriod() * workload.getTypeCoefficient() * workload.getLoadCoefficient());
@@ -89,6 +90,7 @@ public class LocalExpServiceImpl implements LocalExpService {
             return true;
         }
     }
+
     @Override
     public boolean removeLoad(List list) throws Exception {
         LocalExpWorkloadExample expWorkloadExample = new LocalExpWorkloadExample();
@@ -100,6 +102,7 @@ public class LocalExpServiceImpl implements LocalExpService {
             return true;
         }
     }
+
     @Override
     public boolean removeLoad(Integer id) throws Exception {
         LocalExpWorkloadExample expWorkloadExample = new LocalExpWorkloadExample();
@@ -111,6 +114,7 @@ public class LocalExpServiceImpl implements LocalExpService {
             return true;
         }
     }
+
     @Override
     public boolean insertLoad(LocalExpWorkload workload) throws Exception {
         String type = workload.getType().toUpperCase();
@@ -128,12 +132,12 @@ public class LocalExpServiceImpl implements LocalExpService {
                 workload.setTypeCoefficient(1.1F);
         }
         int people = workload.getPeople();
-        if (people<=45) {
+        if (people <= 45) {
             workload.setLoadCoefficient(1.0F);
-        }else if (people>45&&people<=135) {
-            workload.setLoadCoefficient((float) (1.0 + Math.ceil((people - 45)/10F) * 0.1));
-        }else if (people>136) {
-            workload.setLoadCoefficient((float) (1.9 + Math.ceil((people - 135)/20F) * 0.1));
+        } else if (people > 45 && people <= 135) {
+            workload.setLoadCoefficient((float) (1.0 + Math.ceil((people - 45) / 10F) * 0.1));
+        } else if (people > 136) {
+            workload.setLoadCoefficient((float) (1.9 + Math.ceil((people - 135) / 20F) * 0.1));
         }
 
         workload.setWorkload(workload.getPeriod() * workload.getTypeCoefficient() * workload.getLoadCoefficient());
@@ -145,6 +149,7 @@ public class LocalExpServiceImpl implements LocalExpService {
         }
         return true;
     }
+
     @Override
     public List<LocalExpWorkload> insertLoadByList(List<LocalExpWorkload> list) throws Exception {
         ArrayList<LocalExpWorkload> ret = new ArrayList<LocalExpWorkload>();

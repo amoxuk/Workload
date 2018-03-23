@@ -3,8 +3,9 @@ package com.hfut.mapper;
 import com.hfut.entity.LocalCourseWorkload;
 import com.hfut.entity.LocalCourseWorkloadExample;
 import com.hfut.entity.LocalCourseWorkloadKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LocalCourseWorkloadMapper {
     /**

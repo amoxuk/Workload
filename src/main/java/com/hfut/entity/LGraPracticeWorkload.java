@@ -46,7 +46,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method returns the value of the database column local_graduate_practice.people
      *
      * @return the value of local_graduate_practice.people
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public Integer getPeople() {
@@ -58,7 +57,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method sets the value of the database column local_graduate_practice.people
      *
      * @param people the value for local_graduate_practice.people
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public void setPeople(Integer people) {
@@ -70,7 +68,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method returns the value of the database column local_graduate_practice.weeks
      *
      * @return the value of local_graduate_practice.weeks
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public Integer getWeeks() {
@@ -82,7 +79,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method sets the value of the database column local_graduate_practice.weeks
      *
      * @param weeks the value for local_graduate_practice.weeks
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public void setWeeks(Integer weeks) {
@@ -94,7 +90,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method returns the value of the database column local_graduate_practice.place
      *
      * @return the value of local_graduate_practice.place
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public String getPlace() {
@@ -106,7 +101,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method sets the value of the database column local_graduate_practice.place
      *
      * @param place the value for local_graduate_practice.place
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public void setPlace(String place) {
@@ -118,7 +112,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method returns the value of the database column local_graduate_practice.workload
      *
      * @return the value of local_graduate_practice.workload
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public Float getWorkload() {
@@ -130,7 +123,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method sets the value of the database column local_graduate_practice.workload
      *
      * @param workload the value for local_graduate_practice.workload
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -142,7 +134,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method returns the value of the database column local_graduate_practice.note
      *
      * @return the value of local_graduate_practice.note
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public String getNote() {
@@ -154,7 +145,6 @@ public class LGraPracticeWorkload extends LGraPracticeWorkloadKey {
      * This method sets the value of the database column local_graduate_practice.note
      *
      * @param note the value for local_graduate_practice.note
-     *
      * @mbggenerated Fri Oct 27 22:19:48 CST 2017
      */
     public void setNote(String note) {

@@ -19,10 +19,10 @@ public class User {
 
     private String question;
 
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date alterTime;
 
     private String answer;
@@ -92,6 +92,7 @@ public class User {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
     public Date getAlterTime() {
         return alterTime;
     }

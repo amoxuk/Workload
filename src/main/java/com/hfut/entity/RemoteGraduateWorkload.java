@@ -54,7 +54,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.grades
      *
      * @return the value of remote_graduate.grades
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public String getGrades() {
@@ -66,7 +65,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.grades
      *
      * @param grades the value for remote_graduate.grades
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setGrades(String grades) {
@@ -78,7 +76,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.people
      *
      * @return the value of remote_graduate.people
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public Integer getPeople() {
@@ -90,7 +87,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.people
      *
      * @param people the value for remote_graduate.people
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setPeople(Integer people) {
@@ -102,7 +98,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.weeks
      *
      * @return the value of remote_graduate.weeks
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public Integer getWeeks() {
@@ -114,7 +109,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.weeks
      *
      * @param weeks the value for remote_graduate.weeks
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setWeeks(Integer weeks) {
@@ -126,7 +120,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.workload
      *
      * @return the value of remote_graduate.workload
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public Float getWorkload() {
@@ -138,7 +131,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.workload
      *
      * @param workload the value for remote_graduate.workload
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -150,7 +142,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.money
      *
      * @return the value of remote_graduate.money
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public Float getMoney() {
@@ -162,7 +153,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.money
      *
      * @param money the value for remote_graduate.money
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setMoney(Float money) {
@@ -174,7 +164,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.note
      *
      * @return the value of remote_graduate.note
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public String getNote() {
@@ -186,7 +175,6 @@ public class RemoteGraduateWorkload extends RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.note
      *
      * @param note the value for remote_graduate.note
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setNote(String note) {

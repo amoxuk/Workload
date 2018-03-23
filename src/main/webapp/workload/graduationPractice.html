@@ -3,6 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>工作量计算系统</title>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+
 
     <link rel="Shortcut Icon" href="../images/favicon.ico"/>
     <link rel="stylesheet" href="../src/css/layui.css">
@@ -35,9 +40,11 @@
             <div class="layui-form-item">
                 <div class="layui-input-inline"><select name="time" lay-verify="">
                     <option value="">全部</option>
+                    <option value="2016">2015</option>
                     <option value="2016">2016</option>
                     <option value="2017" selected>2017</option>
                     <option value="2018">2018</option>
+                    <option value="2018">2019</option>
                 </select></div>
                 <div class=" layui-input-inline"><input type="text" name="teacher" placeholder="教师" autocomplete="off"
                                                         class="layui-input"></div>
@@ -55,7 +62,8 @@
     </fieldset>
     <div class="layui-btn-group">
         <!--//刷新-->
-        <a class="layui-btn layui-btn-sm" href="javascript:location.replace(location.href);">            <i class="layui-icon">&#x1002;</i>        </a>
+        <a class="layui-btn layui-btn-sm" href="javascript:location.replace(location.href);"> <i class="layui-icon">&#x1002;</i>
+        </a>
         <!-- //添加-->
         <button class="layui-btn layui-btn-sm" onclick="ToolBar.add(
             {
@@ -110,11 +118,11 @@
                         btn: ['确定'] //按钮
                     });
                 } else {
-                    layer.confirm("导入出错数据：" + "\r\n" + res['data'], {
+                    layer.confirm("导入出错数据：" + "<br>" + res['msg'], {
                         btn: ['确定'] //按钮
                     });
                 }
-                setTimeout("$('.layui-laypage-btn').click();", 1000)
+                setTimeout("$('.layui-laypage-btn').click();", 2000)
             }
             , error: function () {
                 layer.msg("请稍后重试。");
@@ -157,7 +165,7 @@
                 {field: 'major', edit: true, width: '100', title: '专业'},
                 {field: 'people', edit: true, width: '100', title: '学生人数'},
                 {field: 'weeks', edit: true, width: '70', title: '周数'},
-                {field: 'place',  width: '100', title: '实习地点',event:'place', templet: '#practiceTmpl'},
+                {field: 'place', width: '100', title: '实习地点', event: 'place', templet: '#practiceTmpl'},
                 {field: 'workload', edit: false, width: '100', title: '教学工作量'},
                 {field: 'note', edit: true, width: '100', title: '备注'},
                 {title: '操作', width: 120, align: 'center', toolbar: '#barDemo'}
@@ -217,11 +225,11 @@
                                 time: 1000
                             });
                         }
-                        setTimeout("$('.layui-laypage-btn').click();", 1000)
+                        setTimeout("$('.layui-laypage-btn').click();", 2000)
                     }
                     , error: function (res) {
                         layer.msg(res['msg']);
-                        setTimeout("$('.layui-laypage-btn').click();", 1000)
+                        setTimeout("$('.layui-laypage-btn').click();", 2000)
                     }
                 });
             } else if (obj.event === 'del') {
@@ -253,7 +261,7 @@
                     layer.close(sure);
                     $('.layui-laypage-btn').click();
                 });
-            }else if (obj.event === 'place') {
+            } else if (obj.event === 'place') {
                 //显示下拉框框
                 type_select.show({
                     //设置当前选择的id

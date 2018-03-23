@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="utf-8">
     <title>工作量计算系统</title>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
 
-    <link rel="Shortcut Icon" href="images/favicon.ico" />
+
+    <link rel="Shortcut Icon" href="images/favicon.ico"/>
 
     <link rel="stylesheet" href="../src/css/layui.css">
     <link rel="stylesheet" href="src/css/layui.css">
@@ -26,33 +31,35 @@
         <legend>工作量汇总</legend>
     </fieldset>
     <form class="layui-form" action="" method="post">
-    <div class="layui-form-item" style="margin:auto 20% ;">
-        <div class="layui-input-inline">
-            <select name="time" lay-verify="">
-                <option value="">时间</option>
-                <option value="2016">2016</option>
-                <option value="2017" selected>2017</option>
-                <option value="2018">2018</option>
-            </select>
-        </div>
-        <div class="layui-input-inline">
-                <select name="workload" lay-search="">
-                        <option value="">类型</option>
-                        <option value="1" selected>落地</option>
-                        <option value="2">异地</option>
+        <div class="layui-form-item" style="margin:auto 20% ;">
+            <div class="layui-input-inline">
+                <select name="time" lay-verify="">
+                    <option value="">时间</option>
+                    <option value="2016">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017" selected>2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2018">2019</option>
                 </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="workload" lay-search="">
+                    <option value="">类型</option>
+                    <option value="1" selected>落地</option>
+                    <option value="2">异地</option>
+                </select>
+            </div>
+            <div class=" layui-input-inline">
+                <input type="text" name="teacher"
+                       placeholder="教师"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+            <div class=" layui-input-inline">
+                <button class="layui-btn" lay-submit lay-filter="search">查询</button>
+                <button class="layui-btn" lay-submit lay-filter="download">下载</button>
+            </div>
         </div>
-        <div class=" layui-input-inline">
-            <input type="text" name="teacher"
-                   placeholder="教师"
-                   autocomplete="off"
-                   class="layui-input">
-        </div>
-        <div class=" layui-input-inline">
-            <button class="layui-btn" lay-submit lay-filter="search" >查询</button>
-            <button class="layui-btn" lay-submit lay-filter="download" >下载</button>
-        </div>
-    </div>
     </form>
     <br>
     <br>
@@ -61,36 +68,35 @@
     <table id="showLoad" lay-filter="test"></table>
 
 
-
 </main>
 
 
 </body>
 
 <script>
-    layui.use(['form','table'], function(){
+    layui.use(['form', 'table'], function () {
         var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
         var table = layui.table;
 
         var tableObj = table.render(showTable.local);
 
         form.render();
-        form.on('submit(search)', function(data){
+        form.on('submit(search)', function (data) {
 
             if (!data.field['time'] || !data.field['workload']) {
                 layer.msg('请确定时间和类型。', {icon: 5});
                 return false;
             }
 
-            var time = !$("[name='time']").val()?"null":$("[name='time']").val().toString(),
-                workload = !$("[name='workload']").val()?"null":$("[name='workload']").val().toString(),
-                teacher = !$("[name='teacher']").val()?"all":encodeURI($("[name='teacher']").val().toString());
-            var url = "/".concat( time,"/",workload,"/",teacher);
+            var time = !$("[name='time']").val() ? "null" : $("[name='time']").val().toString(),
+                workload = !$("[name='workload']").val() ? "null" : $("[name='workload']").val().toString(),
+                teacher = !$("[name='teacher']").val() ? "all" : encodeURI($("[name='teacher']").val().toString());
+            var url = "/".concat(time, "/", workload, "/", teacher);
             layer.msg('加载中', {icon: 16, shade: 0.01});
             if ("2" == workload) {
                 showTable.remote.url = "/total/remote" + url;
                 tableObj.reload(showTable.remote); //重载表格
-            }else {
+            } else {
                 showTable.local.url = "/total/local" + url;
                 tableObj.reload(showTable.local); //重载表格
             }
@@ -98,16 +104,16 @@
             //layer.msg(JSON.stringify(data.field));
             return false;
         });
-        form.on('submit(download)', function(data){
+        form.on('submit(download)', function (data) {
             if (!data.field['time'] || !data.field['workload']) {
                 layer.msg('请确定时间和类型。', {icon: 5});
                 return false;
             }
 
-            var time = !$("[name='time']").val()?"null":$("[name='time']").val().toString(),
-                workload = !$("[name='workload']").val()?"null":$("[name='workload']").val().toString(),
-                teacher = !$("[name='teacher']").val()?"all":encodeURI($("[name='teacher']").val().toString());
-            var url = "/".concat( time,"/",workload,"/",teacher);
+            var time = !$("[name='time']").val() ? "null" : $("[name='time']").val().toString(),
+                workload = !$("[name='workload']").val() ? "null" : $("[name='workload']").val().toString(),
+                teacher = !$("[name='teacher']").val() ? "all" : encodeURI($("[name='teacher']").val().toString());
+            var url = "/".concat(time, "/", workload, "/", teacher);
 
             url = "/total/download" + url;
 
@@ -124,7 +130,7 @@
         local: {
             elem: '#showLoad'
             , page: false
-            , url: "/total/local/"+$("[name='time']").val()+"/"+$("[name='workload']").val()+"/all"
+            , url: "/total/local/" + $("[name='time']").val() + "/" + $("[name='workload']").val() + "/all"
             , response: {
                 statusName: 'status' //数据状态的字段名称，默认：code
                 , statusCode: 0 //成功的状态码，默认：0
@@ -137,7 +143,7 @@
             * ,data:[{"course":42.0,"design":920.0,"expriment":74.0,"graduateDesign":1719.0,"graduatePractice":198.0,"matchs":64.0,"practice":44990.0,"project":3650.0,"teacher":"张三","total":49938.0,"years":2017},{"course":0.0,"design":40.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":0.0,"teacher":"孙丽","total":40.0,"years":2017},{"course":0.0,"design":0.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":48.0,"teacher":"张无","total":48.0,"years":2017},{"course":5.0,"design":0.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":0.0,"teacher":"王五","total":5.0,"years":2017}]
             */, cols: [[ //表头/
                 //序号	教师	课堂教学	实验教学（算法2）	课程设计	实习	毕业设计	指导创新创业项目	辅导竞赛	合计
-                {field: 'id', title: 'ID', width: 110, fixed: 'left',templet: '#titleTpl'}
+                {field: 'id', title: 'ID', width: 110, fixed: 'left', templet: '#titleTpl'}
                 , {field: 'teacher', title: '教师', width: 110}
                 , {field: 'course', title: '课堂教学', width: 110}
                 , {field: 'expriment', title: '实验教学', width: 110}
@@ -167,7 +173,7 @@
             }
             , cols: [[ //表头/
                 //
-                {field: 'id', title: 'ID', width: 110, fixed: 'left',templet: '#titleTpl'}
+                {field: 'id', title: 'ID', width: 110, fixed: 'left', templet: '#titleTpl'}
                 , {field: 'teacher', title: '教师', width: 110}
                 , {field: 'course', title: '课堂教学', width: 110}
                 , {field: 'expriment', title: '实验教学', width: 110}

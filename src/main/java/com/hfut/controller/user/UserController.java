@@ -30,8 +30,9 @@ public class UserController {
     @Resource(name = "userServiceImpl")
     private UserService userService;
 
-    @ResponseBody
+
     @RequestMapping(value = "/logout", method = {RequestMethod.GET})
+    @ResponseBody
     public String loginUI() throws Exception {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
@@ -79,7 +80,7 @@ public class UserController {
     public String password(@RequestParam(name = "name") String name,
                            @RequestParam(name = "oldPsw") String old,
                            @RequestParam(name = "newPsw") String newpsw
-                           ) throws Exception {
+    ) throws Exception {
         Subject currentUser = SecurityUtils.getSubject();
 
 
@@ -117,35 +118,7 @@ public class UserController {
 
     }
 
-    /*   @RequestMapping(value = "/register",
-               produces= MediaType.APPLICATION_JSON_VALUE+";charset=utf-8",
-               method = {RequestMethod.POST})
-       @ResponseBody
-       //注册
-       public String register(User account) throws Exception {
-           //System.out.println(account.getName() + " " + account.getPsw() + " " + account.getMail());
-           account.setLevel(0);
 
-
-
-           //解密DES
-           account.setPsw(new DesUtil().strDec(account.getPsw(), "amoxu", "amoxu", "amoxu"));
-           //加密MD5 32
-           System.out.println(account.getPsw());
-           account.setPsw(new Encryption().encryptionStr(account.getPsw() + "amoxu", "MD5"));
-           System.out.println(account.getPsw());
-           userService.register(account);
-           UsernamePasswordToken token = new UsernamePasswordToken(account.getName(),
-                   account.getPsw());
-           Subject subject = SecurityUtils.getSubject();
-           //如果获取不到用户名就是登录失败，但登录失败的话，会直接抛出异常
-           subject.login(token);
-           if (subject.hasRole("用户")) {
-               return "{\"status\":\"success\",\"result\":\"/index.html\"}";
-           }
-
-           return "{\"status\":\"failed\",\"result\":\"注册失败\"}";
-       }*/
     @RequestMapping(value = "/auth/find",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8",
             method = {RequestMethod.POST})
@@ -257,7 +230,6 @@ public class UserController {
         }
         return JSON.toJSONString(ajaxResult);
     }
-
 
 
     @RequestMapping(value = "/zone/update",

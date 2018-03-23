@@ -62,7 +62,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method returns the value of the database column local_course.grades
      *
      * @return the value of local_course.grades
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public String getGrades() {
@@ -74,7 +73,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method sets the value of the database column local_course.grades
      *
      * @param grades the value for local_course.grades
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public void setGrades(String grades) {
@@ -86,7 +84,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method returns the value of the database column local_course.period
      *
      * @return the value of local_course.period
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public Float getPeriod() {
@@ -98,7 +95,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method sets the value of the database column local_course.period
      *
      * @param period the value for local_course.period
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public void setPeriod(Float period) {
@@ -110,7 +106,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method returns the value of the database column local_course.credit
      *
      * @return the value of local_course.credit
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public Float getCredit() {
@@ -122,7 +117,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method sets the value of the database column local_course.credit
      *
      * @param credit the value for local_course.credit
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public void setCredit(Float credit) {
@@ -134,7 +128,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method returns the value of the database column local_course.people
      *
      * @return the value of local_course.people
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public Integer getPeople() {
@@ -146,7 +139,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method sets the value of the database column local_course.people
      *
      * @param people the value for local_course.people
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public void setPeople(Integer people) {
@@ -158,7 +150,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method returns the value of the database column local_course.coefficient
      *
      * @return the value of local_course.coefficient
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public Float getCoefficient() {
@@ -170,7 +161,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method sets the value of the database column local_course.coefficient
      *
      * @param coefficient the value for local_course.coefficient
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public void setCoefficient(Float coefficient) {
@@ -182,7 +172,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method returns the value of the database column local_course.workload
      *
      * @return the value of local_course.workload
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public Float getWorkload() {
@@ -194,7 +183,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method sets the value of the database column local_course.workload
      *
      * @param workload the value for local_course.workload
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -206,7 +194,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method returns the value of the database column local_course.note
      *
      * @return the value of local_course.note
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public String getNote() {
@@ -218,7 +205,6 @@ public class LocalCourseWorkload extends LocalCourseWorkloadKey {
      * This method sets the value of the database column local_course.note
      *
      * @param note the value for local_course.note
-     *
      * @mbggenerated Fri Oct 27 13:31:00 CST 2017
      */
     public void setNote(String note) {

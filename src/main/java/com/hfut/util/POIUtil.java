@@ -13,6 +13,7 @@ public class POIUtil {
         }
         return str;
     }
+
     public static float getFloatCell(Cell cell) {
         float f = 0F;
         if (cell != null) {
@@ -20,12 +21,14 @@ public class POIUtil {
         }
         return f;
     }
+
     public static double getDoubleCell(Cell cell) {
         double d = 0;
         if (cell != null)
             d = cell.getNumericCellValue();
         return d;
     }
+
     public static int getIntCell(Cell cell) {
         int d = 0;
         if (cell != null)

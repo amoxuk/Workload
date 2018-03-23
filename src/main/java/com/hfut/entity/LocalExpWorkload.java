@@ -70,7 +70,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method returns the value of the database column local_expriment.grades
      *
      * @return the value of local_expriment.grades
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public String getGrades() {
@@ -82,7 +81,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method sets the value of the database column local_expriment.grades
      *
      * @param grades the value for local_expriment.grades
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public void setGrades(String grades) {
@@ -94,7 +92,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method returns the value of the database column local_expriment.type
      *
      * @return the value of local_expriment.type
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public String getType() {
@@ -106,7 +103,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method sets the value of the database column local_expriment.type
      *
      * @param type the value for local_expriment.type
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public void setType(String type) {
@@ -118,7 +114,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method returns the value of the database column local_expriment.period
      *
      * @return the value of local_expriment.period
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public Float getPeriod() {
@@ -130,7 +125,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method sets the value of the database column local_expriment.period
      *
      * @param period the value for local_expriment.period
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public void setPeriod(Float period) {
@@ -142,7 +136,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method returns the value of the database column local_expriment.people
      *
      * @return the value of local_expriment.people
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public Integer getPeople() {
@@ -154,7 +147,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method sets the value of the database column local_expriment.people
      *
      * @param people the value for local_expriment.people
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public void setPeople(Integer people) {
@@ -166,7 +158,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method returns the value of the database column local_expriment.load_coefficient
      *
      * @return the value of local_expriment.load_coefficient
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public Float getLoadCoefficient() {
@@ -178,7 +169,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method sets the value of the database column local_expriment.load_coefficient
      *
      * @param loadCoefficient the value for local_expriment.load_coefficient
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public void setLoadCoefficient(Float loadCoefficient) {
@@ -190,7 +180,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method returns the value of the database column local_expriment.type_coefficient
      *
      * @return the value of local_expriment.type_coefficient
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public Float getTypeCoefficient() {
@@ -202,7 +191,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method sets the value of the database column local_expriment.type_coefficient
      *
      * @param typeCoefficient the value for local_expriment.type_coefficient
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public void setTypeCoefficient(Float typeCoefficient) {
@@ -214,7 +202,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method returns the value of the database column local_expriment.workload
      *
      * @return the value of local_expriment.workload
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public Float getWorkload() {
@@ -226,7 +213,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method sets the value of the database column local_expriment.workload
      *
      * @param workload the value for local_expriment.workload
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -238,7 +224,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method returns the value of the database column local_expriment.note
      *
      * @return the value of local_expriment.note
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public String getNote() {
@@ -250,7 +235,6 @@ public class LocalExpWorkload extends LocalExpWorkloadKey {
      * This method sets the value of the database column local_expriment.note
      *
      * @param note the value for local_expriment.note
-     *
      * @mbggenerated Fri Oct 27 16:45:34 CST 2017
      */
     public void setNote(String note) {

@@ -94,7 +94,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.id
      *
      * @return the value of workload.id
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Integer getId() {
@@ -106,7 +105,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.id
      *
      * @param id the value for workload.id
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setId(Integer id) {
@@ -118,7 +116,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.teacher
      *
      * @return the value of workload.teacher
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public String getTeacher() {
@@ -130,7 +127,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.teacher
      *
      * @param teacher the value for workload.teacher
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -142,7 +138,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.lesson
      *
      * @return the value of workload.lesson
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public String getLesson() {
@@ -154,7 +149,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.lesson
      *
      * @param lesson the value for workload.lesson
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setLesson(String lesson) {
@@ -166,7 +160,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.grades
      *
      * @return the value of workload.grades
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public String getGrades() {
@@ -178,7 +171,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.grades
      *
      * @param grades the value for workload.grades
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setGrades(String grades) {
@@ -190,7 +182,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.teach_class
      *
      * @return the value of workload.teach_class
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Integer getTeachClass() {
@@ -202,7 +193,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.teach_class
      *
      * @param teachClass the value for workload.teach_class
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setTeachClass(Integer teachClass) {
@@ -214,7 +204,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.period
      *
      * @return the value of workload.period
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Integer getPeriod() {
@@ -226,7 +215,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.period
      *
      * @param period the value for workload.period
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setPeriod(Integer period) {
@@ -238,7 +226,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.years
      *
      * @return the value of workload.years
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Integer getYears() {
@@ -250,7 +237,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.years
      *
      * @param years the value for workload.years
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setYears(Integer years) {
@@ -262,7 +248,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.people
      *
      * @return the value of workload.people
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Integer getPeople() {
@@ -274,7 +259,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.people
      *
      * @param people the value for workload.people
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setPeople(Integer people) {
@@ -286,7 +270,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.coefficient
      *
      * @return the value of workload.coefficient
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Float getCoefficient() {
@@ -298,7 +281,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.coefficient
      *
      * @param coefficient the value for workload.coefficient
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setCoefficient(Float coefficient) {
@@ -310,7 +292,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.workload
      *
      * @return the value of workload.workload
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Float getWorkload() {
@@ -322,7 +303,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.workload
      *
      * @param workload the value for workload.workload
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -334,7 +314,6 @@ public class WorkLoad {
      * This method returns the value of the database column workload.money
      *
      * @return the value of workload.money
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public Float getMoney() {
@@ -346,7 +325,6 @@ public class WorkLoad {
      * This method sets the value of the database column workload.money
      *
      * @param money the value for workload.money
-     *
      * @mbggenerated Thu Oct 26 09:44:31 CST 2017
      */
     public void setMoney(Float money) {

@@ -63,7 +63,7 @@ var ToolBar = {
                                     icon: 1,
                                     time: 1000
                                 });
-                                setTimeout("$('.layui-laypage-btn').click();", 1000)
+                                setTimeout("$('.layui-laypage-btn').click();", 2000)
 
                             }
 
@@ -111,7 +111,7 @@ var ToolBar = {
                                             time: 1000
                                         });
                                     }
-                                    setTimeout("$('.layui-laypage-btn').click();", 1000)
+                                    setTimeout("$('.layui-laypage-btn').click();", 2000)
                                 }
                                 , error: function (res) {
                                     layer.alert('错误码：' + res.status);
@@ -181,6 +181,7 @@ function checkCookie() {
         }
     }
 }
+
 (function ($, doc, o) {
     var tk;
     var obj;
@@ -229,7 +230,7 @@ function checkCookie() {
 })($, document, window.type_select = {});
 
 /*window.onload = function () {
-  /!*  document.getElementsByTagName("footer")[0].innerHTML = "©CopyRight 2017 合肥工业大学 All Rights Reserved.";
+  /!*  document.getElementsByTagName("footer")[0].innerHTML = "©CopyRight 2017  All Rights Reserved.";
 *!/
     var obj = "  <ul class=\"layui-nav\" lay-filter='demo'> " +
         "           <li class=\"layui-nav-item \"><a href=\"../index.html\">工作量核算系统</a></li>\n" +

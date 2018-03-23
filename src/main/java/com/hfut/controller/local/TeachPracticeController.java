@@ -26,7 +26,7 @@ public class TeachPracticeController {
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
     public String getTeachLoadList(HttpServletRequest request, @PathVariable("years") Integer years, @PathVariable("teacher") String teacher) throws Exception {
-  String limitParam = request.getParameter("limit");
+        String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
         if (limitParam == null) {

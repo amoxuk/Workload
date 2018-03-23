@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class LocalProjectServiceImpl implements LocalProjectService {
     @Autowired
@@ -27,8 +28,8 @@ public class LocalProjectServiceImpl implements LocalProjectService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
         return workloadMapper.selectByExample(example);
     }
 

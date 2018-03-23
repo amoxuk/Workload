@@ -161,15 +161,15 @@ canvas {
     position: relative;
 }
 
-.verify{
+.verify {
     margin-top: 5px;
 }
 
-.show{
+.show {
     height: 39px;
     margin: 0 auto;
     text-align: center;
-    padding-top:5px;
+    padding-top: 5px;
 }
 
 #password, #verify, #user, #password1 {

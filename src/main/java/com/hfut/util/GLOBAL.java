@@ -2,8 +2,8 @@ package com.hfut.util;
 
 public class GLOBAL {
     /**
-     *        落地工作量
-     *       1 /workload/teachCourse  课堂教学
+     * 落地工作量
+     * 1 /workload/teachCourse  课堂教学
      * "     2 /workload/experiment 实验
      * "     3 /workload/courseDesign 课程设计
      * "     4 /workload/graduationPractice 毕业实习
@@ -15,7 +15,7 @@ public class GLOBAL {
      * "     10 /workload/publishTextbook 教材编写
      * "     11 /workload/trainAxe 乐器指导
      * "     12 /workload/exp 实验教学
-     *
+     * <p>
      * "      异地补贴
      * "     /allowance/teachCourse 课堂教学
      * "     /allowance/expriment 实验

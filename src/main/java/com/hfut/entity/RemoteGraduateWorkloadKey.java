@@ -38,7 +38,6 @@ public class RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.id
      *
      * @return the value of remote_graduate.id
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public Integer getId() {
@@ -50,7 +49,6 @@ public class RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.id
      *
      * @param id the value for remote_graduate.id
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setId(Integer id) {
@@ -62,7 +60,6 @@ public class RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.college
      *
      * @return the value of remote_graduate.college
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public String getCollege() {
@@ -74,7 +71,6 @@ public class RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.college
      *
      * @param college the value for remote_graduate.college
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setCollege(String college) {
@@ -86,7 +82,6 @@ public class RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.teacher
      *
      * @return the value of remote_graduate.teacher
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public String getTeacher() {
@@ -98,7 +93,6 @@ public class RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.teacher
      *
      * @param teacher the value for remote_graduate.teacher
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -110,7 +104,6 @@ public class RemoteGraduateWorkloadKey {
      * This method returns the value of the database column remote_graduate.years
      *
      * @return the value of remote_graduate.years
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public Integer getYears() {
@@ -122,7 +115,6 @@ public class RemoteGraduateWorkloadKey {
      * This method sets the value of the database column remote_graduate.years
      *
      * @param years the value for remote_graduate.years
-     *
      * @mbggenerated Thu Oct 26 20:03:52 CST 2017
      */
     public void setYears(Integer years) {

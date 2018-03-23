@@ -46,7 +46,6 @@ public class LPracticeWorkloadKey {
      * This method returns the value of the database column local_practice.id
      *
      * @return the value of local_practice.id
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public Integer getId() {
@@ -58,7 +57,6 @@ public class LPracticeWorkloadKey {
      * This method sets the value of the database column local_practice.id
      *
      * @param id the value for local_practice.id
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public void setId(Integer id) {
@@ -70,7 +68,6 @@ public class LPracticeWorkloadKey {
      * This method returns the value of the database column local_practice.college
      *
      * @return the value of local_practice.college
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public String getCollege() {
@@ -82,7 +79,6 @@ public class LPracticeWorkloadKey {
      * This method sets the value of the database column local_practice.college
      *
      * @param college the value for local_practice.college
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public void setCollege(String college) {
@@ -94,7 +90,6 @@ public class LPracticeWorkloadKey {
      * This method returns the value of the database column local_practice.teacher
      *
      * @return the value of local_practice.teacher
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public String getTeacher() {
@@ -106,7 +101,6 @@ public class LPracticeWorkloadKey {
      * This method sets the value of the database column local_practice.teacher
      *
      * @param teacher the value for local_practice.teacher
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -118,7 +112,6 @@ public class LPracticeWorkloadKey {
      * This method returns the value of the database column local_practice.years
      *
      * @return the value of local_practice.years
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public Integer getYears() {
@@ -130,7 +123,6 @@ public class LPracticeWorkloadKey {
      * This method sets the value of the database column local_practice.years
      *
      * @param years the value for local_practice.years
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public void setYears(Integer years) {
@@ -142,7 +134,6 @@ public class LPracticeWorkloadKey {
      * This method returns the value of the database column local_practice.major
      *
      * @return the value of local_practice.major
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public String getMajor() {
@@ -154,7 +145,6 @@ public class LPracticeWorkloadKey {
      * This method sets the value of the database column local_practice.major
      *
      * @param major the value for local_practice.major
-     *
      * @mbggenerated Sat Oct 28 20:32:23 CST 2017
      */
     public void setMajor(String major) {

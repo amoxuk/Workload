@@ -43,10 +43,10 @@ public class RemoteCourseController {
         }
         System.out.println(page + " " + limit);
 
-        List<RemoteTeachWorkload> list = teachService.getList(years,teacher,page, limit);
+        List<RemoteTeachWorkload> list = teachService.getList(years, teacher, page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(teachService.getCount(years,teacher));
+        ajaxResult.setCount(teachService.getCount(years, teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

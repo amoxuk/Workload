@@ -49,8 +49,8 @@ public class ExprimentServiceImpl implements ExprimentService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
         return workloadMapper.selectByExample(example);
     }
 

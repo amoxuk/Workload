@@ -22,7 +22,6 @@ public class UserRole {
      * This method returns the value of the database column user_role.level_id
      *
      * @return the value of user_role.level_id
-     *
      * @mbggenerated Tue Oct 31 09:16:36 CST 2017
      */
     public Integer getLevelId() {
@@ -34,7 +33,6 @@ public class UserRole {
      * This method sets the value of the database column user_role.level_id
      *
      * @param levelId the value for user_role.level_id
-     *
      * @mbggenerated Tue Oct 31 09:16:36 CST 2017
      */
     public void setLevelId(Integer levelId) {
@@ -46,7 +44,6 @@ public class UserRole {
      * This method returns the value of the database column user_role.name
      *
      * @return the value of user_role.name
-     *
      * @mbggenerated Tue Oct 31 09:16:36 CST 2017
      */
     public String getName() {
@@ -58,7 +55,6 @@ public class UserRole {
      * This method sets the value of the database column user_role.name
      *
      * @param name the value for user_role.name
-     *
      * @mbggenerated Tue Oct 31 09:16:36 CST 2017
      */
     public void setName(String name) {

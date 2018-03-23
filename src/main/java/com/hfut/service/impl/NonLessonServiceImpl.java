@@ -37,8 +37,8 @@ public class NonLessonServiceImpl implements NonLessonService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
 
         return mapper.selectByExample(example);
     }

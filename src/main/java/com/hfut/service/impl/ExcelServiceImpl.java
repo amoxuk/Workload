@@ -33,13 +33,13 @@ public class ExcelServiceImpl implements ExcelService {
     public static final String LOACAL_GRA_DESIGN = "LGDesign";
     public static final String LOACAL_PRACTICE = "LPractice";
     public static final String LOACAL_NET = "LNet";
-    public static final String LOACAL_PROJECT= "LProject";
-    public static final String LOACAL_MATCH= "LMatch";
-    public static final String LOACAL_AXE= "LAxe";
-    public static final String LOACAL_BOOK= "LBook";
-    public static final String LOACAL_TRAIN= "LTrain";
+    public static final String LOACAL_PROJECT = "LProject";
+    public static final String LOACAL_MATCH = "LMatch";
+    public static final String LOACAL_AXE = "LAxe";
+    public static final String LOACAL_BOOK = "LBook";
+    public static final String LOACAL_TRAIN = "LTrain";
 
-    public static final String EXP= "Exp";
+    public static final String EXP = "Exp";
 
     Logger logger = Logger.getLogger(ExcelServiceImpl.class);
 
@@ -108,7 +108,7 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public void outTeachWorkload(String file, List<RemoteTeachWorkload> list) throws Exception{
+    public void outTeachWorkload(String file, List<RemoteTeachWorkload> list) throws Exception {
 
         String[] title = new String[]{"序号", "院系", "教师", "课程",
                 "年级", "优选班级", "教学班", "课时", "学分", "人数",
@@ -223,7 +223,7 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public void outExpWorkload(String file, List<RemoteExpWorkload> list)throws Exception {
+    public void outExpWorkload(String file, List<RemoteExpWorkload> list) throws Exception {
 
         String[] title = new String[]{"序号", "院系", "教师", "课程",
                 "年级", "优选班级", "教学班", "课时", "人数",
@@ -396,7 +396,7 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public void outGraduateWorkload(String path, List<RemoteGraduateWorkload> list)throws Exception {
+    public void outGraduateWorkload(String path, List<RemoteGraduateWorkload> list) throws Exception {
         String[] title = new String[]{"序号", "院系", "教师",
                 "年级", "优选班级", "人数", "周数", "工作量",
                 "酬金", "备注", "签字"};
@@ -500,9 +500,9 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public void outLCourseWorkload(String path, List<LocalCourseWorkload> list)throws Exception {
-        String[] title = new String[]{"序号", "教师","课程",
-                "年级", "优选班级","教学班号","学时", "人数", "学分", "系数",
+    public void outLCourseWorkload(String path, List<LocalCourseWorkload> list) throws Exception {
+        String[] title = new String[]{"序号", "教师", "课程",
+                "年级", "优选班级", "教学班号", "学时", "人数", "学分", "系数",
                 "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
@@ -658,9 +658,9 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outLExpWorkload(String path, List<LocalExpWorkload> list) throws Exception {
-        String[] title = new String[]{"序号", "教师","课程",
-                "年级", "优选班级","教学班号","实验类型", "学时", "人数", "类别系数",
-                "工作量系数", "工作量","备注", "签字"};
+        String[] title = new String[]{"序号", "教师", "课程",
+                "年级", "优选班级", "教学班号", "实验类型", "学时", "人数", "类别系数",
+                "工作量系数", "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
 
@@ -764,9 +764,9 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outLDesignWorkload(String path, List<LocalDesignWorkload> list) throws Exception {
-        String[] title = new String[]{"序号", "教师","课程",
-                "年级", "优选班级","教学班号", "周数", "人数",
-                "工作量","备注", "签字"};
+        String[] title = new String[]{"序号", "教师", "课程",
+                "年级", "优选班级", "教学班号", "周数", "人数",
+                "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
 
@@ -867,9 +867,9 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outLGraPracticeWorkload(String path, List<LGraPracticeWorkload> list) throws Exception {
-        String[] title = new String[]{"序号", "教师","院系",
-                "年级", "专业","人数", "周数", "实习地点",
-                "工作量","备注", "签字"};
+        String[] title = new String[]{"序号", "教师", "院系",
+                "年级", "专业", "人数", "周数", "实习地点",
+                "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
 
@@ -925,8 +925,8 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outLGraDesignWorkload(String path, List<LGraDesignWorkload> list) throws Exception {
-        String[] title = new String[]{"序号", "教师","年级",
-                "专业班级", "周数","系数K", "人数", "工作量",
+        String[] title = new String[]{"序号", "教师", "年级",
+                "专业班级", "周数", "系数K", "人数", "工作量",
                 "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
@@ -1073,10 +1073,10 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public void outLPracticeDesignWorkload(String path, List<LPracticeWorkload> list)  throws Exception{
-        String[] title = new String[]{"序号", "系别","教师",
-                "实习性质", "年级","专业", "人数", "班级数","周数","实习地点",
-                "工作量","备注", "签字"};
+    public void outLPracticeDesignWorkload(String path, List<LPracticeWorkload> list) throws Exception {
+        String[] title = new String[]{"序号", "系别", "教师",
+                "实习性质", "年级", "专业", "人数", "班级数", "周数", "实习地点",
+                "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
 
@@ -1133,9 +1133,9 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outLProjectWorkload(String path, List<LProjectWorkload> list) throws Exception {
-        String[] title = new String[]{"序号","教师", "年级","项目编号",
-                "项目名称", "项目类型","级别",
-                "工作量","备注", "签字"};
+        String[] title = new String[]{"序号", "教师", "年级", "项目编号",
+                "项目名称", "项目类型", "级别",
+                "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
 
@@ -1233,9 +1233,9 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outLMatchWorkload(String path, List<LMatchWorkload> list) throws Exception {
-        String[] title = new String[]{"序号","教师", "年级","项目编号",
-                "项目名称", "竞赛性质","获奖等级",
-                "工作量","备注", "签字"};
+        String[] title = new String[]{"序号", "教师", "年级", "项目编号",
+                "项目名称", "竞赛性质", "获奖等级",
+                "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
 
@@ -1333,8 +1333,8 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outLNetWorkload(String path, List<LNetWorkload> list) throws Exception {
-        String[] title = new String[]{"序号","教师", "年级","课程",
-                "答疑数", "工作量","备注", "签字"};
+        String[] title = new String[]{"序号", "教师", "年级", "课程",
+                "答疑数", "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
 
@@ -1429,8 +1429,8 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outExpriment(String path, List<Expriment> list) throws Exception {
-        String[] title = new String[]{"序号","教师", "年级","课程名称","实验类型",
-                "教学班","优选班级", "学时","学分","人数","系数", "工作量","备注","签字"};
+        String[] title = new String[]{"序号", "教师", "年级", "课程名称", "实验类型",
+                "教学班", "优选班级", "学时", "学分", "人数", "系数", "工作量", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
         //第二步创建sheet
@@ -1532,8 +1532,8 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void outNonLesson(String path, List<RemoteNonLesson> list) throws Exception {
-        String[] title = new String[]{"序号","院系","教师", "年级","无课天数","周数",
-                "总天数","补贴", "备注","签字"};
+        String[] title = new String[]{"序号", "院系", "教师", "年级", "无课天数", "周数",
+                "总天数", "补贴", "备注", "签字"};
         //第一步创建workbook
         HSSFWorkbook wb = new HSSFWorkbook();
         //第二步创建sheet

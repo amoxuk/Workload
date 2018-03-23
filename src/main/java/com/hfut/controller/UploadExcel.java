@@ -1,6 +1,5 @@
 package com.hfut.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.hfut.entity.AjaxResult;
 import com.hfut.exception.CustomException;
 import com.hfut.service.*;
@@ -64,15 +63,33 @@ public class UploadExcel {
     public String importExcel(@RequestParam(value = "file", required = false)
                                       MultipartFile buildInfo,
                               HttpServletRequest request,
-                              HttpServletResponse response) throws Exception {
-        try {
-            if (buildInfo != null) {
-                String path = request.getSession().getServletContext().getRealPath("/upload") + File.separatorChar + buildInfo.getOriginalFilename();
-                File file = ToolKit.getFileFromBytes(buildInfo.getBytes(), path);//需要先保存在本地
-                List list = null;
+                              HttpServletResponse response) {
 
-                String type = request.getParameter("type");
-                System.out.println(type);
+        if (buildInfo != null) {
+            String path = request.getSession().getServletContext().getRealPath("/upload") + File.separatorChar + buildInfo.getOriginalFilename();
+            File file = null;//需要先保存在本地
+            AjaxResult ajaxResult = new AjaxResult();
+
+            try {
+                file = ToolKit.getFileFromBytes(buildInfo.getBytes(), path);
+            } catch (CustomException e) {
+                e.printStackTrace();
+                ajaxResult.failed();
+                ajaxResult.setMsg(e.getMessage());
+                return ajaxResult.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+                ajaxResult.failed();
+                ajaxResult.setMsg(e.getMessage());
+                return ajaxResult.toString();
+            }
+            List list = null;
+
+            String type = request.getParameter("type");
+            System.out.println(type);
+
+            try {
+
 
                 switch (type) {
                     case ExcelServiceImpl.REMOTE_TEACH:
@@ -84,47 +101,47 @@ public class UploadExcel {
                         list = remoteExpService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.REMOTE_DESIGN:
-                        list =excelService.inDesignList(file);
+                        list = excelService.inDesignList(file);
                         list = designService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.REMOTE_GRA:
-                        list =excelService.inGraduateWorkload(file);
+                        list = excelService.inGraduateWorkload(file);
                         list = graService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_COURSE:
-                        list =excelService.inLCourseWorkload(file);
+                        list = excelService.inLCourseWorkload(file);
                         list = localCourseService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_EXP:
-                        list =excelService.inLExpWorkload(file);
+                        list = excelService.inLExpWorkload(file);
                         list = localExpService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_DESIGN:
-                        list =excelService.inLDesignWorkload(file);
+                        list = excelService.inLDesignWorkload(file);
                         list = localDesignService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_GRA_PRACTICE:
-                        list =excelService.inLGraPracticeWorkload(file);
+                        list = excelService.inLGraPracticeWorkload(file);
                         list = localGraPracticeService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_GRA_DESIGN:
-                        list =excelService.inLGraDesignWorkload(file);
+                        list = excelService.inLGraDesignWorkload(file);
                         list = localGraDesignService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_PRACTICE:
-                        list =excelService.inLPracticeWorkload(file);
+                        list = excelService.inLPracticeWorkload(file);
                         list = localPracticeService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_PROJECT:
-                        list =excelService.inLProjectWorkload(file);
+                        list = excelService.inLProjectWorkload(file);
                         list = localProjectService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_MATCH:
-                        list =excelService.inLMatchWorkload(file);
+                        list = excelService.inLMatchWorkload(file);
                         list = localMatchService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.LOACAL_NET:
-                        list =excelService.inLNetWorkload(file);
+                        list = excelService.inLNetWorkload(file);
                         list = localNetService.insertLoadByList(list);
                         break;
                     case ExcelServiceImpl.EXP:
@@ -137,24 +154,30 @@ public class UploadExcel {
                         break;
                     default:
                 }
-                ToolKit.deleteFile(path);
-                AjaxResult ajaxResult = new AjaxResult();
-                //这里做的是一个插入数据库功能
-                if (list.size() == 0) {
-                    ajaxResult.ok();
-                    ajaxResult.setMsg("导入成功");
-                } else {
-                    ajaxResult.setMsg("导入数据产生错误！");
-                    ajaxResult.failed();
-                    ajaxResult.setData(list);
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
 
-                return JSON.toJSONString(ajaxResult);
+
+                //这里做的是一个插入数据库功能
+
+                ajaxResult.setMsg(e.getMessage());
+                ajaxResult.failed();
+                ajaxResult.setData(list);
+                return ajaxResult.toString();
             }
 
-        } catch (CustomException | IOException e1) {
-            e1.printStackTrace();
+            ToolKit.deleteFile(path);
+            if (list.size() == 0) {
+                ajaxResult.ok();
+                ajaxResult.setMsg("导入成功");
+            } else {
+                return ajaxResult.toString();
+            }
+
+
         }
         return null;
     }
+
 }
+

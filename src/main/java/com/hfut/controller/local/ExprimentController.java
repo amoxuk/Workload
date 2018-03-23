@@ -41,10 +41,10 @@ public class ExprimentController {
         }
         System.out.println(page + " " + limit);
 
-        List<LocalExpWorkload> list = expService.getList(years,teacher,page, limit);
+        List<LocalExpWorkload> list = expService.getList(years, teacher, page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(expService.getCount(years,teacher));
+        ajaxResult.setCount(expService.getCount(years, teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

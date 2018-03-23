@@ -27,13 +27,14 @@ public class FindPsw {
         if (session.getAttribute("rand") == null || !session.getAttribute("rand").toString().equalsIgnoreCase(user.getMail())) {
             return "{\"status\":1,\"msg\":\"请重新输入验证码！\"}";
         }
-        User nUser =  userService.findByName(user.getUser());
+        User nUser = userService.findByName(user.getUser());
         if (nUser != null) {
             return "{\"status\":0,\"msg\":\"" + nUser.getQuestion() + "\"}";
         } else {
             return "{\"status\":1,\"msg\":\"请检查用户名！\"}";
         }
     }
+
     @RequestMapping(value = "/password/resetPsw",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
@@ -46,7 +47,7 @@ public class FindPsw {
         }
         String retErr = "{\"status\":1,\"msg\":\"请检查用户名！\"}";
 
-        User nUser =  userService.findByName(user.getUser());
+        User nUser = userService.findByName(user.getUser());
         if (nUser != null) {
             if (nUser.getQuestion() != user.getQuestion()) {
                 return retErr;

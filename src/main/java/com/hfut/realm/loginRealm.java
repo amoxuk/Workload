@@ -20,7 +20,7 @@ import java.util.Set;
  */
 
 @Component
-public class loginRealm extends AuthorizingRealm{
+public class loginRealm extends AuthorizingRealm {
     @Resource(name = "userServiceImpl")
     private UserService userService;
 
@@ -29,7 +29,7 @@ public class loginRealm extends AuthorizingRealm{
 
     /**
      * 获取身份信息，我们可以在这个方法中，从数据库获取该用户的权限和角色信息
-     *     当调用权限验证时，就会调用此方法
+     * 当调用权限验证时，就会调用此方法
      */
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
@@ -63,14 +63,14 @@ public class loginRealm extends AuthorizingRealm{
 
     /**
      * 在这个方法中，进行身份验证
-     *         login时调用
+     * login时调用
      */
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //用户名
         String username = (String) token.getPrincipal();
         //密码
-        String password = new String((char[])token.getCredentials());
-       User userlogin = null;
+        String password = new String((char[]) token.getCredentials());
+        User userlogin = null;
         try {
             userlogin = userService.findByName(username);
 
@@ -85,7 +85,7 @@ public class loginRealm extends AuthorizingRealm{
             //密码错误
             throw new IncorrectCredentialsException();
         }
-        AuthenticationInfo aInfo = new SimpleAuthenticationInfo(username,password,getName());
+        AuthenticationInfo aInfo = new SimpleAuthenticationInfo(username, password, getName());
 
         //身份验证通过,返回一个身份信息
 

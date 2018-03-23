@@ -17,7 +17,7 @@ public class RemoteGraServiceImpl implements RemoteGraService {
 
     @Override
     public List<RemoteGraduateWorkload> getList(Integer years, String teacher, Integer page, Integer limit) {
-      RemoteGraduateWorkloadExample example = new RemoteGraduateWorkloadExample();
+        RemoteGraduateWorkloadExample example = new RemoteGraduateWorkloadExample();
         RemoteGraduateWorkloadExample.Criteria criteria = example.createCriteria();
         if (years != 0) {
             criteria.andYearsEqualTo(years);
@@ -27,8 +27,8 @@ public class RemoteGraServiceImpl implements RemoteGraService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
         return graduateMapper.selectByExample(example);
     }
 

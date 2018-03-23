@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LocalExpService {
 
-    int getCount(Integer years,String teacher) throws Exception;
+    int getCount(Integer years, String teacher) throws Exception;
 
     boolean updateLoad(LocalExpWorkload workload) throws Exception;
 
@@ -18,5 +18,5 @@ public interface LocalExpService {
 
     boolean removeLoad(List list) throws Exception;
 
-    List<LocalExpWorkload> getList(Integer years,String teacher, Integer page, Integer limit) throws Exception;
+    List<LocalExpWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception;
 }

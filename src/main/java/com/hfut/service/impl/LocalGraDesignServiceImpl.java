@@ -29,8 +29,8 @@ public class LocalGraDesignServiceImpl implements LocalGraDesignService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
         return workloadMapper.selectByExample(example);
     }
 

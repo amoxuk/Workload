@@ -6,7 +6,7 @@ import java.util.List;
 public interface TotalService {
 
     Integer LOCAL = 1;
-    Integer  REMOTE  = 2;
+    Integer REMOTE = 2;
 
     List getRemoteTotal(Integer years);
 

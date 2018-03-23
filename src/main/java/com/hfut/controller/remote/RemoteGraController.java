@@ -41,10 +41,10 @@ public class RemoteGraController {
         }
         System.out.println(page + " " + limit);
 
-        List<RemoteGraduateWorkload> list = graService.getList(years,teacher,page, limit);
+        List<RemoteGraduateWorkload> list = graService.getList(years, teacher, page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.setCount(graService.getCount(years,teacher));
+        ajaxResult.setCount(graService.getCount(years, teacher));
         ajaxResult.ok();
         ajaxResult.setData(list);
         String json = JSON.toJSONString(ajaxResult);

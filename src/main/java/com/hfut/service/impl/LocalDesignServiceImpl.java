@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class LocalDesignServiceImpl implements LocalDesignService {
 
@@ -17,10 +18,9 @@ public class LocalDesignServiceImpl implements LocalDesignService {
 
     @Override
     public boolean updateLoad(LocalDesignWorkload workload) throws Exception {
-        if(workload.getPeople()>25){
-            workload.setWorkload((float) (workload.getWeeks()*((workload.getPeople()-25)*0.6+25*0.8)));
-        }
-        else{
+        if (workload.getPeople() > 25) {
+            workload.setWorkload((float) (workload.getWeeks() * ((workload.getPeople() - 25) * 0.6 + 25 * 0.8)));
+        } else {
             workload.setWorkload((float) (workload.getPeople() * workload.getWeeks() * 0.8));
         }
         workload.setWorkload((float) (Math.round(workload.getWorkload() * 100) / 100));
@@ -46,12 +46,12 @@ public class LocalDesignServiceImpl implements LocalDesignService {
             return true;
         }
     }
+
     @Override
     public boolean insertLoad(LocalDesignWorkload workload) throws Exception {
-        if(workload.getPeople()>25){
-            workload.setWorkload((float) (workload.getWeeks()*((workload.getPeople()-25)*0.6+25*0.8)));
-        }
-        else{
+        if (workload.getPeople() > 25) {
+            workload.setWorkload((float) (workload.getWeeks() * ((workload.getPeople() - 25) * 0.6 + 25 * 0.8)));
+        } else {
             workload.setWorkload((float) (workload.getPeople() * workload.getWeeks() * 0.8));
         }
         workload.setWorkload((float) (Math.round(workload.getWorkload() * 100) / 100));
@@ -61,6 +61,7 @@ public class LocalDesignServiceImpl implements LocalDesignService {
         }
         return true;
     }
+
     @Override
     public List<LocalDesignWorkload> insertLoadByList(List<LocalDesignWorkload> list) throws Exception {
         ArrayList<LocalDesignWorkload> ret = new ArrayList<LocalDesignWorkload>();
@@ -83,7 +84,6 @@ public class LocalDesignServiceImpl implements LocalDesignService {
             return true;
         }
     }
-
 
 
     @Override
@@ -112,8 +112,8 @@ public class LocalDesignServiceImpl implements LocalDesignService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
 
         return workloadMapper.selectByExample(example);
     }

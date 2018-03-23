@@ -14,6 +14,7 @@ import java.util.List;
 public class RemoteDesignServiceImpl implements RemoteDesignService {
     @Autowired
     private RemoteDesignWorkloadMapper designWorkloadMapper;
+
     @Override
     public List<RemoteDesignWorkload> getList(Integer years, String teacher, Integer page, Integer limit) {
 
@@ -27,8 +28,8 @@ public class RemoteDesignServiceImpl implements RemoteDesignService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
 
         return designWorkloadMapper.selectByExample(example);
     }
@@ -72,10 +73,10 @@ public class RemoteDesignServiceImpl implements RemoteDesignService {
 
     @Override
     public boolean insertLoad(RemoteDesignWorkload workload) throws Exception {
-        if (workload.getPeople()<=50) {
+        if (workload.getPeople() <= 50) {
             workload.setLoadCoefficient(0.6F);
-            workload.setWorkload((float) Math.round(workload.getLoadCoefficient()*workload.getPeople()*workload.getWeeks()));
-        }else{
+            workload.setWorkload((float) Math.round(workload.getLoadCoefficient() * workload.getPeople() * workload.getWeeks()));
+        } else {
             workload.setLoadCoefficient(0.3F);
             workload.setWorkload((float) Math.round((0.6 * 50 + 0.3 * (workload.getPeople() - 50)) * workload.getWeeks()));
         }
@@ -89,7 +90,6 @@ public class RemoteDesignServiceImpl implements RemoteDesignService {
         criteria.andIdIn(list);
         return designWorkloadMapper.deleteByExample(example) != 0;
     }
-
 
 
 }

@@ -2,8 +2,9 @@ package com.hfut.mapper;
 
 import com.hfut.entity.RemoteTotal;
 import com.hfut.entity.RemoteTotalExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RemoteTotalMapper {
     int countByExample(RemoteTotalExample example);

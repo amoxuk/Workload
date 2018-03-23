@@ -42,7 +42,7 @@ public class TeachCourseController {
         }
         System.out.println(page + " " + limit);
 
-        List<LocalCourseWorkload> list = courseService.getList(years,teacher,page, limit);
+        List<LocalCourseWorkload> list = courseService.getList(years, teacher, page, limit);
 
         AjaxResult ajaxResult = new AjaxResult();
         ajaxResult.setCount(courseService.getCount(years, teacher));

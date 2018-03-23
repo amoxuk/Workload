@@ -38,7 +38,6 @@ public class LMatchWorkloadKey {
      * This method returns the value of the database column local_match.id
      *
      * @return the value of local_match.id
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public Integer getId() {
@@ -50,7 +49,6 @@ public class LMatchWorkloadKey {
      * This method sets the value of the database column local_match.id
      *
      * @param id the value for local_match.id
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setId(Integer id) {
@@ -62,7 +60,6 @@ public class LMatchWorkloadKey {
      * This method returns the value of the database column local_match.teacher
      *
      * @return the value of local_match.teacher
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public String getTeacher() {
@@ -74,7 +71,6 @@ public class LMatchWorkloadKey {
      * This method sets the value of the database column local_match.teacher
      *
      * @param teacher the value for local_match.teacher
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -86,7 +82,6 @@ public class LMatchWorkloadKey {
      * This method returns the value of the database column local_match.years
      *
      * @return the value of local_match.years
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public Integer getYears() {
@@ -98,7 +93,6 @@ public class LMatchWorkloadKey {
      * This method sets the value of the database column local_match.years
      *
      * @param years the value for local_match.years
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setYears(Integer years) {
@@ -110,7 +104,6 @@ public class LMatchWorkloadKey {
      * This method returns the value of the database column local_match.number
      *
      * @return the value of local_match.number
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public String getNumber() {
@@ -122,7 +115,6 @@ public class LMatchWorkloadKey {
      * This method sets the value of the database column local_match.number
      *
      * @param number the value for local_match.number
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setNumber(String number) {

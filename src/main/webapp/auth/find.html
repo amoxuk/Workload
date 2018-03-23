@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="utf-8">
     <title>工作量计算系统</title>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+
     <link rel="Shortcut Icon" href="../images/favicon.ico"/>
 
     <link rel="stylesheet" href="../src/css/layui.css">
@@ -60,7 +65,7 @@
                             <div class="layui-input-block" align="center">
 
                                 <input type="text" id="question" lay-verify="required|title" required placeholder="问题"
-                                   autocomplete="true" class="layui-input">
+                                       autocomplete="true" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -72,7 +77,7 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block" align="center">
                                 <input type="password" id="password" lay-verify="pass" required placeholder="新密码"
-                               autocomplete="true" class="layui-input">
+                                       autocomplete="true" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -111,7 +116,6 @@
     </div>
 
 </main>
-
 
 
 <script>
@@ -167,8 +171,8 @@
                     surePsw = $("#surePsw").val();
 
                 form.verify({
-                    pass: [/^[\S]{6,12}$/,'密码必须6到12位，且不能出现空格']
-                    ,surepsw:[/^[\S]{6,12}$/,'密码必须6到12位，且不能出现空格']
+                    pass: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格']
+                    , surepsw: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格']
                 });
 
                 if (psw != surePsw) {
@@ -180,7 +184,7 @@
                     "user": $("#username").val(),
                     "question": $("#question").val(),
                     "answer": $("#answer").val(),
-                    "password": strEnc($("#password").val(),'amoxu','amoxu','amoxu'),
+                    "password": strEnc($("#password").val(), 'amoxu', 'amoxu', 'amoxu'),
                     "captcha": $("#captcha").val(),
                     "md5": $('#md5').val()
                 };

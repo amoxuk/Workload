@@ -28,4 +28,9 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> selectByLike(@Param("s") String s, @Param("offset") Integer offset, @Param("limit") Integer limit);
+
+    int countByLike(@Param("s") String s);
+
 }

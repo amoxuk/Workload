@@ -3,8 +3,9 @@ package com.hfut.mapper;
 import com.hfut.entity.LGraDesignWorkload;
 import com.hfut.entity.LGraDesignWorkloadExample;
 import com.hfut.entity.LGraDesignWorkloadKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LGraDesignWorkloadMapper {
     /**

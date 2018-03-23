@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class LocalCourseServiceImpl implements LocalCourseService {
 
@@ -28,8 +29,8 @@ public class LocalCourseServiceImpl implements LocalCourseService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
 
         return workloadMapper.selectByExample(example);
     }
@@ -52,12 +53,12 @@ public class LocalCourseServiceImpl implements LocalCourseService {
         LocalCourseWorkloadExample workloadExample = new LocalCourseWorkloadExample();
         //计算工作量 课时
         int people = workload.getPeople();
-        if (people<=45) {
+        if (people <= 45) {
             workload.setCoefficient(1.0F);
-        }else if (people>45&&people<=135) {
-            workload.setCoefficient((float) (1.0 + Math.ceil((people - 45)/10F) * 0.1));
-        }else if (people>136) {
-            workload.setCoefficient((float) (1.9 + Math.ceil((people - 135)/20F) * 0.1));
+        } else if (people > 45 && people <= 135) {
+            workload.setCoefficient((float) (1.0 + Math.ceil((people - 45) / 10F) * 0.1));
+        } else if (people > 136) {
+            workload.setCoefficient((float) (1.9 + Math.ceil((people - 135) / 20F) * 0.1));
         }
 
         if ("工程图学".indexOf(workload.getLesson()) < 0) {
@@ -89,6 +90,7 @@ public class LocalCourseServiceImpl implements LocalCourseService {
             return true;
         }
     }
+
     @Override
     public boolean removeLoad(List list) throws Exception {
         LocalCourseWorkloadExample expWorkloadExample = new LocalCourseWorkloadExample();
@@ -105,12 +107,12 @@ public class LocalCourseServiceImpl implements LocalCourseService {
     public boolean insertLoad(LocalCourseWorkload workload) throws Exception {
         //计算工作量 课时
         int people = workload.getPeople();
-        if (people<=45) {
+        if (people <= 45) {
             workload.setCoefficient(1.0F);
-        }else if (people>45&&people<=135) {
-            workload.setCoefficient((float) (1.0 + Math.ceil((people - 45)/10F) * 0.1));
-        }else if (people>136) {
-            workload.setCoefficient((float) (1.9 + Math.ceil((people - 135)/20F) * 0.1));
+        } else if (people > 45 && people <= 135) {
+            workload.setCoefficient((float) (1.0 + Math.ceil((people - 45) / 10F) * 0.1));
+        } else if (people > 136) {
+            workload.setCoefficient((float) (1.9 + Math.ceil((people - 135) / 20F) * 0.1));
         }
 
         if ("工程图学".indexOf(workload.getLesson()) < 0) {
@@ -138,7 +140,6 @@ public class LocalCourseServiceImpl implements LocalCourseService {
         }
         return ret;
     }
-
 
 
 }

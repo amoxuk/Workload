@@ -46,7 +46,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method returns the value of the database column local_match.name
      *
      * @return the value of local_match.name
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public String getName() {
@@ -58,7 +57,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method sets the value of the database column local_match.name
      *
      * @param name the value for local_match.name
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setName(String name) {
@@ -70,7 +68,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method returns the value of the database column local_match.type
      *
      * @return the value of local_match.type
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public String getType() {
@@ -82,7 +79,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method sets the value of the database column local_match.type
      *
      * @param type the value for local_match.type
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setType(String type) {
@@ -94,7 +90,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method returns the value of the database column local_match.level
      *
      * @return the value of local_match.level
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public String getLevel() {
@@ -106,7 +101,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method sets the value of the database column local_match.level
      *
      * @param level the value for local_match.level
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setLevel(String level) {
@@ -118,7 +112,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method returns the value of the database column local_match.workload
      *
      * @return the value of local_match.workload
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public Float getWorkload() {
@@ -130,7 +123,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method sets the value of the database column local_match.workload
      *
      * @param workload the value for local_match.workload
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -142,7 +134,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method returns the value of the database column local_match.note
      *
      * @return the value of local_match.note
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public String getNote() {
@@ -154,7 +145,6 @@ public class LMatchWorkload extends LMatchWorkloadKey {
      * This method sets the value of the database column local_match.note
      *
      * @param note the value for local_match.note
-     *
      * @mbggenerated Sun Oct 29 14:23:47 CST 2017
      */
     public void setNote(String note) {

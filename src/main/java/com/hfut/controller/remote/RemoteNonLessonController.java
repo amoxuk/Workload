@@ -24,6 +24,7 @@ public class RemoteNonLessonController {
     private NonLessonService service;
 
     Logger logger = Logger.getLogger(RemoteNonLessonController.class);
+
     @RequestMapping(value = "/RNonLesson/{years}/{teacher}",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
@@ -51,10 +52,11 @@ public class RemoteNonLessonController {
         ajaxResult.setData(list);
         return JSON.toJSONString(ajaxResult);
     }
+
     @RequestMapping(value = "/nonLesson/save",
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String  updataRecord(HttpServletRequest request) throws Exception {
+    public String updataRecord(HttpServletRequest request) throws Exception {
         Map<String, String[]> req = request.getParameterMap();
         AjaxResult ajaxResult = new AjaxResult();
         if (req.get("data") != null) {

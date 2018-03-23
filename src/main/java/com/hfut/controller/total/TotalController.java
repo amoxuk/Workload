@@ -73,7 +73,7 @@ public class TotalController {
             request.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
             response.setContentType("application/x-excel");
-            response.setHeader("Content-Disposition", "attachment; filename=" + years + URLEncoder.encode("年工作量汇总" ,"UTF-8")+ ".xls");
+            response.setHeader("Content-Disposition", "attachment; filename=" + years + URLEncoder.encode("年工作量汇总", "UTF-8") + ".xls");
             response.setHeader("Content-Length", String.valueOf(f.length()));
             in = new BufferedInputStream(new FileInputStream(f));
             out = new BufferedOutputStream(response.getOutputStream());

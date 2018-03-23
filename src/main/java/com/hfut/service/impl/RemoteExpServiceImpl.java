@@ -30,8 +30,8 @@ public class RemoteExpServiceImpl implements RemoteExpService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
         return workloadMapper.selectByExample(example);
     }
 
@@ -54,11 +54,11 @@ public class RemoteExpServiceImpl implements RemoteExpService {
         RemoteExpWorkloadExample workloadExample = new RemoteExpWorkloadExample();
         //计算工作量 课时
         int people = workload.getPeople();
-        if (people<=27) {
+        if (people <= 27) {
             workload.setTypeCoefficient(0.6F);
-        }else if (people>=28&&people<37) {
+        } else if (people >= 28 && people < 37) {
             workload.setTypeCoefficient(0.8F);
-        }else if (people>=37&&people<=55) {
+        } else if (people >= 37 && people <= 55) {
             workload.setTypeCoefficient(1.0F);
         }
 

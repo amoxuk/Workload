@@ -17,7 +17,7 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
     private LPracticeWorkloadMapper workloadMapper;
 
     @Override
-    public List<LPracticeWorkload> getList(Integer years, String teacher,Integer page, Integer limit) throws Exception {
+    public List<LPracticeWorkload> getList(Integer years, String teacher, Integer page, Integer limit) throws Exception {
         LPracticeWorkloadExample example = new LPracticeWorkloadExample();
         LPracticeWorkloadExample.Criteria criteria = example.createCriteria();
         if (years != 0) {
@@ -28,8 +28,8 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
         return workloadMapper.selectByExample(example);
     }
 
@@ -53,7 +53,7 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
         String place = workload.getPlace().trim();
         if ("本市".equals(place)) {
             workload.setWorkload((float) (Math.round(18 * workload.getClassNumber() * workload.getWeeks() * 100) / 100));
-        } else if ("外地".equals(place)){
+        } else if ("外地".equals(place)) {
             workload.setWorkload((float) (Math.round(20 * workload.getClassNumber() * workload.getWeeks() * 100) / 100));
         } else if ("野外".equals(place)) {
             workload.setWorkload((float) (Math.round(24 * workload.getClassNumber() * workload.getWeeks() * 100) / 100));
@@ -79,6 +79,7 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
             return true;
         }
     }
+
     @Override
     public boolean removeLoad(List list) throws Exception {
         LPracticeWorkloadExample expWorkloadExample = new LPracticeWorkloadExample();
@@ -97,7 +98,7 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
         String place = workload.getPlace().trim();
         if ("本市".equals(place)) {
             workload.setWorkload((float) (Math.round(18 * workload.getClassNumber() * workload.getWeeks() * 100) / 100));
-        } else if ("外地".equals(place)){
+        } else if ("外地".equals(place)) {
             workload.setWorkload((float) (Math.round(20 * workload.getClassNumber() * workload.getWeeks() * 100) / 100));
         } else if ("野外".equals(place)) {
             workload.setWorkload((float) (Math.round(24 * workload.getClassNumber() * workload.getWeeks() * 100) / 100));

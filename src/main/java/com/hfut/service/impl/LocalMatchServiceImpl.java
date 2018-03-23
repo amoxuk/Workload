@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class LocalMatchServiceImpl implements LocalMatchService {
     @Autowired
@@ -28,8 +29,8 @@ public class LocalMatchServiceImpl implements LocalMatchService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
         return workloadMapper.selectByExample(example);
     }
 

@@ -46,7 +46,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method returns the value of the database column local_project.name
      *
      * @return the value of local_project.name
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public String getName() {
@@ -58,7 +57,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method sets the value of the database column local_project.name
      *
      * @param name the value for local_project.name
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setName(String name) {
@@ -70,7 +68,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method returns the value of the database column local_project.type
      *
      * @return the value of local_project.type
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public String getType() {
@@ -82,7 +79,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method sets the value of the database column local_project.type
      *
      * @param type the value for local_project.type
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setType(String type) {
@@ -94,7 +90,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method returns the value of the database column local_project.level
      *
      * @return the value of local_project.level
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public String getLevel() {
@@ -106,7 +101,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method sets the value of the database column local_project.level
      *
      * @param level the value for local_project.level
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setLevel(String level) {
@@ -118,7 +112,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method returns the value of the database column local_project.workload
      *
      * @return the value of local_project.workload
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public Float getWorkload() {
@@ -130,7 +123,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method sets the value of the database column local_project.workload
      *
      * @param workload the value for local_project.workload
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -142,7 +134,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method returns the value of the database column local_project.note
      *
      * @return the value of local_project.note
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public String getNote() {
@@ -154,7 +145,6 @@ public class LProjectWorkload extends LProjectWorkloadKey {
      * This method sets the value of the database column local_project.note
      *
      * @param note the value for local_project.note
-     *
      * @mbggenerated Sat Oct 28 21:14:11 CST 2017
      */
     public void setNote(String note) {

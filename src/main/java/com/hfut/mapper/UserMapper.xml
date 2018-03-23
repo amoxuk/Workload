@@ -1,298 +1,319 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hfut.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.hfut.entity.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="level" property="level" jdbcType="INTEGER" />
-    <result column="tid" property="tid" jdbcType="INTEGER" />
-    <result column="user" property="user" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="mail" property="mail" jdbcType="VARCHAR" />
-    <result column="question" property="question" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="alter_time" property="alterTime" jdbcType="TIMESTAMP" />
-    <result column="answer" property="answer" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.hfut.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.hfut.entity.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="tid" property="tid" jdbcType="INTEGER"/>
+        <result column="user" property="user" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="mail" property="mail" jdbcType="VARCHAR"/>
+        <result column="question" property="question" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="alter_time" property="alterTime" jdbcType="TIMESTAMP"/>
+        <result column="answer" property="answer" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, level, tid, user, password, mail, question, create_time, alter_time, answer
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hfut.entity.UserExample">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, level, tid, user, password, mail, question, create_time, alter_time, answer
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hfut.entity.UserExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-    <if test="limit != null" >
-      <if test="offset != null" >
+        <include refid="Base_Column_List"/>
+        from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByLike" resultType="com.hfut.entity.User" parameterType="map">
+        select
+        *
+        from user
+        where user LIKE '%${s}%'
+        OR mail LIKE '%${s}%'
+        OR question LIKE '%${s}%'
         limit ${offset}, ${limit}
-      </if>
-      <if test="offset == null" >
-        limit ${limit}
-      </if>
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.hfut.entity.UserExample" >
-    delete from user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.hfut.entity.User" >
-    insert into user (id, level, tid, 
-      user, password, mail, 
-      question, create_time, alter_time, 
-      answer)
-    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, 
-      #{user,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
-      #{question,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{alterTime,jdbcType=TIMESTAMP}, 
-      #{answer,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.hfut.entity.User" >
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="level != null" >
-        level,
-      </if>
-      <if test="tid != null" >
-        tid,
-      </if>
-      <if test="user != null" >
-        user,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="mail != null" >
-        mail,
-      </if>
-      <if test="question != null" >
-        question,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="alterTime != null" >
-        alter_time,
-      </if>
-      <if test="answer != null" >
-        answer,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="level != null" >
-        #{level,jdbcType=INTEGER},
-      </if>
-      <if test="tid != null" >
-        #{tid,jdbcType=INTEGER},
-      </if>
-      <if test="user != null" >
-        #{user,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mail != null" >
-        #{mail,jdbcType=VARCHAR},
-      </if>
-      <if test="question != null" >
-        #{question,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alterTime != null" >
-        #{alterTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="answer != null" >
-        #{answer,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.hfut.entity.UserExample" resultType="java.lang.Integer" >
-    select count(*) from user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update user
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.level != null" >
+    </select>
+    <select id="countByLike" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from user
+        where user LIKE '%${s}%'
+        OR mail LIKE '%${s}%'
+        OR question LIKE '%${s}%'
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.hfut.entity.UserExample">
+        delete from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.hfut.entity.User">
+        insert into user (id, level, tid,
+        user, password, mail,
+        question, create_time, alter_time,
+        answer)
+        values (#{id,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER},
+        #{user,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR},
+        #{question,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{alterTime,jdbcType=TIMESTAMP},
+        #{answer,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.hfut.entity.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="tid != null">
+                tid,
+            </if>
+            <if test="user != null">
+                user,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="mail != null">
+                mail,
+            </if>
+            <if test="question != null">
+                question,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="alterTime != null">
+                alter_time,
+            </if>
+            <if test="answer != null">
+                answer,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="tid != null">
+                #{tid,jdbcType=INTEGER},
+            </if>
+            <if test="user != null">
+                #{user,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="question != null">
+                #{question,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="alterTime != null">
+                #{alterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="answer != null">
+                #{answer,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.hfut.entity.UserExample" resultType="java.lang.Integer">
+        select count(*) from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update user
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.level != null">
+                level = #{record.level,jdbcType=INTEGER},
+            </if>
+            <if test="record.tid != null">
+                tid = #{record.tid,jdbcType=INTEGER},
+            </if>
+            <if test="record.user != null">
+                user = #{record.user,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                password = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mail != null">
+                mail = #{record.mail,jdbcType=VARCHAR},
+            </if>
+            <if test="record.question != null">
+                question = #{record.question,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.alterTime != null">
+                alter_time = #{record.alterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.answer != null">
+                answer = #{record.answer,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update user
+        set id = #{record.id,jdbcType=INTEGER},
         level = #{record.level,jdbcType=INTEGER},
-      </if>
-      <if test="record.tid != null" >
         tid = #{record.tid,jdbcType=INTEGER},
-      </if>
-      <if test="record.user != null" >
         user = #{record.user,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null" >
         password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mail != null" >
         mail = #{record.mail,jdbcType=VARCHAR},
-      </if>
-      <if test="record.question != null" >
         question = #{record.question,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.alterTime != null" >
         alter_time = #{record.alterTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.answer != null" >
-        answer = #{record.answer,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update user
-    set id = #{record.id,jdbcType=INTEGER},
-      level = #{record.level,jdbcType=INTEGER},
-      tid = #{record.tid,jdbcType=INTEGER},
-      user = #{record.user,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      mail = #{record.mail,jdbcType=VARCHAR},
-      question = #{record.question,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      alter_time = #{record.alterTime,jdbcType=TIMESTAMP},
-      answer = #{record.answer,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hfut.entity.User" >
-    update user
-    <set >
-      <if test="level != null" >
-        level = #{level,jdbcType=INTEGER},
-      </if>
-      <if test="tid != null" >
+        answer = #{record.answer,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hfut.entity.User">
+        update user
+        <set>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="tid != null">
+                tid = #{tid,jdbcType=INTEGER},
+            </if>
+            <if test="user != null">
+                user = #{user,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                mail = #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="question != null">
+                question = #{question,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="alterTime != null">
+                alter_time = #{alterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="answer != null">
+                answer = #{answer,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hfut.entity.User">
+        update user
+        set level = #{level,jdbcType=INTEGER},
         tid = #{tid,jdbcType=INTEGER},
-      </if>
-      <if test="user != null" >
         user = #{user,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mail != null" >
         mail = #{mail,jdbcType=VARCHAR},
-      </if>
-      <if test="question != null" >
         question = #{question,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alterTime != null" >
         alter_time = #{alterTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="answer != null" >
-        answer = #{answer,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hfut.entity.User" >
-    update user
-    set level = #{level,jdbcType=INTEGER},
-      tid = #{tid,jdbcType=INTEGER},
-      user = #{user,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      mail = #{mail,jdbcType=VARCHAR},
-      question = #{question,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      alter_time = #{alterTime,jdbcType=TIMESTAMP},
-      answer = #{answer,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        answer = #{answer,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
 </mapper>

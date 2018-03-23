@@ -64,12 +64,13 @@ public class RemoteDesignController {
             RemoteDesignWorkload workload;
             workload = JSON.parseObject(String.valueOf(jsonObject), RemoteDesignWorkload.class);
 
-            if (workload.getPeople()<=50) {
+            if (workload.getPeople() <= 50) {
                 workload.setLoadCoefficient(0.6F);
-                workload.setWorkload(workload.getLoadCoefficient()*workload.getPeople()*workload.getWeeks());;
-            }else{
+                workload.setWorkload(workload.getLoadCoefficient() * workload.getPeople() * workload.getWeeks());
+                ;
+            } else {
                 workload.setLoadCoefficient(0.3F);
-                workload.setWorkload((float) ( workload.getWeeks() * (0.6 * 50 + (workload.getPeople() - 50) * 0.3)));
+                workload.setWorkload((float) (workload.getWeeks() * (0.6 * 50 + (workload.getPeople() - 50) * 0.3)));
             }
             //更新酬金
             workload.setMoney(PropertyUtil.getAllowance() * workload.getWorkload());

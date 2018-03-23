@@ -46,7 +46,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.people
      *
      * @return the value of local_graduate_design.people
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public Integer getPeople() {
@@ -58,7 +57,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.people
      *
      * @param people the value for local_graduate_design.people
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setPeople(Integer people) {
@@ -70,7 +68,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.weeks
      *
      * @return the value of local_graduate_design.weeks
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public Integer getWeeks() {
@@ -82,7 +79,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.weeks
      *
      * @param weeks the value for local_graduate_design.weeks
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setWeeks(Integer weeks) {
@@ -94,7 +90,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.coefficient
      *
      * @return the value of local_graduate_design.coefficient
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public Float getCoefficient() {
@@ -106,7 +101,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.coefficient
      *
      * @param coefficient the value for local_graduate_design.coefficient
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setCoefficient(Float coefficient) {
@@ -118,7 +112,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.workload
      *
      * @return the value of local_graduate_design.workload
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public Float getWorkload() {
@@ -130,7 +123,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.workload
      *
      * @param workload the value for local_graduate_design.workload
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -142,7 +134,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.note
      *
      * @return the value of local_graduate_design.note
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public String getNote() {
@@ -154,7 +145,6 @@ public class LGraDesignWorkload extends LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.note
      *
      * @param note the value for local_graduate_design.note
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setNote(String note) {

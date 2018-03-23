@@ -14,12 +14,18 @@
     </pluginRepository>
   </pluginRepositories>
   <dependencies>
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.4</version>
+    </dependency>
 
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.4</version>
     </dependency>
+
 
       <dependency>
         <groupId>junit</groupId>
@@ -97,7 +103,7 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-jdbc</artifactId>
-        <version>4.2.5.RELEASE</version>
+        <version>4.3.9.RELEASE</version>
       </dependency>
     <dependency>
       <groupId>commons-fileupload</groupId>
@@ -145,6 +151,7 @@
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>5.1.44</version>
+
       </dependency>
       <dependency>
         <groupId>org.jetbrains</groupId>
@@ -175,6 +182,11 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>4.3.9.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>4.3.3.RELEASE</version>
     </dependency>
 
   </dependencies>

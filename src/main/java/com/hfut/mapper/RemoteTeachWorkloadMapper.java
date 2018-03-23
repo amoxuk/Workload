@@ -3,8 +3,9 @@ package com.hfut.mapper;
 import com.hfut.entity.RemoteTeachWorkload;
 import com.hfut.entity.RemoteTeachWorkloadExample;
 import com.hfut.entity.RemoteTeachWorkloadKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RemoteTeachWorkloadMapper {
     int countByExample(RemoteTeachWorkloadExample example);

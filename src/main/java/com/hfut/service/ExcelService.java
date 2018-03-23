@@ -25,7 +25,7 @@ public interface ExcelService {
 
     List inGraduateWorkload(File file) throws Exception;
 
-    void outLCourseWorkload(String path, List<LocalCourseWorkload> list)throws Exception;
+    void outLCourseWorkload(String path, List<LocalCourseWorkload> list) throws Exception;
 
     List inLCourseWorkload(File file) throws Exception;
 
@@ -49,12 +49,15 @@ public interface ExcelService {
 
     //落地教师教学实习
     List inLPracticeWorkload(File file) throws Exception;
+
     void outLPracticeDesignWorkload(String path, List<LPracticeWorkload> list) throws Exception;
 
     void outLProjectWorkload(String path, List<LProjectWorkload> list) throws Exception;
+
     List inLProjectWorkload(File file) throws Exception;
 
     void outLMatchWorkload(String path, List<LMatchWorkload> list) throws Exception;
+
     List inLMatchWorkload(File file) throws Exception;
 
     void outLNetWorkload(String path, List<LNetWorkload> list) throws Exception;
@@ -66,6 +69,7 @@ public interface ExcelService {
     List inExpriment(File file) throws Exception;
 
     void outNonLesson(String path, List<RemoteNonLesson> list) throws Exception;
+
     List inNonLesson(File file) throws Exception;
 
 }

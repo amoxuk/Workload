@@ -3,8 +3,9 @@ package com.hfut.mapper;
 import com.hfut.entity.RemoteDesignWorkload;
 import com.hfut.entity.RemoteDesignWorkloadExample;
 import com.hfut.entity.RemoteDesignWorkloadKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RemoteDesignWorkloadMapper {
     /**

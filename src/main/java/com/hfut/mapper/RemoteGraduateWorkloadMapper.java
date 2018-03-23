@@ -3,8 +3,9 @@ package com.hfut.mapper;
 import com.hfut.entity.RemoteGraduateWorkload;
 import com.hfut.entity.RemoteGraduateWorkloadExample;
 import com.hfut.entity.RemoteGraduateWorkloadKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RemoteGraduateWorkloadMapper {
     /**

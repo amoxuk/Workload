@@ -1,19 +1,22 @@
 package com.hfut.entity;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Repository
 public class AjaxResult<T> {
     private int status;
     private List<T> data;
-    private String msg="";
+    private String msg = "";
     private int count;
+
     public void ok() {
         this.status = 0;
         setMsg("操作成功。");
     }
+
     public void failed() {
         this.status = 1;
     }
@@ -49,7 +52,7 @@ public class AjaxResult<T> {
 
     @Override
     public String toString() {
-            return JSON.toJSONString(this);
+        return JSON.toJSONString(this);
     }
 }
 

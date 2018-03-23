@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="utf-8">
     <title>工作量计算系统</title>
-    <link rel="Shortcut Icon" href="../images/favicon.ico" />
+
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+
+    <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+    <script>
+        if (!window.name) {
+            var str = Math.random().toString(36).substr(2);
+            window.location.href += '?S=' +
+                str;
+            window.name = 'isreload';
+        }
+    </script>
+
+    <link rel="Shortcut Icon" href="../images/favicon.ico"/>
 
     <link rel="stylesheet" href="../src/css/layui.css">
     <script src="../src/layui.js"></script>
@@ -14,7 +31,7 @@
     <script src="../js/des.js"></script>
 
     <style>
-        title{
+        title {
             font-size: x-large;
         }
     </style>
@@ -35,30 +52,33 @@
 <main>
     <br>
     <div class="layui-container" style="margin-top: 8%">
-    <div align="center" style="font-size:x-large">
-        找回密码
-    </div>
-    <br>
-    <div class="layui-row" >
-        <div class="layui-col-md4">
-
+        <div align="center" style="font-size:x-large">
+            找回密码
         </div>
-        <div class="layui-col-md4 layui-col-md-offset4">
-            <form action="#" method="post">
+        <br>
+        <div class="layui-row">
+            <div class="layui-col-md4">
+
+            </div>
+            <div class="layui-col-md4 layui-col-md-offset4">
+                <form action="#" method="post">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" align="center">
+                            <input type="text" id="username" lay-verify="required|title" required placeholder="用户名"
+                                   autocomplete="true" class="layui-input">
+                        </div>
+                    </div>
+                    <span id="hideQues" hidden>
                 <div class="layui-form-item">
-                    <div class="layui-input-block" align="center" >
-                        <input type="text" id="username" lay-verify="required|title" required placeholder="用户名" autocomplete="true" class="layui-input">
+                    <div class="layui-input-block" align="center">
+                        <input type="text" id="question" lay-verify="required|title" required placeholder="问题"
+                               autocomplete="true" class="layui-input">
                     </div>
                 </div>
-                <span id="hideQues" hidden>
                 <div class="layui-form-item">
-                    <div class="layui-input-block" align="center" >
-                        <input type="text" id="question" lay-verify="required|title" required placeholder="问题" autocomplete="true" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-block" align="center" >
-                        <input type="text" id="answer" lay-verify="required|title" required placeholder="答案" autocomplete="true" class="layui-input">
+                    <div class="layui-input-block" align="center">
+                        <input type="text" id="answer" lay-verify="required|title" required placeholder="答案"
+                               autocomplete="true" class="layui-input">
                     </div>
                 </div>
                     <div class="layui-form-item">
@@ -74,27 +94,28 @@
                             </div>
                         </div>
                 </span>
-                <input id="md5" hidden>
-                <div class="layui-form-item">
-                    <div class="layui-input-block" align="center" >
-                        <input type="text" id="captcha" placeholder="请输入验证码" autocomplete="off" lay-verify="captcha"  class="layui-input">
+                    <input id="md5" hidden>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" align="center">
+                            <input type="text" id="captcha" placeholder="请输入验证码" autocomplete="off" lay-verify="captcha"
+                                   class="layui-input">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-block" align="center" >
-                        <img id="captchaImage" src="captcha" alt="验证码"/>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" align="center">
+                            <img id="captchaImage" src="captcha" alt="验证码"/>
+                        </div>
                     </div>
-                </div>
 
-                <div class="layui-form-item" >
-                    <div class="layui-input-block" align="center">
-                        <a class="layui-btn layui-btn-normal" id="login">找回</a>
-                        <a class="layui-btn layui-btn-primary" id="reset">重置</a>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" align="center">
+                            <a class="layui-btn layui-btn-normal" id="login">找回</a>
+                            <a class="layui-btn layui-btn-primary" id="reset">重置</a>
+                        </div>
                     </div>
-                </div>
 
-            </form>
-        </div>
+                </form>
+            </div>
 
         </div>
 
@@ -104,137 +125,133 @@
 </main>
 
 
+<script>
+    layui.use(['form', 'element', 'jquery'], function () {
+        var $ = layui.jquery;
+        var form = layui.form;
+        $('#captchaImage').click(function () {
+            $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
+        });
+        $("#reset").click(function () {
+            $("#password").val(null);
+            $("#captcha").val(null);
+            $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
+        });
+        //监听提交
+        $("#login").click(function () {
+
+            if ($("#captcha").val().length < 4) {
+                layer.msg('请输入验证码');
+
+                return;
+            }
+            layer.msg('请稍后...', {
+                icon: 16
+                , shade: 0.01
+            }, 2000);
+            if ($("#hideQues").is(":hidden")) {
+                var newTable = {
+                    "user": $("#username").val(),
+                    "captcha": $("#captcha").val(),
+                };
 
 
+                $.ajax({
+                    type: 'post'
+                    , url: "/auth/find"
+                    , data: newTable
+                    , dataType: 'json'
+                    , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+                    , success: function (res) {
+                        if (res["status"] == 1) {
+                            layer.msg(res['msg']);
+                            setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());", 2000)
+                            return false;
+                        } else {
+                            $('#question').val(res['data'][0]);
+                            $("#md5").val(res['msg']);
 
-    <script>
-        layui.use(['form','element','jquery'], function(){
-            var $ = layui.jquery;
-            var form = layui.form;
-            $('#captchaImage').click(function()
-            {
-                $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
-            });
-            $("#reset").click(function () {
-                $("#password").val(null);
-                $("#captcha").val(null);
-                $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
-            });
-            //监听提交
-            $("#login").click( function(){
+                            $('#username').attr("disabled", true);
+                            $('#question').attr("disabled", true);
 
-                if ($("#captcha").val().length<4) {
-                    layer.msg('请输入验证码');
+                            $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
+                            $('#captcha').val("");
 
+                            $('#hideQues').show();
+                            layer.alert("回答问题后再次提交。");
+
+                        }
+                    }
+                    , error: function (res) {
+
+                        layer.msg('错误码：' + res.status);
+
+                    }
+                });
+
+            } else {
+
+                var psw = $("#password").val(),
+                    surePsw = $("#surePsw").val();
+
+                form.verify({
+                    pass: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格']
+                    , surePsw: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格']
+                    , captcha: [/^[\S]{4}$/, '请输入验证码']
+                });
+
+                if (psw != surePsw) {
+                    layer.msg("两次密码不相同");
                     return;
                 }
-                layer.msg('请稍后...', {
-                    icon: 16
-                    ,shade: 0.01
-                },2000);
-                if($("#hideQues").is(":hidden")) {
-                    var newTable = {
-                        "user": $("#username").val(),
-                        "captcha":$("#captcha").val(),
-                    };
 
+                var newTable = {
+                    "user": $("#username").val(),
+                    "question": $("#question").val(),
+                    "answer": $("#answer").val(),
+                    "password": strEnc($("#password").val(), 'amoxu', 'amoxu', 'amoxu'),
+                    "captcha": $("#captcha").val(),
+                    "md5": $('#md5').val()
+                };
 
-                    $.ajax({
-                        type: 'post'
-                        ,url: "/auth/find"
-                        ,data: newTable
-                        ,dataType: 'json'
-                        ,contentType:'application/x-www-form-urlencoded;charset=UTF-8'
-                        ,success: function(res){
-                            if (res["status"]==1) {
-                                layer.msg(res['msg']);
-                                setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());",2000)
-                                return false;
-                            }else{
-                                $('#question').val(res['data'][0]);
-                                $("#md5").val(res['msg']);
-
-                                $('#username').attr("disabled", true);
-                                $('#question').attr("disabled", true);
-
-                                $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
-                                $('#captcha').val("");
-
-                                $('#hideQues').show();
-                                layer.alert("回答问题后再次提交。");
-
-                            }
-                        }
-                        ,error: function(res){
-
-                            layer.msg('错误码：'+res.status);
-
-                        }
-                    });
-
-                }else{
-
-                    var psw = $("#password").val(),
-                        surePsw = $("#surePsw").val();
-
-                    form.verify({
-                        pass: [/^[\S]{6,12}$/,'密码必须6到12位，且不能出现空格']
-                        ,surePsw:[/^[\S]{6,12}$/,'密码必须6到12位，且不能出现空格']
-                        ,captcha:[/^[\S]{4}$/,'请输入验证码']
-                    });
-
-                    if (psw != surePsw) {
-                        layer.msg("两次密码不相同");
-                        return;
-                    }
-
-                    var newTable = {
-                        "user": $("#username").val(),
-                        "question": $("#question").val(),
-                        "answer": $("#answer").val(),
-                        "password": strEnc($("#password").val(),'amoxu','amoxu','amoxu'),
-                        "captcha": $("#captcha").val(),
-                        "md5": $('#md5').val()
-                    };
-
-                    $.ajax({
-                        type: 'post'
-                        ,url: "/auth/anser"
-                        ,data: newTable
-                        ,dataType: 'json'
-                        ,contentType:'application/x-www-form-urlencoded;charset=UTF-8'
-                        ,success: function(res){
-                            if (res["status"]==1) {
-                                layer.msg(res['msg']);
-                                $('#captcha').val("");
-                                setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());",2000)
-                                return false;
-                            }else{
-                                layer.msg(res['msg']);
-                                setTimeout("self.location = \"../author.html\";",2000)
-                                return;
-                            }
-                        }
-                        ,error: function(res){
-                            layer.msg('错误码：' +res.status);
-                            setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());",2000)
+                $.ajax({
+                    type: 'post'
+                    , url: "/auth/anser"
+                    , data: newTable
+                    , dataType: 'json'
+                    , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+                    , success: function (res) {
+                        if (res["status"] == 1) {
+                            layer.msg(res['msg']);
+                            $('#captcha').val("");
+                            setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());", 2000)
                             return false;
+                        } else {
+                            layer.msg(res['msg']);
+                            setTimeout("self.location = \"../author.html\";", 2000)
+                            return;
                         }
-                    });
-                }
+                    }
+                    , error: function (res) {
+                        layer.msg('错误码：' + res.status);
+                        setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());", 2000)
+                        return false;
+                    }
+                });
+            }
 
-                return false;
-            });
+            return false;
         });
-        layui.use('element', function () {
-            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-            //监听导航点击\n
-            element.on('nav(demo)', function (elem) {
-                //console.log(elem)\n" +
-                layer.msg(elem.text());
-            });
+    });
+    layui.use('element', function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        //监听导航点击\n
+        element.on('nav(demo)', function (elem) {
+            //console.log(elem)\n" +
+            layer.msg(elem.text());
         });
-    </script>
+    });
+</script>
 
 </body>
 </html>

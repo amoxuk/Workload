@@ -3,14 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <!--加载spring容器-->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/applicationContext-*.xml</param-value>
-    </context-param>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+
     <context-param>
         <param-name>webAppRootKey</param-name>
         <param-value>springMVC</param-value>
@@ -26,26 +19,37 @@
         <param-value>100000</param-value>
     </context-param>
     <!-- 1. 动态的改变记录级别和策略，不需要重启Web应用; 2. 把log文件定在 /WEB-INF/logs/ 而不需要写绝对路径。 -->
+    <!--    <listener>
+            <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+        </listener>-->
+    <!--加载spring容器-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/applicationContext-*.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
     <listener>
-        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
     <!--springMVC前端控制器加载-->
     <servlet>
-        <servlet-name>springmvc</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <!--contextConfigLocation配置SpringMVC加载的配置文件（配置处理器，映射器等等）
         如果不配置contextConfigLocation，默认加载的是：/WEB-INF/servlet名称-servlet.xml(springmvc-servlet.xml)
         -->
+
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring/springmvc.xml</param-value>
         </init-param>
-
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>springmvc</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 

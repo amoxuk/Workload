@@ -11,9 +11,9 @@ public interface NonLessonService {
     int getCount(Integer years, String teacher) throws Exception;
 
 
-    boolean updateLoad(RemoteNonLesson workload)  throws Exception;
+    boolean updateLoad(RemoteNonLesson workload) throws Exception;
 
-    boolean removeLoad(Integer id)  throws Exception;
+    boolean removeLoad(Integer id) throws Exception;
 
     List<RemoteNonLesson> insertLoadByList(List<RemoteNonLesson> list) throws Exception;
 

@@ -38,7 +38,6 @@ public class LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.id
      *
      * @return the value of local_graduate_design.id
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public Integer getId() {
@@ -50,7 +49,6 @@ public class LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.id
      *
      * @param id the value for local_graduate_design.id
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setId(Integer id) {
@@ -62,7 +60,6 @@ public class LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.teacher
      *
      * @return the value of local_graduate_design.teacher
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public String getTeacher() {
@@ -74,7 +71,6 @@ public class LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.teacher
      *
      * @param teacher the value for local_graduate_design.teacher
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setTeacher(String teacher) {
@@ -86,7 +82,6 @@ public class LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.years
      *
      * @return the value of local_graduate_design.years
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public Integer getYears() {
@@ -98,7 +93,6 @@ public class LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.years
      *
      * @param years the value for local_graduate_design.years
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setYears(Integer years) {
@@ -110,7 +104,6 @@ public class LGraDesignWorkloadKey {
      * This method returns the value of the database column local_graduate_design.grades
      *
      * @return the value of local_graduate_design.grades
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public String getGrades() {
@@ -122,7 +115,6 @@ public class LGraDesignWorkloadKey {
      * This method sets the value of the database column local_graduate_design.grades
      *
      * @param grades the value for local_graduate_design.grades
-     *
      * @mbggenerated Sat Oct 28 16:26:20 CST 2017
      */
     public void setGrades(String grades) {

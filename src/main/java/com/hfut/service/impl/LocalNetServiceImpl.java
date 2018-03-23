@@ -33,8 +33,8 @@ public class LocalNetServiceImpl implements LocalNetService {
         }
         if (page != 0) {
             example.setOffset(page);
-            example.setLimit(limit);
         }
+        example.setLimit(limit);
         return workloadMapper.selectByExample(example);
     }
 
@@ -56,7 +56,7 @@ public class LocalNetServiceImpl implements LocalNetService {
     public boolean updateLoad(LNetWorkload workload) throws Exception {
         //计算工作量 课时
         workload.setWorkload((float) (12 + (workload.getAnswer() - 20) * 0.12));
-        workload.setWorkload((float) (Math.round(workload.getWorkload()*100)/100));
+        workload.setWorkload((float) (Math.round(workload.getWorkload() * 100) / 100));
 
         LNetWorkloadExample workloadExample = new LNetWorkloadExample();
         LNetWorkloadExample.Criteria criteria = workloadExample.createCriteria();
@@ -83,7 +83,7 @@ public class LocalNetServiceImpl implements LocalNetService {
     @Override
     public boolean insertLoad(LNetWorkload workload) throws Exception {
         workload.setWorkload((float) (12 + (workload.getAnswer() - 20) * 0.12));
-        workload.setWorkload((float) (Math.round(workload.getWorkload()*100)/100));
+        workload.setWorkload((float) (Math.round(workload.getWorkload() * 100) / 100));
 
         if (workloadMapper.insertSelective(workload) == 0) {
             return false;
@@ -114,7 +114,6 @@ public class LocalNetServiceImpl implements LocalNetService {
             return true;
         }
     }
-
 
 
 }

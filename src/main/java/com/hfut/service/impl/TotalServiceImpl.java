@@ -34,7 +34,7 @@ public class TotalServiceImpl implements TotalService {
 
 
     @Override
-    public List  getRemoteTotal(Integer years) {
+    public List getRemoteTotal(Integer years) {
         RemoteTotalViewExample example = new RemoteTotalViewExample();
         RemoteTotalViewExample.Criteria criteria = example.createCriteria();
         criteria.andYearsEqualTo(years);
@@ -51,12 +51,11 @@ public class TotalServiceImpl implements TotalService {
 
         return list;
     }
+
     /**
-     *
      * Integer REMOTE = 2;
      * Integer LOCAL = 1;
-     *
-     * */
+     */
     @Override
     public List getTotalByName(Integer years, String teacher, Integer local) {
 
@@ -97,7 +96,7 @@ public class TotalServiceImpl implements TotalService {
         HSSFWorkbook wb = new HSSFWorkbook();
 
         //第二步创建sheet
-        Sheet sheet = wb.createSheet(years+"年工作量汇总");
+        Sheet sheet = wb.createSheet(years + "年工作量汇总");
 
         //第三步创建行row:添加表头0行
         Row row = sheet.createRow(0);
@@ -108,9 +107,9 @@ public class TotalServiceImpl implements TotalService {
 
         String[] title;
         if (TotalService.LOCAL == local) {
-            title = new String[]{"序号","学年", "教师", "课堂教学", "实验教学", "课程设计", "实习","毕业实习", "毕业设计", "指导创新创业项目", "辅导竞赛", "合计"};
+            title = new String[]{"序号", "学年", "教师", "课堂教学", "实验教学", "课程设计", "实习", "毕业实习", "毕业设计", "指导创新创业项目", "辅导竞赛", "合计"};
         } else {
-            title = new String[]{"序号","学年","教师" , "课堂教学" , "实验教学" , "课程设计" , "毕业设计" , "无课补贴" , "合计"};
+            title = new String[]{"序号", "学年", "教师", "课堂教学", "实验教学", "课程设计", "毕业设计", "无课补贴", "合计"};
         }
 
 
@@ -120,7 +119,7 @@ public class TotalServiceImpl implements TotalService {
             cell.setCellValue(title[i]);
             cell.setCellStyle(style);
         }
-        int total = 0,line = 0;
+        int total = 0, line = 0;
         if (TotalService.LOCAL == local) {
             List<LocalTotalView> list = getTotalByName(years, teacher, local);
             //第五步插入数据

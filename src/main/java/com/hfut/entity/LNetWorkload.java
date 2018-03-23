@@ -30,7 +30,6 @@ public class LNetWorkload extends LNetWorkloadKey {
      * This method returns the value of the database column local_net.answer
      *
      * @return the value of local_net.answer
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public Integer getAnswer() {
@@ -42,7 +41,6 @@ public class LNetWorkload extends LNetWorkloadKey {
      * This method sets the value of the database column local_net.answer
      *
      * @param answer the value for local_net.answer
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public void setAnswer(Integer answer) {
@@ -54,7 +52,6 @@ public class LNetWorkload extends LNetWorkloadKey {
      * This method returns the value of the database column local_net.workload
      *
      * @return the value of local_net.workload
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public Float getWorkload() {
@@ -66,7 +63,6 @@ public class LNetWorkload extends LNetWorkloadKey {
      * This method sets the value of the database column local_net.workload
      *
      * @param workload the value for local_net.workload
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public void setWorkload(Float workload) {
@@ -78,7 +74,6 @@ public class LNetWorkload extends LNetWorkloadKey {
      * This method returns the value of the database column local_net.note
      *
      * @return the value of local_net.note
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public String getNote() {
@@ -90,7 +85,6 @@ public class LNetWorkload extends LNetWorkloadKey {
      * This method sets the value of the database column local_net.note
      *
      * @param note the value for local_net.note
-     *
      * @mbggenerated Sat Oct 28 13:53:52 CST 2017
      */
     public void setNote(String note) {

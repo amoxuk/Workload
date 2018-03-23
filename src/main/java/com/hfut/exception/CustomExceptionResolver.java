@@ -2,6 +2,7 @@ package com.hfut.exception;
 
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * <p>
  * 全局异常处理器只有一个，配置多个也没用。
  */
+@Controller
 public class CustomExceptionResolver implements HandlerExceptionResolver {
 
     public ModelAndView resolveException(HttpServletRequest httpServletRequest,

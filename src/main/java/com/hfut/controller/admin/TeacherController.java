@@ -69,7 +69,7 @@ public class TeacherController {
 
 
         result = new AjaxResult<Teacher>();
-        result.setData(teacherService.getTeacherList(college, teacher,type, page, limit));
+        result.setData(teacherService.getTeacherList(college, teacher, type, page, limit));
 
         return result.toString();
     }

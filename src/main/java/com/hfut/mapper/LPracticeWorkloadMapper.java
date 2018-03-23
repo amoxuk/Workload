@@ -3,8 +3,9 @@ package com.hfut.mapper;
 import com.hfut.entity.LPracticeWorkload;
 import com.hfut.entity.LPracticeWorkloadExample;
 import com.hfut.entity.LPracticeWorkloadKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LPracticeWorkloadMapper {
     /**

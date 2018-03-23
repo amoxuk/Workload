@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script type="text/javascript" src="des.js"></script>
     <script type="text/javascript" src="../src/layui.js"></script>
-       <link rel="Shortcut Icon" href="../images/favicon.ico" /><link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="Shortcut Icon" href="../images/favicon.ico"/>
+    <link rel="stylesheet" href="../src/css/layui.css">
     <link rel="stylesheet" href="../src/css/layui.css">
     <script>
-        function getResult(){
+        function getResult() {
             //待加密字符串
             var str = document.getElementById("str").innerText;
             //第一个参数必须；第二个、第三个参数可选
@@ -15,9 +16,9 @@
             var key2 = document.getElementById("key2").innerText;
             var key3 = document.getElementById("key3").innerText;
             //加密方法
-            var  enResult = strEnc(str,key1,key2,key3);
+            var enResult = strEnc(str, key1, key2, key3);
             //解密方法
-            var deResult = strDec(enResult,key1,key2,key3);
+            var deResult = strDec(enResult, key1, key2, key3);
             //展示结果
             document.getElementById("enStr").innerText = enResult;
             document.getElementById("dnStr").innerText = deResult;
@@ -25,13 +26,13 @@
     </script>
     <script language="JavaScript" type="text/javascript">
 
-        window.onload = function(){
+        window.onload = function () {
             document.getElementById("pad").innerHTML = "y";
         }
     </script>
 </head>
 <body>
-<input type="button" value="获取加密结果与解密结果" onclick="getResult()" />
+<input type="button" value="获取加密结果与解密结果" onclick="getResult()"/>
 <table>
     <tr>
         <td align="left">字符串：</td>
@@ -49,7 +50,7 @@
         <td align="left">解密结果：</td>
         <td align="left"><label id="dnStr"></label></td>
     </tr>
-    </table>
+</table>
 <div id="pad">xxx</div>
 <ul class="layui-nav" id='demo'>
     <li class="layui-nav-item layui-this"><a href="">工作量核算系统</a></li>
@@ -83,17 +84,17 @@
     </li>
     <li style="float: right" class="layui-nav-item "><a href="/../../userlogin.html">退出</a></li>
     </li></ul>
-       <script>
-           layui.use('element', function(){
-               var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+<script>
+    layui.use('element', function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
-               //监听导航点击
-               element.on('nav(demo)', function(elem){
-                   //console.log(elem)\n" +
-                   layer.msg(elem.text());
-               });
-           });
-      </script>
+        //监听导航点击
+        element.on('nav(demo)', function (elem) {
+            //console.log(elem)\n" +
+            layer.msg(elem.text());
+        });
+    });
+</script>
 </body>
 
 </html>
