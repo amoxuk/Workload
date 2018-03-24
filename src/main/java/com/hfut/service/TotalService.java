@@ -13,8 +13,8 @@ public interface TotalService {
 
     List getLocalTotal(Integer years);
 
-    List getTotalByName(Integer years, String teacher, Integer local);
+    List getTotalByName(Integer years, String teacher, String college, Integer local);
 
 
-    String download(HttpServletRequest request, Integer years, String teacher, Integer local) throws Exception;
+    String download(HttpServletRequest request, Integer years, String teacher,String college, Integer local) throws Exception;
 }

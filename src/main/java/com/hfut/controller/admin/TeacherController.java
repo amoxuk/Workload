@@ -51,7 +51,9 @@ public class TeacherController {
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8",
             method = RequestMethod.GET)
     @ResponseBody
-    public String getTeacher(HttpServletRequest request, @PathVariable("college") String college, @PathVariable("teacher") String teacher, @PathVariable("type") Integer type) {
+    public String getTeacher(HttpServletRequest request, @PathVariable("college") String college,
+                             @PathVariable("teacher") String teacher,
+                             @PathVariable("type") Integer type) {
         String limitParam = request.getParameter("limit");
         String pageParam = request.getParameter("page");
         Integer page, limit;
@@ -171,9 +173,14 @@ public class TeacherController {
             return result.toString();
         }
         return result.toString();
-
-
     }
-
-
+    @RequestMapping(value = "/teacher/college",
+            produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8",
+            method = RequestMethod.GET)
+    @ResponseBody
+    public String getCollege() {
+        AjaxResult result = new AjaxResult();
+        result.setData(teacherService.getCollege());
+        return result.toString();
+    }
 }

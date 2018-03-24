@@ -170,13 +170,16 @@ public class UploadExcel {
             if (list.size() == 0) {
                 ajaxResult.ok();
                 ajaxResult.setMsg("导入成功");
+                return ajaxResult.toString();
             } else {
+                ajaxResult.failed();
+                ajaxResult.setMsg("导入失败");
                 return ajaxResult.toString();
             }
-
-
         }
-        return null;
+        AjaxResult ajaxResult = new AjaxResult<>();
+        ajaxResult.failed();
+        return ajaxResult.toString();
     }
 
 }

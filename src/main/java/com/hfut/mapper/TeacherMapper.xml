@@ -235,4 +235,8 @@
         note = #{note,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <select id="selectCollege" resultType="java.lang.String">
+        select DISTINCT college  FROM teacher;
+    </select>
 </mapper>

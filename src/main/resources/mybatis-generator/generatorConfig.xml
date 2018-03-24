@@ -36,7 +36,8 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="user" domainObjectName="User"/>
+        <table tableName="local_total_view" domainObjectName="LocalTotalView"/>
+        <table tableName="remote_total_view" domainObjectName="RemoteTotalView"/>
 
 
     </context>

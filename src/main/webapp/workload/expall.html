@@ -40,7 +40,7 @@
             <div class="layui-form-item">
                 <div class="layui-input-inline"><select name="time" lay-verify="">
                     <option value="">全部</option>
-                    <option value="2016">2015</option>
+                    <option value="2015">2015</option>
                     <option value="2016">2016</option>
                     <option value="2017" selected>2017</option>
                     <option value="2018">2018</option>
@@ -136,8 +136,9 @@
         });
 
     });
-    layui.use(['table', 'jquery'], function () {
+    layui.use(['table', 'jquery', 'form'], function () {
         var $ = layui.$;
+        var form = layui.form;
         var table = layui.table;
         var index;
         $("#teachTable").ready(function () {
@@ -151,7 +152,7 @@
         var tableParam = { //其它参数在此省略
             id: 'teachTable',
             elem: '#teachTable',
-            url: '/Exp/' + (new Date().getFullYear() - 1) + "/all",
+            url: '/Exp/' + (new Date().getFullYear() - 1) + "/null",
             page: true,
             limits: [10, 20, 50, 100, 300],
             limit: 10,

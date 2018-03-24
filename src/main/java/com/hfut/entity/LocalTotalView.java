@@ -5,6 +5,8 @@ public class LocalTotalView {
 
     private Integer years;
 
+    private String college;
+
     private Double course;
 
     private Double design;
@@ -37,6 +39,14 @@ public class LocalTotalView {
 
     public void setYears(Integer years) {
         this.years = years;
+    }
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college == null ? null : college.trim();
     }
 
     public Double getCourse() {

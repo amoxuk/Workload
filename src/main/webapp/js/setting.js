@@ -135,14 +135,14 @@ var ToolBar = {
     }
     , searchlist: function (tableParam, type, data, tableObj) {
         var time = !data.field['time'] ? "0" : data.field['time'],
-            teacher = !data.field['teacher'] ? "all" : encodeURI(data.field['teacher']);
+            teacher = !data.field['teacher'] ? "null" : encodeURI(data.field['teacher']);
         var url = "/" + type + "/".concat(time, "/", teacher);
         tableParam.url = url;
         tableObj.reload(tableParam); //重载表格
     }
     , downdetail: function (data, type) {
         var time = !data.field['time'] ? '0' : data.field['time'],
-            teacher = !data.field['teacher'] ? "all" : encodeURI(data.field['teacher']);
+            teacher = !data.field['teacher'] ? "null" : encodeURI(data.field['teacher']);
         var url = "/downdetail/" + type + "/".concat(time, "/", teacher);
         document.location = url;
     }

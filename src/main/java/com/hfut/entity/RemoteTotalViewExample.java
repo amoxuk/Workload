@@ -254,6 +254,76 @@ public class RemoteTotalViewExample {
             return (Criteria) this;
         }
 
+        public Criteria andCollegeIsNull() {
+            addCriterion("college is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeIsNotNull() {
+            addCriterion("college is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeEqualTo(String value) {
+            addCriterion("college =", value, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeNotEqualTo(String value) {
+            addCriterion("college <>", value, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeGreaterThan(String value) {
+            addCriterion("college >", value, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeGreaterThanOrEqualTo(String value) {
+            addCriterion("college >=", value, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeLessThan(String value) {
+            addCriterion("college <", value, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeLessThanOrEqualTo(String value) {
+            addCriterion("college <=", value, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeLike(String value) {
+            addCriterion("college like", value, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeNotLike(String value) {
+            addCriterion("college not like", value, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeIn(List<String> values) {
+            addCriterion("college in", values, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeNotIn(List<String> values) {
+            addCriterion("college not in", values, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeBetween(String value1, String value2) {
+            addCriterion("college between", value1, value2, "college");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollegeNotBetween(String value1, String value2) {
+            addCriterion("college not between", value1, value2, "college");
+            return (Criteria) this;
+        }
+
         public Criteria andCourseIsNull() {
             addCriterion("course is null");
             return (Criteria) this;

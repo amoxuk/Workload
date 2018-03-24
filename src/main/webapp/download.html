@@ -91,7 +91,7 @@
 
             var time = !$("[name='time']").val() ? "null" : $("[name='time']").val().toString(),
                 workload = !$("[name='workload']").val() ? "null" : $("[name='workload']").val().toString(),
-                teacher = !$("[name='teacher']").val() ? "all" : encodeURI($("[name='teacher']").val().toString());
+                teacher = !$("[name='teacher']").val() ? "null" : encodeURI($("[name='teacher']").val().toString());
             var url = "/".concat(time, "/", workload, "/", teacher);
             if ("2" == workload) {
                 showTable.remote.url = "/total/remote" + url;
@@ -112,7 +112,7 @@
 
             var time = !$("[name='time']").val() ? "null" : $("[name='time']").val().toString(),
                 workload = !$("[name='workload']").val() ? "null" : $("[name='workload']").val().toString(),
-                teacher = !$("[name='teacher']").val() ? "all" : encodeURI($("[name='teacher']").val().toString());
+                teacher = !$("[name='teacher']").val() ? "null" : encodeURI($("[name='teacher']").val().toString());
             var url = "/".concat(time, "/", workload, "/", teacher);
 
             url = "/total/download" + url;
@@ -130,7 +130,7 @@
         local: {
             elem: '#showLoad'
             , page: false
-            , url: "/total/local/" + $("[name='time']").val() + "/" + $("[name='workload']").val() + "/all"
+            , url: "/total/local/" + $("[name='time']").val() + "/" + $("[name='workload']").val() + "/null"
             , response: {
                 statusName: 'status' //数据状态的字段名称，默认：code
                 , statusCode: 0 //成功的状态码，默认：0

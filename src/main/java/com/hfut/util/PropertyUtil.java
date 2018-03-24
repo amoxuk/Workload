@@ -67,6 +67,7 @@ public class PropertyUtil {
         return Float.valueOf(PropertyUtil.getProperty("allowance"));
     }
 
+
     public static void main(String[] args) {
         System.out.println(getAllowance());
     }

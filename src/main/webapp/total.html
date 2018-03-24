@@ -35,7 +35,7 @@
             <div class="layui-input-inline">
                 <select name="time" lay-verify="">
                     <option value="">时间</option>
-                    <option value="2016">2015</option>
+                    <option value="2015">2015</option>
                     <option value="2016">2016</option>
                     <option value="2017" selected>2017</option>
                     <option value="2018">2018</option>
@@ -49,6 +49,11 @@
                     <option value="2">异地</option>
                 </select>
             </div>
+            <div class="layui-input-inline">
+                <select name="college" lay-search="">
+                </select>
+            </div>
+
             <div class=" layui-input-inline">
                 <input type="text" name="teacher"
                        placeholder="教师"
@@ -74,11 +79,54 @@
 </body>
 
 <script>
-    layui.use(['form', 'table'], function () {
+    layui.config({
+        base: './Admin/static/js/'
+        , version: '101100'
+    }).use('admin');
+
+    layui.use(['form', 'table', 'jquery', "admin"], function () {
         var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
         var table = layui.table;
+        var $ = layui.jquery;
 
-        var tableObj = table.render(showTable.local);
+        var tableObj;
+
+        var location = localStorage.getItem("location");
+        var teacher = localStorage.getItem("teacher");
+
+        var myurls = "/".concat(!$("[name='time']").val() ? "null" : $("[name='time']").val().toString(), "/", "true" == location ? 1 : 2, "/", null, "/", teacher);
+        if (teacher) {
+            $("[name = 'teacher']").val(teacher);
+
+            if ("true" == location) {
+                showTable.local.url = "/total/count" + myurls;
+                tableObj = table.render(showTable.local);
+            } else {
+                showTable.remote.url = "/total/count" + myurls;
+                tableObj = table.render(showTable.remote);
+            }
+        } else {
+            tableObj = table.render(showTable.local);
+        }
+
+        localStorage.removeItem("location");
+        localStorage.removeItem("teacher");
+
+        $.ajax({
+            method: "get"
+            , url: "/teacher/college"
+            , success: function (res) {
+                var s = "<option value=\"\" selected>院系</option>\n";
+                for (var i = 0; i < res['count']; i++) {
+                    s += "<option value=\"" + res['data'][i] + "\" >" + res['data'][i] + "</option>\n";
+                }
+                $("select[name = 'college']").html(s);
+                form.render();
+            }
+            , error: function (res) {
+                layer.msg("请刷新页面");
+            }
+        });
 
         form.render();
         form.on('submit(search)', function (data) {
@@ -90,14 +138,17 @@
 
             var time = !$("[name='time']").val() ? "null" : $("[name='time']").val().toString(),
                 workload = !$("[name='workload']").val() ? "null" : $("[name='workload']").val().toString(),
-                teacher = !$("[name='teacher']").val() ? "all" : encodeURI($("[name='teacher']").val().toString());
-            var url = "/".concat(time, "/", workload, "/", teacher);
+                college = !$("[name='college']").val() ? "null" : encodeURI($("[name='college']").val().toString()),
+                teacher = !$("[name='teacher']").val() ? "null" : encodeURI($("[name='teacher']").val().toString());
+            var url = "/".concat(time, "/", workload, "/", college, "/", teacher);
             layer.msg('加载中', {icon: 16, shade: 0.01});
+
+
             if ("2" == workload) {
-                showTable.remote.url = "/total/remote" + url;
+                showTable.remote.url = "/total/count" + url;
                 tableObj.reload(showTable.remote); //重载表格
             } else {
-                showTable.local.url = "/total/local" + url;
+                showTable.local.url = "/total/count" + url;
                 tableObj.reload(showTable.local); //重载表格
             }
 
@@ -112,8 +163,9 @@
 
             var time = !$("[name='time']").val() ? "null" : $("[name='time']").val().toString(),
                 workload = !$("[name='workload']").val() ? "null" : $("[name='workload']").val().toString(),
-                teacher = !$("[name='teacher']").val() ? "all" : encodeURI($("[name='teacher']").val().toString());
-            var url = "/".concat(time, "/", workload, "/", teacher);
+                college = !$("[name='college']").val() ? "null" : encodeURI($("[name='college']").val().toString()),
+                teacher = !$("[name='teacher']").val() ? "null" : encodeURI($("[name='teacher']").val().toString());
+            var url = "/".concat(time, "/", workload, "/", college, "/", teacher);
 
             url = "/total/download" + url;
 
@@ -129,9 +181,12 @@
     var showTable = {
         local: {
             elem: '#showLoad'
-            , page: false
-            , url: "/total/local/" + $("[name='time']").val() + "/" + $("[name='workload']").val() + "/all"
-            , response: {
+            ,
+            page: false
+            ,
+            url: "/total/count/" + $("[name='time']").val() + "/" + $("[name='workload']").val() + "/" + $("[name='college']").val() + "/null"
+            ,
+            response: {
                 statusName: 'status' //数据状态的字段名称，默认：code
                 , statusCode: 0 //成功的状态码，默认：0
                 , msgName: 'msg' //状态信息的字段名称，默认：msg
@@ -141,10 +196,12 @@
             /*
             * 表格样式测试数据
             * ,data:[{"course":42.0,"design":920.0,"expriment":74.0,"graduateDesign":1719.0,"graduatePractice":198.0,"matchs":64.0,"practice":44990.0,"project":3650.0,"teacher":"张三","total":49938.0,"years":2017},{"course":0.0,"design":40.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":0.0,"teacher":"孙丽","total":40.0,"years":2017},{"course":0.0,"design":0.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":48.0,"teacher":"张无","total":48.0,"years":2017},{"course":5.0,"design":0.0,"expriment":0.0,"graduateDesign":0.0,"graduatePractice":0.0,"matchs":0.0,"practice":0.0,"project":0.0,"teacher":"王五","total":5.0,"years":2017}]
-            */, cols: [[ //表头/
+            */,
+            cols: [[ //表头/
                 //序号	教师	课堂教学	实验教学（算法2）	课程设计	实习	毕业设计	指导创新创业项目	辅导竞赛	合计
                 {field: 'id', title: 'ID', width: 110, fixed: 'left', templet: '#titleTpl'}
                 , {field: 'teacher', title: '教师', width: 110}
+                , {field: 'college', title: '院系', width: 110}
                 , {field: 'course', title: '课堂教学', width: 110}
                 , {field: 'expriment', title: '实验教学', width: 110}
                 , {field: 'design', title: '课程设计', width: 110}
@@ -155,7 +212,8 @@
                 , {field: 'matchs', title: '辅导竞赛', width: 110}
                 , {field: 'total', title: '合计', width: 110, sort: true}
             ]]
-            , done: function (res, curr, count) {
+            ,
+            done: function (res, curr, count) {
                 console.log(res);
                 layer.close(layer.index);
             }

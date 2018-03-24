@@ -22,7 +22,7 @@ public class RemoteGraServiceImpl implements RemoteGraService {
         if (years != 0) {
             criteria.andYearsEqualTo(years);
         }
-        if (!"all".equals(teacher)) {
+        if (!"null".equals(teacher)) {
             criteria.andTeacherEqualTo(teacher);
         }
         if (page != 0) {
@@ -39,7 +39,7 @@ public class RemoteGraServiceImpl implements RemoteGraService {
         if (years != 0) {
             criteria.andYearsEqualTo(years);
         }
-        if (!"all".equals(teacher)) {
+        if (!"null".equals(teacher)) {
             criteria.andTeacherEqualTo(teacher);
         }
         return graduateMapper.countByExample(example);

@@ -23,7 +23,7 @@ public class RemoteDesignServiceImpl implements RemoteDesignService {
         if (years != 0) {
             criteria.andYearsEqualTo(years);
         }
-        if (!"all".equals(teacher)) {
+        if (!"null".equals(teacher)) {
             criteria.andTeacherEqualTo(teacher);
         }
         if (page != 0) {
@@ -41,7 +41,7 @@ public class RemoteDesignServiceImpl implements RemoteDesignService {
         if (years != 0) {
             criteria.andYearsEqualTo(years);
         }
-        if (!"all".equals(teacher)) {
+        if (!"null".equals(teacher)) {
             criteria.andTeacherEqualTo(teacher);
         }
         return designWorkloadMapper.countByExample(example);

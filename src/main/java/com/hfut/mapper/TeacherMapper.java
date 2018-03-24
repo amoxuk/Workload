@@ -28,4 +28,9 @@ public interface TeacherMapper {
     int updateByPrimaryKeySelective(Teacher record);
 
     int updateByPrimaryKey(Teacher record);
+
+    /**
+     * @return 当前表中存在的所有教师的系别
+     */
+    List<String> selectCollege();
 }

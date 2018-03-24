@@ -57,14 +57,19 @@ public class TotalServiceImpl implements TotalService {
      * Integer LOCAL = 1;
      */
     @Override
-    public List getTotalByName(Integer years, String teacher, Integer local) {
+    public List getTotalByName(Integer years, String teacher, String college, Integer local) {
+        System.out.println("null".equals(local));
 
         if (2 == local) {
             RemoteTotalViewExample example = new RemoteTotalViewExample();
             RemoteTotalViewExample.Criteria criteria = example.createCriteria();
             criteria.andYearsEqualTo(years);
-            if (!"all".equals(teacher)) {
+            if (!"null".equals(teacher)) {
                 criteria.andTeacherEqualTo(teacher);
+            }
+            if (!"null".equals(college)) {
+                criteria.andCollegeEqualTo(college);
+                System.out.println("is in college local");
             }
             List<RemoteTotalView> list = remoteMapper.selectByExample(example);
             return list;
@@ -73,8 +78,12 @@ public class TotalServiceImpl implements TotalService {
             LocalTotalViewExample.Criteria criteria = example.createCriteria();
 
             criteria.andYearsEqualTo(years);
-            if (!"all".equals(teacher)) {
+            if (!"null".equals(teacher)) {
                 criteria.andTeacherEqualTo(teacher);
+            }
+            if (!"null".equals(college)) {
+                criteria.andCollegeEqualTo(college);
+                System.out.println("is in college remote");
             }
             List<LocalTotalView> list = localMapper.selectByExample(example);
             return list;
@@ -85,7 +94,7 @@ public class TotalServiceImpl implements TotalService {
     }
 
     @Override
-    public String download(HttpServletRequest request, Integer years, String teacher, Integer local) throws Exception {
+    public String download(HttpServletRequest request, Integer years, String teacher,String college, Integer local) throws Exception {
 
         String separator = File.separator;
         String rootpath = request.getSession().getServletContext().getRealPath(separator + "upload");
@@ -107,9 +116,9 @@ public class TotalServiceImpl implements TotalService {
 
         String[] title;
         if (TotalService.LOCAL == local) {
-            title = new String[]{"序号", "学年", "教师", "课堂教学", "实验教学", "课程设计", "实习", "毕业实习", "毕业设计", "指导创新创业项目", "辅导竞赛", "合计"};
+            title = new String[]{"序号", "学年", "教师","院系", "课堂教学", "实验教学", "课程设计", "实习", "毕业实习", "毕业设计", "指导创新创业项目", "辅导竞赛", "合计"};
         } else {
-            title = new String[]{"序号", "学年", "教师", "课堂教学", "实验教学", "课程设计", "毕业设计", "无课补贴", "合计"};
+            title = new String[]{"序号", "学年", "教师", "院系", "课堂教学", "实验教学", "课程设计", "毕业设计", "无课补贴", "合计"};
         }
 
 
@@ -119,9 +128,10 @@ public class TotalServiceImpl implements TotalService {
             cell.setCellValue(title[i]);
             cell.setCellStyle(style);
         }
-        int total = 0, line = 0;
+        int  line = 0;
+        double total = 0;
         if (TotalService.LOCAL == local) {
-            List<LocalTotalView> list = getTotalByName(years, teacher, local);
+            List<LocalTotalView> list = getTotalByName(years, teacher, college, local);
             //第五步插入数据
 
             for (int i = 0; i < list.size(); i++) {
@@ -132,6 +142,7 @@ public class TotalServiceImpl implements TotalService {
                 row.createCell(line++).setCellValue(i + 1);
                 row.createCell(line++).setCellValue(years);
                 row.createCell(line++).setCellValue(list.get(i).getTeacher());
+                row.createCell(line++).setCellValue(list.get(i).getCollege());
                 row.createCell(line++).setCellValue(list.get(i).getCourse());
                 row.createCell(line++).setCellValue(list.get(i).getExpriment());
                 row.createCell(line++).setCellValue(list.get(i).getDesign());
@@ -145,7 +156,7 @@ public class TotalServiceImpl implements TotalService {
                 total += list.get(i).getTotal();
             }
         } else {
-            List<RemoteTotalView> list = getTotalByName(years, teacher, local);
+            List<RemoteTotalView> list = getTotalByName(years, teacher, college, local);
             //第五步插入数据
 
             for (int i = 0; i < list.size(); i++) {
@@ -157,6 +168,7 @@ public class TotalServiceImpl implements TotalService {
                 row.createCell(line++).setCellValue(i + 1);
                 row.createCell(line++).setCellValue(years);
                 row.createCell(line++).setCellValue(list.get(i).getTeacher());
+                row.createCell(line++).setCellValue(list.get(i).getCollege());
                 row.createCell(line++).setCellValue(list.get(i).getCourse());
                 row.createCell(line++).setCellValue(list.get(i).getExpriment());
                 row.createCell(line++).setCellValue(list.get(i).getDesign());

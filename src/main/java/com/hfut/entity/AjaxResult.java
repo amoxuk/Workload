@@ -10,7 +10,8 @@ public class AjaxResult<T> {
     private int status;
     private List<T> data;
     private String msg = "";
-    private int count;
+    private int count = -1;
+
 
     public void ok() {
         this.status = 0;
@@ -32,6 +33,9 @@ public class AjaxResult<T> {
 
     public void setData(List data) {
         this.data = data;
+        if (this.count == -1) {
+            this.count = data.size();
+        }
     }
 
     public String getMsg() {

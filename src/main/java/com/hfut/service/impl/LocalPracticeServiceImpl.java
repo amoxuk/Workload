@@ -23,7 +23,7 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
         if (years != 0) {
             criteria.andYearsEqualTo(years);
         }
-        if (!"all".equals(teacher)) {
+        if (!"null".equals(teacher)) {
             criteria.andTeacherEqualTo(teacher);
         }
         if (page != 0) {
@@ -40,7 +40,7 @@ public class LocalPracticeServiceImpl implements LocalPracticeService {
         if (years != 0) {
             criteria.andYearsEqualTo(years);
         }
-        if (!"all".equals(teacher)) {
+        if (!"null".equals(teacher)) {
             criteria.andTeacherEqualTo(teacher);
         }
 

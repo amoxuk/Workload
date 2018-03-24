@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.hfut.entity.AjaxResult;
 import com.hfut.exception.CustomException;
 import com.hfut.service.TotalService;
+import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,45 +23,46 @@ public class TotalController {
     @Resource(name = "totalServiceImpl")
     private TotalService totalService;
 
-    @RequestMapping(value = "/total/local/{years}/{workload}/{teacher}",
+    private Logger logger = Logger.getLogger(TotalController.class);
+
+    @RequestMapping(value = "/total/count/{years}/{location}/{college}/{teacher}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf8")
     @ResponseBody
-    public String getLocalTotal(@PathVariable("years") Integer years, @PathVariable("workload") String workload, @PathVariable("teacher") String teacher) {
+    public String getLocalTotal(@PathVariable("years") Integer years,
+                                @PathVariable("location") Integer location,/*1落地0异地*/
+                                @PathVariable("teacher") String teacher,
+                                @PathVariable("college") String college) {
         AjaxResult result = new AjaxResult();
-        if (!"all".equals(teacher)) {
-            result.setData(totalService.getTotalByName(years, teacher, TotalService.LOCAL));
+        logger.info(years + "," + location + "," + teacher + "," + college);
+        System.out.println(college);
+        if (location == 1) {
+            result.setData(totalService.getTotalByName(years, teacher,college, TotalService.LOCAL));
         } else {
-            result.setData(totalService.getLocalTotal(years));
+            result.setData(totalService.getTotalByName(years, teacher,college, TotalService.REMOTE));
         }
+
         result.ok();
         return JSON.toJSONString(result);
     }
 
-    @RequestMapping(value = "/total/remote/{years}/{workload}/{teacher}",
+
+
+
+
+    @RequestMapping(value = "/total/download/{years}/{location}/{college}/{teacher}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf8")
     @ResponseBody
-    public String getRemoteTotal(@PathVariable("years") Integer years, @PathVariable("workload") String workload, @PathVariable("teacher") String teacher) {
-        AjaxResult result = new AjaxResult();
-        if (!"all".equals(teacher)) {
-            result.setData(totalService.getTotalByName(years, teacher, TotalService.REMOTE));
-        } else {
-            result.setData(totalService.getRemoteTotal(years));
-        }
-        result.ok();
-
-        return JSON.toJSONString(result);
-    }
-
-    @RequestMapping(value = "/total/download/{years}/{workload}/{teacher}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf8")
-    @ResponseBody
-    public void downloadTotal(HttpServletRequest request, HttpServletResponse response, @PathVariable("years") Integer years, @PathVariable("workload") Integer workload, @PathVariable("teacher") String teacher) throws CustomException, IOException {
+    public void downloadTotal(HttpServletRequest request, HttpServletResponse response,
+                              @PathVariable("years") Integer years,
+                              @PathVariable("location") Integer location,
+                              @PathVariable("teacher") String teacher,
+                              @PathVariable("college") String college
+    ) throws CustomException, IOException {
         String path;
         try {
-            path = totalService.download(request, years, teacher, workload);
+            path = totalService.download(request, years, teacher,college, location);
         } catch (Exception e) {
             e.printStackTrace();
             return;
