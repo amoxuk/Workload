@@ -35,8 +35,6 @@ public class UserServiceImplTest {
     public void selectLike() {
         List<User> userList = userMapper.selectByLike("amo", 1, 10);
         logger.info(userList);
-
-        Assert.assertNotEquals(userList.size(), 0);
     }
 
     @Test

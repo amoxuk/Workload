@@ -66,7 +66,7 @@ public class UserController {
         if (subject.hasRole("教师")) {
             return "{\"status\":0,\"msg\":\"/teacher/myzone.html\"}";
         } else if (subject.hasRole("超级管理员")) {
-            return "{\"status\":0,\"msg\":\"/Admin/index.html\"}";
+            return "{\"status\":0,\"msg\":\"../index.html\"}";
         }
 
         return "{\"status\":1,\"msg\":\"/author.html\"}";

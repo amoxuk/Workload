@@ -20,6 +20,6 @@ public class TeacherServiceImplTest {
     @Test
     public void getCollege() {
         List<String> s = teacherMapper.selectCollege();
-        Assert.assertEquals(s.size(), 2);
+        Assert.assertEquals(s.size(), 4);
     }
 }
