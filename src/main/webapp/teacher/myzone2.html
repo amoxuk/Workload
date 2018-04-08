@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>个人中心 - 工作量计算系统</title>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+
+
+    <link rel="Shortcut Icon" href="../images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/zone.css">
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <script src="../src/layui.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
+
+
+    <!--必须放最后-->
+    <script src="../js/setting.js"></script>
+    <style>
+        div#workload {
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+<body>
+
+<ul class="layui-nav" lay-filter='demo'>
+    <li class="layui-nav-item ">工作量核算系统</li>
+    <li style="float: right" class="layui-nav-item "><a href="/logout">退出</a></li>
+</ul>
+
+<main>
+
+    <div align="center" style="font-size: 24px;padding-top: 20px;padding-bottom: 20px">
+        个人中心
+    </div>
+    <hr/>
+
+    <!--  <div class="layui-container">-->
+
+    <div class="layui-row" style="margin-top: 1em">
+        <!--左侧 标题栏目-->
+        <div class="layui-col-md2 site-tree">
+            <ul class="zone">
+                <li><a id="myload" href="#workload">我的工作量</a></li>
+                <li><a id="centerid" href="#center">个人中心</a></li>
+                <li><a id="passwordid" href="#password">修改密码</a></li>
+                <li><a id="alertid" href="#alert">修改资料</a></li>
+
+            </ul>
+        </div>
+        <!--右侧 内容栏目-->
+        <div id="workload">
+            <div class="layui-col-md9">
+                <div class="layui-container">
+                    <div style="text-align: center">
+                        <a href="javascript:;">
+                            <i class="layui-icon">&#xe603;</i>
+                        </a>
+                        <span style="text-decoration:underline;text-decoration-color: #2F4056">2017</span>
+
+                        <a href="javascript:;"><i class="layui-icon">&#xe602;</i></a>
+                    </div>
+                    <table id="showLoad" lay-filter="test"></table>
+                </div>
+            </div>
+        </div>
+        <div id="center" hidden>
+            <div class="layui-col-md9">
+                <div class="zone-msg">
+                    <div class="zone-name"><h2 id="name"><br></h2></div>
+
+                    <ul class="zone-content">
+                        <li class="">
+                            <div class="label">教师号：</div>
+                            <div class="text" id="tid"><br></div>
+                        </li>
+                        <li class="">
+                            <div class="label">系别：</div>
+                            <div class="text" id="college"><br></div>
+                        </li>
+                        <li class="">
+                            <div class="label">邮箱：</div>
+                            <div class="text" id="mail"><br></div>
+                        </li>
+                        <li class="">
+                            <div class="label">安全问题：</div>
+                            <div class="text" id="question"><br></div>
+                        </li>
+                        <li class="">
+                            <div class="label">答案：</div>
+                            <div class="text" id="answer"><br></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="password" hidden>
+            <div class="layui-col-md9">
+                <div class="zone-msg">
+                    <div class="zone-name"><h2>修改密码</h2></div>
+                    <ul class="zone-content">
+                        <li class="">
+                            <div class="label">原密码：</div>
+                            <input type="password" style="width: 25em" id="old">
+                        </li>
+                        <li class="">
+                            <div class="label">新密码：</div>
+                            <input type="password" style="width: 25em" id="new">
+                        </li>
+                        <li class="">
+                            <div class="label">确认密码：</div>
+                            <input type="password" style="width: 25em" id="sure">
+                        </li>
+                        <li class="">
+                            <div class="label"></div>
+                            <button class="layui-btn layui-btn-normal" id="up">修改</button>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="alert" hidden>
+            <div class="layui-col-md9">
+                <div class="zone-msg">
+                    <div class="zone-name"><h2>修改资料</h2></div>
+                    <ul class="zone-content">
+                        <li class="">
+                            <div class="label">用户名：</div>
+                            <input style="width: 25em" id="uname">
+                        </li>
+                        <li class="">
+                            <div class="label">教师号：</div>
+                            <input style="width: 25em" id="uid" disabled>
+                        </li>
+                        <li class="">
+                            <div class="label">系别：</div>
+                            <input style="width: 25em" id="ucollege" disabled>
+                        </li>
+                        <li class="">
+                            <div class="label">邮箱：</div>
+                            <input style="width: 25em" id="umail">
+                        </li>
+                        <li class="">
+                            <div class="label">安全问题：</div>
+                            <input style="width: 25em" id="uquestion">
+                        </li>
+                        <li class="">
+                            <div class="label">答案：</div>
+                            <input style="width: 25em" id="uanswer">
+                        </li>
+                        <li class="" style="margin-left: 18em">
+                            <button class="layui-btn layui-btn-normal" id="uup">修改</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  </div>-->
+</main>
+
+
+<script>
+    $("#centerid").on('click', function () {
+        hideAll()
+        $("#center").fadeIn();
+    });
+    $("#myload").on('click', function () {
+        hideAll()
+        $("#workload").fadeIn();
+    });
+    $("#passwordid,#url2psw").on('click', function () {
+        hideAll()
+        $("#password").fadeIn();
+    });
+    $("#alertid").on('click', function () {
+        hideAll()
+        $("#alert").fadeIn();
+    });
+    layui.use('layer');
+
+    $("#up").on('click', function () {
+        var old = $("#old").val();
+        var newpsw = $("#new").val();
+        var sure = $("#sure").val();
+        if (null == old || null == newpsw || null == sure) {
+            layer.msg('请输入密码。');
+            return;
+        } else if (old == newpsw) {
+            layer.msg("新密码与旧密码相同。");
+            return;
+        } else if (newpsw != sure) {
+            layer.msg("两次输入新密码不同。");
+            return;
+        } else if (newpsw.length < 6) {
+            layer.msg("新密码长度小于6位。");
+            return;
+        } else {
+            //本地校验通过
+
+        }
+        old = strEnc(old, 'amoxu', 'amoxu', 'amoxu');
+        newpsw = strEnc(newpsw, 'amoxu', 'amoxu', 'amoxu');
+        var newTable = {
+            "old": old,
+            "newpsw": newpsw
+        };
+        $.ajax({
+            type: 'post'
+            , url: "/zone/password"
+            , data: newTable
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    layer.msg("修改成功，请重新登录，以确认密码。");
+                    setTimeout("self.location = \"/auth/author.html\";", 2000);
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+
+    });
+    $("#uup").on('click', function () {
+        var uname = $("#uname").val();
+        var umail = $("#umail").val();
+        var uquestion = $("#uquestion").val();
+        var uanswer = $("#uanswer").val();
+
+        if (uname == old || null == uquestion || null == umail || null == uanswer) {
+            layer.msg('必填栏目不允许为空。');
+            return;
+        } else {
+            //本地校验通过
+        }
+
+        var newTable = {
+            "name": uname,
+            "mail": umail,
+            "question": uquestion,
+            "answer": uanswer
+        };
+
+        $.ajax({
+            type: 'post'
+            , url: "/zone/update"
+            , data: newTable
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    layer.msg("修改成功。");
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+
+    });
+
+
+    function hideAll() {
+        $("#center").hide();
+        $("#workload").hide();
+        $("#password").hide();
+        $("#alert").hide();
+    }
+
+    if (window.location.hash == "#password") {
+        hideAll()
+        $("#password").fadeIn();
+    } else if (window.location.hash == "#alert") {
+        hideAll()
+        $("#alert").fadeIn();
+    } else if (window.location.hash == "#center") {
+        hideAll()
+        $("#center").fadeIn();
+    } else {
+        hideAll()
+        $("#workload").fadeIn();
+    }
+    layui.use(['layer', 'form'], function () {
+        var index = layer.msg("加载中", {icon: 16, shade: 0.01});
+        $.ajax({
+            type: 'get'
+            , url: "/zone/getDetail"
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    //加载成功
+
+                    //{"count":0,// "data":[// {"answer":"*",// "colleage":"信息工程",// "id":10000,// "level":1,// "mail":"123",// "password":"********************************",// "question":"12",// "teacherId":1001,// "user":"zs"}],"msg":"","status":0}
+
+
+                    var user = res['data'][0]['user'];
+                    var mail = res['data'][0]['mail'];
+                    var question = res['data'][0]['question'];
+                    var colleages = res['data'][0]['colleage'];
+                    var answers = res['data'][0]['answer'];
+                    var tid = res['data'][0]['tid'];
+                    $("#name").html(user);
+                    $("#uname").val(user);
+                    $("#mail").html(mail);
+                    $("#umail").val(mail);
+                    $("#question").html(question);
+                    $("#uquestion").val(question);
+                    $("#college").html(colleages);
+                    $("#ucollege").val(colleages);
+                    $("#answer").html(answers);
+                    $("#uanswer").val();
+                    $("#tid").html(tid);
+                    $("#uid").val(tid);
+                    layer.close(layer.index);
+                    return;
+
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+    });
+
+</script>
+</body>
+</html>

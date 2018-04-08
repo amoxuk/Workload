@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人中心 - 工作量计算系统</title>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+
+
+    <link rel="Shortcut Icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/zone.css">
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="stylesheet" href="src/css/layui.css">
+    <script src="../src/layui.js"></script>
+    <script src="src/layui.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/des.js"></script>
+
+
+    <!--必须放最后-->
+    <script src="../js/setting.js"></script>
+    <script src="js/setting.js"></script>
+
+
+</head>
+<body>
+
+<header>
+
+</header>
+
+
+<main>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="layui-container">
+        <div class="layui-row">
+
+            <div class="layui-col-md5">
+
+                <div class="text"><i class="layui-icon" >&#xe6fc;</i> AllaboutJay:<p class="layui-inline layui-layout-right">
+                    <a href=""><i class="layui-icon">&#xe6c6;</i>999+</a>
+                </div>
+                <div>
+                        <pre>
+    十六年前的伊斯坦堡是在土耳其
+    十六年后的现在冰激凌也是在土耳其
+    我伦一定很喜欢这个地方
+    其实我也很喜欢
+                        </pre>
+                </div>
+                <div style="text-align: right;">——来自 周杰伦 《<a href="http://ww.aww.as">英雄</a>》 网易云音乐</div>
+                <div class="layui-row">
+                    <a href=""><i class="layui-icon" style="margin-right: 1em">&#xe63a;</i></a>
+                    <a href=""><i class="layui-icon" style="margin-right: 1em">&#xe641;</i></a>
+                    <a href=""><i class="layui-icon" style="margin-right: 1em">&#xe6c5;</i></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+    $("#centerid").on('click', function () {
+        hideAll()
+        $("#center").fadeIn();
+    });
+    $("#passwordid,#url2psw").on('click', function () {
+        hideAll()
+        $("#password").fadeIn();
+    });
+    $("#alertid").on('click', function () {
+        hideAll()
+        $("#alert").fadeIn();
+    });
+    layui.use('layer');
+
+    $("#up").on('click', function () {
+        var old = $("#old").val();
+        var newpsw = $("#new").val();
+        var sure = $("#sure").val();
+        if (null == old || null == newpsw || null == sure) {
+            layer.msg('请输入密码。');
+            return;
+        } else if (old == newpsw) {
+            layer.msg("新密码与旧密码相同。");
+            return;
+        } else if (newpsw != sure) {
+            layer.msg("两次输入新密码不同。");
+            return;
+        } else if (newpsw.length < 6) {
+            layer.msg("新密码长度小于6位。");
+            return;
+        } else {
+            //本地校验通过
+
+        }
+        old = strEnc(old, 'amoxu', 'amoxu', 'amoxu');
+        newpsw = strEnc(newpsw, 'amoxu', 'amoxu', 'amoxu');
+        var newTable = {
+            "old": old,
+            "newpsw": newpsw
+        };
+        $.ajax({
+            type: 'post'
+            , url: "/zone/password"
+            , data: newTable
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    layer.msg("修改成功，请重新登录，以确认密码。");
+                    setTimeout("self.location = \"/auth/author.html\";", 2000);
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+
+    });
+    $("#uup").on('click', function () {
+        var uname = $("#uname").val();
+        var umail = $("#umail").val();
+        var uquestion = $("#uquestion").val();
+        var uanswer = $("#uanswer").val();
+
+        if (uname == old || null == uquestion || null == umail || null == uanswer) {
+            layer.msg('必填栏目不允许为空。');
+            return;
+        } else {
+            //本地校验通过
+        }
+
+        var newTable = {
+            "name": uname,
+            "mail": umail,
+            "question": uquestion,
+            "answer": uanswer
+        };
+
+        $.ajax({
+            type: 'post'
+            , url: "/zone/update"
+            , data: newTable
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    layer.msg("修改成功。");
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+
+    });
+
+
+    function hideAll() {
+        $("#center").hide();
+        $("#password").hide();
+        $("#alert").hide();
+    }
+
+    if (window.location.hash == "#password") {
+        hideAll()
+        $("#password").fadeIn();
+    } else if (window.location.hash == "#alert") {
+        hideAll()
+        $("#alert").fadeIn();
+    } else {
+
+    }
+    layui.use(['layer'], function () {
+        var index = layer.msg("加载中", {icon: 16, shade: 0.01});
+        $.ajax({
+            type: 'get'
+            , url: "/zone/getDetail"
+            , dataType: 'json'
+            , contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            , success: function (res) {
+                if (res["status"] == 1) {
+                    layer.msg(res['msg']);
+                    return false;
+                } else {
+                    //加载成功
+
+                    //{"count":0,// "data":[// {"answer":"*",// "colleage":"信息工程",// "id":10000,// "level":1,// "mail":"123",// "password":"********************************",// "question":"12",// "teacherId":1001,// "user":"zs"}],"msg":"","status":0}
+
+
+                    var user = res['data'][0]['user'];
+                    var mail = res['data'][0]['mail'];
+                    var question = res['data'][0]['question'];
+                    var colleages = res['data'][0]['colleage'];
+                    var answers = res['data'][0]['answer'];
+                    var tid = res['data'][0]['tid'];
+                    $("#name").html(user);
+                    $("#uname").val(user);
+                    $("#mail").html(mail);
+                    $("#umail").val(mail);
+                    $("#question").html(question);
+                    $("#uquestion").val(question);
+                    $("#college").html(colleages);
+                    $("#ucollege").val(colleages);
+                    $("#answer").html(answers);
+                    $("#uanswer").val();
+                    $("#tid").html(tid);
+                    $("#uid").val(tid);
+                    layer.close(layer.index);
+                    return;
+
+                }
+            }
+            , error: function (res) {
+                layer.msg('错误码：' + res.status);
+            }
+        });
+
+    });
+
+</script>
+</body>
+</html>
