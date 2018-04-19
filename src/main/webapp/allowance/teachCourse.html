@@ -244,7 +244,7 @@
                         setTimeout("$('.layui-laypage-btn').click();", 2000)
                     }
                     , error: function (res) {
-                        layer.msg('错误码：' + res.status);
+                        layer.alert("错误码：" + res.status+"<br>"+res.statusText);
                     }
                 });
             } else if (obj.event === 'del') {
@@ -269,7 +269,7 @@
                             }
                         }
                         , error: function (res) {
-                            layer.msg('错误码：' + res.status);
+                            layer.alert("错误码：" + res.status+"<br>"+res.statusText);
                         }
                     });
                     obj.del();

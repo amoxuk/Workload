@@ -184,7 +184,7 @@
                     }
                     , error: function (res) {
 
-                        layer.msg('错误码：' + res.status);
+                        layer.alert("错误码：" + res.status+"<br>"+res.statusText);
 
                     }
                 });
@@ -233,7 +233,7 @@
                         }
                     }
                     , error: function (res) {
-                        layer.msg('错误码：' + res.status);
+                        layer.alert("错误码：" + res.status+"<br>"+res.statusText);
                         setTimeout("$('#captchaImage').attr(\"src\", \"captcha.form?timestamp=\" + (new Date()).valueOf());", 2000)
                         return false;
                     }
