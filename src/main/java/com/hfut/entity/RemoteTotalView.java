@@ -1,6 +1,6 @@
 package com.hfut.entity;
 
-public class RemoteTotalView {
+public class RemoteTotalView  {
     private String teacher;
 
     private Integer years;
@@ -89,5 +89,21 @@ public class RemoteTotalView {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+
+    @Override
+    public String toString() {
+        return "RemoteTotalView{" +
+                "teacher='" + teacher + '\'' +
+                ", years=" + years +
+                ", college='" + college + '\'' +
+                ", course=" + course +
+                ", design=" + design +
+                ", expriment=" + expriment +
+                ", graduate=" + graduate +
+                ", nonLesson=" + nonLesson +
+                ", total=" + total +
+                '}';
     }
 }

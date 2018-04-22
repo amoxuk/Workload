@@ -28,7 +28,7 @@ public class RoleController {
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
     public String getList(@RequestParam(name = "page") Integer page, @RequestParam(name = "limit") Integer limit) throws Exception {
-        AjaxResult<User> result = new AjaxResult<>();
+        AjaxResult<List<User>> result = new AjaxResult<>();
 
         result.setData(userService.getList(page, limit));
         result.ok();
@@ -40,7 +40,7 @@ public class RoleController {
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
     public String updateUser(User user) throws Exception {
-        AjaxResult<User> result = new AjaxResult<>();
+        AjaxResult<List<User>> result = new AjaxResult<>();
         userService.updateUser(user);
         result.ok();
         return result.toString();
@@ -51,7 +51,7 @@ public class RoleController {
             produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
     public String deleteUser(User user) throws Exception {
-        AjaxResult<User> result = new AjaxResult<>();
+        AjaxResult<List<User>> result = new AjaxResult<>();
         if (userService.removeById(user.getId())) {
             result.ok();
         } else {
@@ -104,7 +104,7 @@ public class RoleController {
     public String searchUser(@RequestParam(name = "s") String s,
                              @RequestParam(name = "page") Integer page,
                              @RequestParam(name = "limit") Integer limit) throws Exception {
-        AjaxResult result = new AjaxResult();
+        AjaxResult<List<User>> result = new AjaxResult<>();
         List<User> list = userService.selectLike(s, page, limit);
         result.setData(list);
         result.setCount(userService.countLike(s));

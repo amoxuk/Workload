@@ -145,11 +145,11 @@
         </dependency>
 
 
-        <!--c3p0链接池-->
+        <!--druid链接池-->
         <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.5.2</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.26</version>
         </dependency>
 
         <!--Mysql数据库驱动-->

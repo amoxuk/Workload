@@ -1,9 +1,6 @@
 package com.hfut.service.impl;
 
-import com.hfut.entity.LocalTotalView;
-import com.hfut.entity.LocalTotalViewExample;
-import com.hfut.entity.RemoteTotalView;
-import com.hfut.entity.RemoteTotalViewExample;
+import com.hfut.entity.*;
 import com.hfut.mapper.LocalTotalViewMapper;
 import com.hfut.mapper.RemoteTotalViewMapper;
 import com.hfut.service.TotalService;
@@ -20,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -94,7 +92,7 @@ public class TotalServiceImpl implements TotalService {
     }
 
     @Override
-    public String download(HttpServletRequest request, Integer years, String teacher,String college, Integer local) throws Exception {
+    public String download(HttpServletRequest request, Integer years, String teacher, String college, Integer local) throws Exception {
 
         String separator = File.separator;
         String rootpath = request.getSession().getServletContext().getRealPath(separator + "upload");
@@ -116,7 +114,7 @@ public class TotalServiceImpl implements TotalService {
 
         String[] title;
         if (TotalService.LOCAL == local) {
-            title = new String[]{"序号", "学年", "教师","院系", "课堂教学", "实验教学", "课程设计", "实习", "毕业实习", "毕业设计", "指导创新创业项目", "辅导竞赛", "合计"};
+            title = new String[]{"序号", "学年", "教师", "院系", "课堂教学", "实验教学", "课程设计", "实习", "毕业实习", "毕业设计", "指导创新创业项目", "辅导竞赛", "合计"};
         } else {
             title = new String[]{"序号", "学年", "教师", "院系", "课堂教学", "实验教学", "课程设计", "毕业设计", "无课补贴", "合计"};
         }
@@ -128,7 +126,7 @@ public class TotalServiceImpl implements TotalService {
             cell.setCellValue(title[i]);
             cell.setCellStyle(style);
         }
-        int  line = 0;
+        int line = 0;
         double total = 0;
         if (TotalService.LOCAL == local) {
             List<LocalTotalView> list = getTotalByName(years, teacher, college, local);
@@ -197,4 +195,70 @@ public class TotalServiceImpl implements TotalService {
         logger.info("工作量汇总文件生成成功:" + path);
         return path;
     }
+
+    public Double getTotalByNameYear(String teacher, Integer year) {
+        logger.info(teacher + " " + year);
+        RemoteTotalViewExample example = new RemoteTotalViewExample();
+        RemoteTotalViewExample.Criteria criteria = example.createCriteria();
+        criteria.andYearsEqualTo(year);
+        criteria.andTeacherEqualTo(teacher);
+
+        List<RemoteTotalView> list = remoteMapper.selectByExample(example);
+
+        if (list != null && list.size() > 0) {
+            return list.get(0).getTotal();
+        } else {
+            LocalTotalViewExample localTotalViewExample = new LocalTotalViewExample();
+            LocalTotalViewExample.Criteria localTotalViewExampleCriteria = localTotalViewExample.createCriteria();
+            localTotalViewExampleCriteria.andYearsEqualTo(year);
+            localTotalViewExampleCriteria.andTeacherEqualTo(teacher);
+            List<LocalTotalView> localTotalViewList = localMapper.selectByExample(localTotalViewExample);
+            if (localTotalViewList != null && localTotalViewList.size() > 0) {
+                logger.info(localTotalViewList);
+                return localTotalViewList.get(0).getTotal();
+            }
+        }
+        return 0.0;
+    }
+
+    @Override
+    public List<Total> getTotalByYear(Integer year) {
+        List<Total> totals = new ArrayList<>();
+        Total total;
+
+
+        logger.info(year);
+        RemoteTotalViewExample example = new RemoteTotalViewExample();
+        RemoteTotalViewExample.Criteria criteria = example.createCriteria();
+        criteria.andYearsEqualTo(year);
+
+        List<RemoteTotalView> list = remoteMapper.selectByExample(example);
+        /*异地工作量汇总*/
+        for (RemoteTotalView remoteTotalView : list) {
+            total = new Total();
+            total.setTeacher(remoteTotalView.getTeacher());
+            total.setTotals(remoteTotalView.getTotal());
+            total.setLocal(false);
+            totals.add(total);
+        }
+
+        LocalTotalViewExample localTotalViewExample = new LocalTotalViewExample();
+        LocalTotalViewExample.Criteria localTotalViewExampleCriteria = localTotalViewExample.createCriteria();
+        localTotalViewExampleCriteria.andYearsEqualTo(year);
+        List<LocalTotalView> localTotalViewList = localMapper.selectByExample(localTotalViewExample);
+
+        logger.info(localTotalViewList);
+        /*落地工作量汇总*/
+        for (LocalTotalView localTotalView : localTotalViewList) {
+            total = new Total();
+            total.setTeacher(localTotalView.getTeacher());
+            total.setTotals(localTotalView.getTotal());
+            total.setLocal(true);
+            totals.add(total);
+        }
+        return totals;
+
+
+    }
+
 }

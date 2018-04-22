@@ -1,28 +1,6 @@
 package com.hfut.entity;
 
-public abstract class Total {
-    Integer id;
-    String teacher;
-    Integer years;
-
-    public Integer getYear() {
-        return years;
-    }
-
-    public Total setYear(Integer years) {
-        this.years = years;
-        return this;
-    }
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Total setId(Integer id) {
-        this.id = id;
-        return this;
-    }
+public class Total {
 
     public String getTeacher() {
         return teacher;
@@ -33,17 +11,37 @@ public abstract class Total {
         return this;
     }
 
-    public Float getTotal() {
-        return total;
+
+    String teacher;
+
+    public boolean isLocal() {
+        return local;
     }
 
-    public Total setTotal(Float total) {
-        this.total = total;
+    public Total setLocal(boolean local) {
+        this.local = local;
         return this;
     }
 
-    Float total;
+    @Override
+    public String toString() {
+        return "Total{" +
+                "teacher='" + teacher + '\'' +
+                ", local=" + local +
+                ", totals=" + totals +
+                '}';
+    }
 
-    abstract Float count();
+    boolean local;
 
+    public Double getTotals() {
+        return totals;
+    }
+
+    public Total setTotals(Double totals) {
+        this.totals = totals;
+        return this;
+    }
+
+    Double totals;
 }

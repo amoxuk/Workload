@@ -1,6 +1,6 @@
 package com.hfut.entity;
 
-public class LocalTotalView {
+public class LocalTotalView  {
     private String teacher;
 
     private Integer years;
@@ -119,5 +119,23 @@ public class LocalTotalView {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "LocalTotalView{" +
+                "teacher='" + teacher + '\'' +
+                ", years=" + years +
+                ", college='" + college + '\'' +
+                ", course=" + course +
+                ", design=" + design +
+                ", expriment=" + expriment +
+                ", graduateDesign=" + graduateDesign +
+                ", graduatePractice=" + graduatePractice +
+                ", project=" + project +
+                ", practice=" + practice +
+                ", matchs=" + matchs +
+                ", total=" + total +
+                '}';
     }
 }
